@@ -1,17 +1,118 @@
-# Godot 4+ specific ignores
+# Godot generated/editor state
+
 .godot/
-.nomedia
-
-# Godot-specific ignores
 .import/
-export.cfg
-export_credentials.cfg
-*.tmp
-
-# Imported translations (automatically generated from CSV files)
 *.translation
 
-# Mono-specific ignores
+# Godot export credentials
+
+.godot/export_credentials.cfg
+export_credentials.cfg
+
+# Build/export output
+
+/build/
+/builds/
+/export/
+/exports/
+/dist/
+/bin/
+*.pck
+*.zip
+*.apk
+*.aab
+*.exe
+*.dmg
+*.app/
+*.x86_64
+*.arm64
+*.wasm
+
+# Android export/generated project
+
+/android/
+
+# Runtime secrets / local environment files
+
+.env
+.env.*
+*.env
+!*.env.example
+!*.example.env
+
+# Node artifacts
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python artifacts
+
+**pycache**/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Rust/native build artifacts
+
+target/
+
+# Logs and temporary files
+
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.bak.*
+*.orig
+*~
+
+# Editor/OS noise
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/
+.idea/
+.zed/
+.cursor/
+
+# AI/editor tool settings
+
+.claude/
+
+# Nextcloud conflict artifacts
+
+*.sync-conflict-*
+*conflicted copy*
+
+# Mono-specific
+
 .mono/
 data_*/
 mono_crash.*.json
+
+# Non-game directories (dev/infra only)
+
+/docs/
+/runtime/
+/scripts/tests/
+/scripts/dev/
+/.hermes/
+
+# Non-game files
+
+/AGENTS.md
+/hermes_os_spec.md
+/docker-compose*.yml
+/build_mode_report*.md
