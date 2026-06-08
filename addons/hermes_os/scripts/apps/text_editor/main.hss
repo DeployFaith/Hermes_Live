@@ -1,0 +1,57 @@
+.text-editor-window {
+  min-width: 560px;
+  min-height: 360px;
+  flex: 1;
+  padding: 0px;
+}
+
+.text-editor-root {
+  flex: 1;
+  gap: 0px;
+}
+
+.text-editor-file-info {
+  flex: 1;
+  gap: var(--space-1);
+  align-items: stretch;
+}
+
+#text-editor-title {
+  font-size: 20px;
+  color: var(--text);
+}
+
+#text-editor-path {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+.text-editor-dirty {
+  min-width: 64px;
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+#text-editor-save {
+  min-width: 92px;
+  min-height: 34px;
+}
+
+.text-editor-content {
+  flex: 1;
+  min-width: 0px;
+  min-height: 0px;
+  background: var(--surface-0);
+  color: var(--text);
+  border-color: var(--border-strong);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: var(--font-md);
+}
+
+.text-editor-statusbar {
+  min-height: 28px;
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}

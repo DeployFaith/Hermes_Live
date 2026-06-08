@@ -1,0 +1,44 @@
+<App id="command-palette-app" label="Command Palette">
+  <Window id="command-palette-window" class="command-palette-window" label="Command Palette window">
+    <Column id="command-palette-root" class="command-palette-root" label="Command Palette content">
+      <Toolbar id="command-palette-toolbar" class="command-palette-toolbar" label="Command Palette toolbar">
+        <Column id="command-palette-heading" class="command-palette-heading">
+          <Title id="command-palette-title">Command Palette</Title>
+          <Text id="command-palette-subtitle" label="Result summary">{results_label}</Text>
+        </Column>
+      </Toolbar>
+
+      <TextInput
+        id="command-palette-search"
+        class="command-palette-search"
+        label="Search commands"
+        model="query"
+        placeholder="Search apps and actions"
+        on:input="handle_query_input"
+        on:submit="invoke_selected"
+      />
+
+      <List id="command-palette-results" class="command-palette-results" label="Command results list">
+        <ListItem
+          id="action-{action.row_id}"
+          class="command-palette-result-item"
+          label="{action.label}"
+          value="{action.id}"
+          selected="{action.id == active_action_id}"
+          for="action in filtered_actions"
+          key="{action.id}"
+          on:select="select_action"
+        >{action.row_label}</ListItem>
+      </List>
+
+      <Text id="command-palette-empty" class="command-palette-empty" label="No results" hidden="{has_results}">{empty_label}</Text>
+
+      <FlowRow id="command-palette-actions" class="command-palette-actions" label="Command invocation actions">
+        <Button id="command-palette-invoke" label="Invoke selected" variant="primary" disabled="{!can_invoke}" on:click="invoke_selected">Run</Button>
+        <Text id="command-palette-selected" class="command-palette-selected" label="Selected action">{selected_label}</Text>
+      </FlowRow>
+
+      <StatusBar id="command-palette-status" label="Command Palette status">{status}</StatusBar>
+    </Column>
+  </Window>
+</App>

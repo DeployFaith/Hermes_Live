@@ -1,0 +1,60 @@
+<App id="media-player-app" label="Media Player">
+  <Window id="media-player-window" class="mp-window" label="Media Player window">
+    <AppShell id="media-player-root" class="mp-root" label="Media Player content">
+      <AppBody id="mp-body" class="mp-body" label="Media Player workspace">
+        <Row id="mp-workspace" class="mp-workspace" label="Player workspace">
+          <Column id="mp-main" class="mp-main" label="Now playing">
+            <Column id="mp-art" class="mp-art" label="Album art / video">
+              <Text id="mp-art-icon" class="mp-art-icon">♫</Text>
+            </Column>
+
+            <Column id="mp-player-deck" class="mp-player-deck" label="Playback deck">
+              <Row id="mp-info-row" class="mp-info-row">
+                <Column id="mp-info-text" class="mp-info-text">
+                  <Text id="mp-track" class="mp-track" label="Track name">{track_name}</Text>
+                  <Text id="mp-artist" class="mp-artist" label="Artist">{track_artist}</Text>
+                </Column>
+                <Text id="mp-time-total" class="mp-time-right">{time_total}</Text>
+              </Row>
+
+              <Slider id="mp-seek" class="mp-seek" label="Seek" min="0" max="1" step="0.001" value="0" />
+
+              <Row id="mp-controls" class="mp-controls" label="Playback controls">
+                <Row id="mp-control-left" class="mp-control-left">
+                  <Text id="mp-time-cur" class="mp-time-left">{time_current}</Text>
+                </Row>
+
+                <Row id="mp-control-center" class="mp-control-center">
+                  <Button id="mp-btn-prev" class="mp-btn mp-btn-skip" label="Previous" on:click="btn_prev">⏮</Button>
+                  <Button id="mp-btn-stop" class="mp-btn mp-btn-ctrl" label="Stop" on:click="btn_stop">⏹</Button>
+                  <Button id="mp-btn-play" class="mp-btn mp-btn-play" label="Play" on:click="btn_play">▶</Button>
+                  <Button id="mp-btn-next" class="mp-btn mp-btn-skip" label="Next" on:click="btn_next">⏭</Button>
+                </Row>
+
+                <Row id="mp-control-right" class="mp-control-right">
+                  <Text id="mp-vol-icon" class="mp-vol-icon">{volume_icon}</Text>
+                  <Slider id="mp-vol-slider" class="mp-vol-slider" label="Volume" min="0" max="1" step="0.01" value="0.75" on:change="set_volume" />
+                  <Button id="mp-btn-fs" class="mp-btn mp-btn-ctrl" label="Fullscreen" on:click="toggle_fullscreen">⛶</Button>
+                </Row>
+              </Row>
+            </Column>
+          </Column>
+
+          <Column id="mp-playlist" class="mp-playlist" label="Playlist">
+            <Text id="mp-pl-title" class="mp-pl-title">Playlist</Text>
+            <List id="mp-pl-list" class="mp-pl-list" label="Track list">
+              <ListItem id="track-{track.id}" class="mp-pl-item" label="{track.title}" value="{track.id}" selected="{track.id == active_track_id}" for="track in tracks" key="{track.id}" on:select="select_track">
+                <Text class="mp-pl-item-title">{track.title}</Text>
+                <Text class="mp-pl-item-dur">{track.duration_str}</Text>
+              </ListItem>
+            </List>
+          </Column>
+        </Row>
+      </AppBody>
+
+      <AppFooter id="mp-statusbar" class="mp-statusbar" label="Status">
+        <Text id="mp-status-text" class="mp-status-text" label="Status">{status_text}</Text>
+      </AppFooter>
+    </AppShell>
+  </Window>
+</App>

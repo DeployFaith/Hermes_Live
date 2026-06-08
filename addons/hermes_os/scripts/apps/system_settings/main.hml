@@ -1,0 +1,105 @@
+<App id="system-settings-app" label="System Settings">
+  <Window id="system-settings-window" class="system-settings-window" label="System Settings window">
+    <AppShell id="system-settings-root" class="system-settings-root" label="System Settings content">
+      <AppHeader id="SystemSettingsToolbar" class="system-settings-toolbar" label="System Settings toolbar">
+        <Column id="system-settings-title-block" class="system-settings-title-block">
+          <Title id="SystemSettingsTitle">System Settings</Title>
+          <Text id="SystemSettingsSubtitle">System diagnostics, Hermes Gateway, and MCP controls</Text>
+        </Column>
+        <Text id="SystemSettingsToolbarGatewayStatusLabel" class="system-settings-toolbar-status" label="Gateway status">{gateway_toolbar_label}</Text>
+        <Text id="SystemSettingsToolbarMcpStatusLabel" class="system-settings-toolbar-status" label="MCP status">{mcp_toolbar_label}</Text>
+      </AppHeader>
+
+      <AppBody id="system-settings-main" class="system-settings-main" label="Settings workspace">
+        <Row id="system-settings-workspace" class="system-settings-workspace" label="Settings workspace body">
+          <Sidebar id="SystemSettingsSidebar" class="system-settings-sidebar" width="220" label="Settings sections">
+            <List id="SystemSettingsSidebarList" class="system-settings-sidebar-list" label="Settings sections">
+              <ListItem id="system-settings-nav-system" value="system" selected="{active_tab == 'system'}" on:select="select_section">System</ListItem>
+              <ListItem id="system-settings-nav-appearance" value="appearance" selected="{active_tab == 'appearance'}" on:select="select_section">Appearance</ListItem>
+              <ListItem id="system-settings-nav-window-management" value="window_management" selected="{active_tab == 'window_management'}" on:select="select_section">Window Management</ListItem>
+            </List>
+          </Sidebar>
+
+          <ScrollView id="SystemSettingsContentScroll" class="system-settings-content-scroll" label="Settings content">
+            <Column id="SystemSettingsPages" class="system-settings-pages">
+              <SettingsPage id="SystemSettingsSystemPage" class="system-settings-page" label="System settings page" hidden="{!system_visible}">
+                <SettingsSection id="SystemSettingsInfoCard" title="System Overview">
+                  <Text id="SystemSettingsInfoLabel" class="system-settings-info" label="System overview">{system_info}</Text>
+                </SettingsSection>
+
+              <SettingsSection id="SystemSettingsGatewayPanel" title="Hermes Gateway" subtitle="Primary chat and Terminal transport via Docker gateway">
+                <Text id="SystemSettingsGatewayStatus" class="system-settings-status" label="Gateway status">Gateway: {gateway_label}</Text>
+                <SettingsRow id="SystemSettingsGatewayModelRow" label="Model">
+                  <Text id="SystemSettingsGatewayModel" label="Gateway model">{gateway_model}</Text>
+                </SettingsRow>
+                <SettingsRow id="SystemSettingsGatewaySourceRow" label="Source">
+                  <Text id="SystemSettingsGatewaySource" class="system-settings-muted" label="Gateway config source">{gateway_source}</Text>
+                </SettingsRow>
+                <FlowRow id="SystemSettingsGatewayButtons" class="system-settings-actions" label="Gateway actions">
+                  <Button id="SystemSettingsGatewayTest" label="Test Gateway" variant="primary" on:click="test_gateway">Test Gateway</Button>
+                  <Button id="SystemSettingsGatewayReload" label="Reload Gateway config" variant="secondary" on:click="reload_gateway_config">Reload Config</Button>
+                </FlowRow>
+              </SettingsSection>
+
+              <SettingsSection id="SystemSettingsMcpPanel" title="Hermes_OS MCP" subtitle="Godot endpoint for OS tools and UI interaction">
+                <Text id="SystemSettingsMcpStatus" class="system-settings-status" label="MCP status">MCP: {mcp_label}</Text>
+                <SettingsRow id="SystemSettingsMcpEndpointRow" label="Endpoint">
+                  <Text id="SystemSettingsMcpEndpoint" label="MCP endpoint">{mcp_endpoint}</Text>
+                </SettingsRow>
+                <SettingsRow id="SystemSettingsMcpToolsRow" label="Tools">
+                  <Text id="SystemSettingsMcpTools" class="system-settings-muted" label="MCP tools">ping, observe, ui tree, click, filesystem</Text>
+                </SettingsRow>
+                <FlowRow id="SystemSettingsMcpButtons" class="system-settings-actions" label="MCP actions">
+                  <Button id="SystemSettingsMcpTest" label="Test MCP" variant="secondary" on:click="test_mcp">Test MCP</Button>
+                </FlowRow>
+              </SettingsSection>
+            </SettingsPage>
+
+              <SettingsPage id="SystemSettingsWindowManagementPage" class="system-settings-page" label="Window management settings page" hidden="{!window_management_visible}">
+                <SettingsSection id="SystemSettingsWindowManagementCard" title="Window Management" subtitle="Snap Assist and keyboard window placement">
+                  <SettingsRow id="SystemSettingsSnapAssistRow" label="Snap Assist">
+                    <Toggle id="SystemSettingsSnapAssistToggle" label="Show snap layout options when dragging windows to the top edge" model="snap_assist_enabled" checked="{snap_assist_enabled}" on:change="snap_assist_changed" />
+                  </SettingsRow>
+                  <Text id="SystemSettingsSnapAssistHelp" class="system-settings-muted" label="Snap Assist help">Drag a window to the top edge for layout choices. Use Ctrl+Alt+Arrow keys to move the focused window through halves and corners.</Text>
+                </SettingsSection>
+              </SettingsPage>
+
+              <SettingsPage id="SystemSettingsAppearancePage" class="system-settings-page appearance-page" label="Appearance settings page" hidden="{!appearance_visible}">
+                <SettingsSection id="SystemSettingsAppearanceCard" title="Desktop appearance" subtitle="Theme, wallpaper, selection and drag highlight">
+                <SettingsRow id="SystemSettingsThemeModeRow" label="Mode">
+                  <Select id="SystemSettingsThemeMode" label="Theme mode" value="{theme_mode}" options="dark:Dark|light:Light" on:change="theme_mode_changed" />
+                </SettingsRow>
+                <SettingsRow id="SystemSettingsAccentPickerRow" label="Accent">
+                  <FlowRow id="AccentColorPickerHost" class="accent-color-picker-host" label="Accent color picker">
+                  </FlowRow>
+                </SettingsRow>
+                <SettingsRow id="SystemSettingsHighlightPresetRow" label="Presets">
+                  <FlowRow id="AccentPresetGrid" class="accent-preset-grid" label="Accent color presets">
+                  </FlowRow>
+                </SettingsRow>
+                <SettingsRow id="SystemSettingsHighlightOpacityRow" label="Opacity">
+                  <Slider id="SystemSettingsHighlightOpacity" label="Highlight opacity" min="0.14" max="0.7" step="0.01" value="{highlight_alpha}" on:change="highlight_alpha_changed" />
+                  <Text id="SystemSettingsAlphaValue" class="system-settings-alpha-value" label="Highlight opacity percent">{highlight_alpha_label}</Text>
+                </SettingsRow>
+                <FlowRow id="SystemSettingsAppearanceActions" class="system-settings-actions" label="Appearance actions">
+                  <Button id="SystemSettingsCycleWallpaper" label="Cycle wallpaper" variant="secondary" on:click="cycle_wallpaper">Cycle wallpaper</Button>
+                  <Button id="SystemSettingsResetIconLayout" label="Reset icon layout" variant="secondary" on:click="reset_icon_layout">Reset icon layout</Button>
+                  <Button id="SystemSettingsResetHighlight" label="Reset highlight" variant="ghost" on:click="reset_highlight">Reset highlight</Button>
+                </FlowRow>
+                <SettingsRow id="SystemSettingsWallpapersRow" label="Wallpapers">
+                  <FlowRow id="WallpaperGrid" class="wallpaper-grid" label="Wallpaper previews">
+                  </FlowRow>
+                </SettingsRow>
+                </SettingsSection>
+              </SettingsPage>
+            </Column>
+          </ScrollView>
+        </Row>
+      </AppBody>
+
+      <AppFooter id="SystemSettingsStatusBar" class="system-settings-statusbar" label="System settings status">
+        <Text id="SystemSettingsStatusText" class="system-settings-status-text">{status}</Text>
+      </AppFooter>
+    </AppShell>
+  </Window>
+</App>

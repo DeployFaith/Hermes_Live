@@ -1,0 +1,38 @@
+<App id="shell-launcher" label="Start Menu">
+  <Window id="launcher-window" class="shell-launcher-window" label="Start Menu">
+    <Column id="launcher-root" class="shell-launcher-root" label="Start menu content">
+      <Column id="launcher-header" class="shell-launcher-header">
+        <Title id="launcher-title">Start Menu</Title>
+        <Text id="launcher-user" class="shell-launcher-user">{user_label}</Text>
+      </Column>
+
+      <TextInput id="launcher-search" class="shell-launcher-search" label="Search apps" placeholder="Search apps" model="search" on:input="handle_search" on:submit="submit_search" />
+
+      <Row id="launcher-content" class="shell-launcher-content" label="Launcher content">
+        <Column id="launcher-categories-column" class="shell-launcher-categories-column" label="Categories">
+          <ScrollView id="launcher-categories-scroll" class="shell-launcher-categories-scroll" label="Category scroll">
+            <List id="launcher-categories" class="shell-launcher-categories" label="Launcher categories">
+              <ListItem id="launcher-category-{category.id}" class="shell-launcher-category" label="{category.label}" value="{category.id}" selected="{category.selected}" for="category in categories" key="{category.id}" on:select="select_category">{category.label}</ListItem>
+            </List>
+          </ScrollView>
+        </Column>
+
+        <Column id="launcher-apps-column" class="shell-launcher-apps-column" label="Applications">
+          <Text id="launcher-section-title" class="shell-launcher-section-title">{section_title}</Text>
+          <ScrollView id="launcher-apps-scroll" class="shell-launcher-apps-scroll" label="Applications scroll">
+            <List id="launcher-apps" class="shell-launcher-apps" label="Applications">
+              <ListItem id="launcher-app-{app.id}" class="shell-launcher-app" label="{app.title}" value="{app.id}" selected="{app.selected}" for="app in apps" key="{app.id}" on:select="launch_app">{app.label}</ListItem>
+            </List>
+          </ScrollView>
+          <Text id="launcher-empty" class="shell-launcher-empty" hidden="{!empty_visible}">No apps match this view.</Text>
+        </Column>
+      </Row>
+
+      <Row id="launcher-footer" class="shell-launcher-footer" label="Session actions">
+        <Button id="launcher-account" label="Account" variant="secondary" on:click="open_account">Account</Button>
+        <Button id="launcher-lock" label="Lock" variant="secondary" on:click="lock_session">Lock</Button>
+        <Button id="launcher-power" label="Power" variant="secondary" on:click="show_power_menu">Power</Button>
+      </Row>
+    </Column>
+  </Window>
+</App>

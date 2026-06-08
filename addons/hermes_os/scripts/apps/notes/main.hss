@@ -1,0 +1,152 @@
+.notes-window {
+  min-width: 700px;
+  min-height: 430px;
+  flex: 1;
+  padding: 0px;
+}
+
+.notes-root {
+  flex: 1;
+  gap: 0px;
+  align-items: stretch;
+}
+
+.notes-toolbar {
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.notes-title-block {
+  flex: 1;
+  gap: var(--space-1);
+  align-items: stretch;
+}
+
+#notes-title {
+  font-size: 20px;
+  color: var(--text);
+}
+
+#notes-path {
+  color: #b4bfd3;
+  font-size: var(--font-sm);
+}
+
+#notes-dirty {
+  min-width: 86px;
+  color: #aab5ca;
+  font-size: var(--font-sm);
+}
+
+#notes-new,
+#notes-save,
+#notes-delete {
+  min-width: 82px;
+  min-height: 38px;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+#notes-save {
+  background: var(--accent);
+  color: #06101f;
+  border-color: var(--accent-hover);
+}
+
+#notes-delete {
+  background: rgba(255, 126, 147, 0.14);
+  color: #ffc1ca;
+  border-color: rgba(255, 126, 147, 0.42);
+}
+
+#notes-save:disabled,
+#notes-delete:disabled {
+  background: #202839;
+  color: #8d99af;
+  border-color: #343e57;
+  opacity: 1;
+}
+
+.notes-main {
+  flex: 1;
+  padding: var(--space-3);
+}
+
+.notes-workspace {
+  flex: 1;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.notes-sidebar {
+  min-width: 220px;
+  max-width: 280px;
+  gap: var(--space-2);
+  background: #0b1018;
+  border-color: #222b40;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.notes-sidebar-title {
+  color: #d5dced;
+  font-size: var(--font-sm);
+}
+
+.notes-list {
+  flex: 1;
+  min-width: 190px;
+  min-height: 260px;
+  gap: 4px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  padding: 0px;
+}
+
+.notes-list-item {
+  min-height: 34px;
+  background: #111827;
+  color: #aab5ca;
+  border-color: #26324a;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 8px;
+}
+
+.notes-list-item:hover {
+  background: #182136;
+  color: var(--text);
+}
+
+.notes-list-item:selected {
+  background: rgba(133, 180, 255, 0.20);
+  color: #dbe7ff;
+  border-color: rgba(133, 180, 255, 0.55);
+}
+
+.notes-content {
+  flex: 1;
+  min-width: 400px;
+  min-height: 260px;
+  background: #0a0f17;
+  color: var(--text);
+  border-color: #34405c;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: var(--font-md);
+}
+
+.notes-statusbar {
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.notes-status {
+  flex: 1;
+  color: #aab5ca;
+  font-size: var(--font-sm);
+}

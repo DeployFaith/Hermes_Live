@@ -21,9 +21,9 @@ config/icon="res://icon.svg"
 SceneBridge="*res://scripts/core/scene_bridge.gd"
 HomeDeviceController="*res://scripts/core/home_device_controller.gd"
 
-; --- HermesOS autoloads (uncomment after installing HermesOS addon) ---
-; HermesOSKernel="*res://addons/hermes_os/scripts/hermes/hermes_os_kernel.gd"
-; McpInteractionServer="*res://addons/hermes_os/scripts/hermes/mcp_interaction_server.gd"
+; --- HermesOS autoloads ---
+HermesOSKernel="*res://addons/hermes_os/scripts/hermes/hermes_os_kernel.gd"
+McpInteractionServer="*res://addons/hermes_os/scripts/hermes/mcp_interaction_server.gd"
 
 [display]
 
@@ -34,6 +34,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/size/min_width=800
 window/size/min_height=450
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/hermes_os/plugin.cfg")
 
 [physics]
 

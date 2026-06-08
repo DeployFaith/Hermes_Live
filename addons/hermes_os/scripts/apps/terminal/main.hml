@@ -1,0 +1,23 @@
+<App id="terminal-app" label="Terminal">
+  <Window id="terminal-window" class="terminal-window" label="Terminal window">
+    <Column id="terminal-root" class="terminal-root" label="Terminal content">
+      <TerminalSurface
+        id="terminal-surface"
+        class="terminal-surface"
+        label="Terminal surface"
+        prompt="{prompt}"
+        input="{draft}"
+        transcript="{transcript_preview}"
+        session-id="{session_id}"
+        on:input="handle_input"
+        on:submit="submit_command"
+        on:interrupt="interrupt_command"
+        on:clear="clear_terminal"
+        on:paste="paste_input"
+        on:copy="copy_output"
+        on:history_previous="history_previous"
+        on:history_next="history_next"
+      />
+    </Column>
+  </Window>
+</App>

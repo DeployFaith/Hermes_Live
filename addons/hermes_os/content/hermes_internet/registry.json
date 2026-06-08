@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "product": "Hermes Internet",
+  "default_domain": "home.hermes",
+  "sites": [
+    {
+      "domain": "home.hermes",
+      "title": "Hermes_OS",
+      "description": "The official Hermes_OS landing page for Hermes Internet.",
+      "root": "res://addons/hermes_os/content/hermes_internet/sites/home.hermes",
+      "entry": "/",
+      "routes": {
+        "/": "pages/index.html",
+        "/interactive": "pages/interactive.html",
+        "/agent-gauntlet": "pages/agent_gauntlet.html",
+        "/games": "pages/games.html",
+        "/games/snake": "pages/games_snake.html"
+      },
+      "agent_visible": true
+    },
+    {
+      "domain": "agoramarket.com",
+      "title": "Agora Market",
+      "description": "The public market of WorldWeb.",
+      "root": "res://addons/hermes_os/content/hermes_internet/sites/agoramarket.com",
+      "entry": "/",
+      "routes": {
+        "/": "pages/index.html"
+      },
+      "agent_visible": true
+    },
+    {
+      "domain": "pythia.com",
+      "title": "Pythia Search",
+      "description": "Search indexed WorldWeb sites, pages, and listings.",
+      "root": "res://addons/hermes_os/content/hermes_internet/sites/pythia.com",
+      "entry": "/",
+      "routes": {
+        "/": "pages/index.html"
+      },
+      "agent_visible": true
+    }
+  ]
+}

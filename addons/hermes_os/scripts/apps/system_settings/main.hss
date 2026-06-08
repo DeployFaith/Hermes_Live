@@ -1,0 +1,209 @@
+.system-settings-window {
+  min-width: 700px;
+  min-height: 440px;
+  flex: 1;
+  padding: 0px;
+}
+
+.system-settings-root {
+  flex: 1;
+  gap: 0px;
+  align-items: stretch;
+  padding: 0px;
+}
+
+.system-settings-toolbar {
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.system-settings-title-block {
+  flex: 1;
+  gap: var(--space-1);
+  align-items: stretch;
+}
+
+#SystemSettingsTitle {
+  font-size: 20px;
+  color: var(--text);
+}
+
+#SystemSettingsSubtitle {
+  color: #b4bfd3;
+  font-size: var(--font-sm);
+}
+
+#SystemSettingsToolbarGatewayStatusLabel,
+#SystemSettingsToolbarMcpStatusLabel {
+  min-width: 104px;
+  color: #aab5ca;
+  font-size: var(--font-sm);
+}
+
+.system-settings-main {
+  flex: 1;
+  min-height: 0px;
+  padding: var(--space-3);
+}
+
+.system-settings-workspace {
+  flex: 1;
+  min-height: 0px;
+  gap: 0px;
+  align-items: stretch;
+}
+
+.system-settings-sidebar {
+  min-height: 0px;
+  min-width: 220px;
+  background: #0b1018;
+  border-color: #222b40;
+  border-width: 0px;
+  border-radius: 0px;
+  padding: var(--space-3);
+}
+
+.system-settings-sidebar-list {
+  flex: 1;
+  min-height: 240px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  padding: 0px;
+}
+
+#system-settings-nav-system,
+#system-settings-nav-appearance,
+#system-settings-nav-window-management {
+  min-height: 38px;
+  background: #111827;
+  color: #aab5ca;
+  border-color: #26324a;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 9px;
+}
+
+#system-settings-nav-system:selected,
+#system-settings-nav-appearance:selected,
+#system-settings-nav-window-management:selected {
+  background: var(--accent-selected-surface);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.system-settings-content-scroll {
+  flex: 1;
+  min-height: 0px;
+  padding: 0px;
+}
+
+.system-settings-pages,
+.system-settings-page {
+  flex: 1;
+  min-height: 0px;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+#SystemSettingsInfoCard,
+#SystemSettingsGatewayPanel,
+#SystemSettingsMcpPanel,
+#SystemSettingsWindowManagementCard,
+#SystemSettingsAppearanceCard {
+  background: #171d2a;
+  border-color: #28324a;
+  border-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+#SystemSettingsAppearanceCard {
+  min-width: 430px;
+}
+
+#SystemSettingsInfoLabel {
+  color: #cbd4e8;
+  font-size: var(--font-sm);
+}
+
+.system-settings-muted {
+  color: #aab5ca;
+  font-size: var(--font-sm);
+}
+
+.system-settings-status {
+  color: #cbd4e8;
+  font-size: var(--font-sm);
+}
+
+#SystemSettingsThemeMode,
+#SystemSettingsHighlightPreset,
+#SystemSettingsSnapAssistToggle {
+  min-height: 36px;
+  background: #0a0f17;
+  color: var(--text);
+  border-color: #34405c;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 8px;
+}
+
+#SystemSettingsHighlightOpacity {
+  min-height: 28px;
+  min-width: 220px;
+  flex: 1;
+}
+
+.system-settings-alpha-value {
+  min-width: 44px;
+  color: #d5dced;
+  font-size: var(--font-sm);
+}
+
+.system-settings-actions {
+  gap: var(--space-2);
+}
+
+#SystemSettingsGatewayTest,
+#SystemSettingsGatewayReload,
+#SystemSettingsMcpTest,
+#SystemSettingsCycleWallpaper,
+#SystemSettingsResetIconLayout,
+#SystemSettingsResetHighlight {
+  min-height: 30px;
+  min-width: 120px;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 8px;
+}
+
+#SystemSettingsGatewayTest {
+  background: var(--accent);
+  color: #06101f;
+  border-color: var(--accent-hover);
+}
+
+.system-settings-statusbar {
+  min-height: 30px;
+}
+
+.system-settings-status-text {
+  color: #aab5ca;
+  font-size: var(--font-sm);
+}
+
+.wallpaper-grid {
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.accent-color-picker-host {
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.accent-preset-grid {
+  gap: var(--space-2);
+  align-items: center;
+}

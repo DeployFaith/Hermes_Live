@@ -1,0 +1,25 @@
+.os-shell-root {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.os-shell-panel {
+  background: var(--surface-1);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+
+.os-shell-dock {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+  border-width: 1px;
+  border-radius: var(--radius-xl);
+  padding: var(--space-2);
+}
+
+.os-shell-status {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}

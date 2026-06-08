@@ -1,0 +1,10 @@
+{
+  "domain": "pythia.com",
+  "title": "Pythia Search",
+  "description": "Search indexed WorldWeb sites, pages, and listings.",
+  "entry": "/",
+  "routes": {
+    "/": "pages/index.html"
+  },
+  "agent_visible": true
+}

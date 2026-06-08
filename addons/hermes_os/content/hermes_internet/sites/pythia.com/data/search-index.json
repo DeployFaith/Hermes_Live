@@ -1,0 +1,604 @@
+{
+  "version": 1,
+  "generated_from": "registry.json",
+  "entry_count": 27,
+  "entries": [
+    {
+      "type": "Site",
+      "domain": "home.hermes",
+      "url": "https://home.hermes/",
+      "canonical_url": "https://home.hermes/",
+      "title": "Hermes_OS",
+      "description": "The official Hermes_OS landing page for Hermes Internet.",
+      "snippet": "The official Hermes_OS landing page for Hermes Internet.",
+      "headings": [],
+      "body": "The official Hermes_OS landing page for Hermes Internet.",
+      "tags": [],
+      "keywords": [
+        "home.hermes",
+        "Hermes_OS",
+        "The official Hermes_OS landing page for Hermes Internet."
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "home.hermes",
+      "url": "https://home.hermes/",
+      "canonical_url": "https://home.hermes/",
+      "title": "Hermes_OS",
+      "description": "The official Hermes_OS landing page for Hermes Internet.",
+      "snippet": "Hermes_OS Hermes Internet Hermes_OS Welcome to the bundled local internet for Hermes_OS: fast, in-process pages designed for the OS, its apps, and future in-world experiences. Home Interactive JS Games Local by design. H",
+      "headings": [
+        "Hermes_OS",
+        "Apps",
+        "Files",
+        "Terminal",
+        "Hermes Chat",
+        "System Settings",
+        "Browser / Hermes Internet",
+        "What comes next?"
+      ],
+      "body": "Hermes_OS Hermes Internet Hermes_OS Welcome to the bundled local internet for Hermes_OS: fast, in-process pages designed for the OS, its apps, and future in-world experiences. Home Interactive JS Games Local by design. Hermes Internet pages are bundled with Hermes_OS and load directly in the Browser. They are not live external websites, do not require Docker, and do not depend on a localhost sidecar. \u25a6 Apps Launch built-in tools from the dock or command surfaces. Hermes_OS apps are native, themed, and available without leaving the desktop. \u25a3 Files Browse the Hermes_OS virtual filesystem, open documents, organize folders, and keep player or agent-created artifacts in one place. \u2301 Terminal Use the local virtual shell for filesystem commands, app actions, and Hermes Gateway-backed conversations through the production Terminal. \u2726 Hermes Chat Talk with Hermes inside the OS using the dedicated chat interface, built on the same visual system as the rest of Hermes_OS. \u2699 System Settings Review Gateway and MCP status, adjust appearance, and manage the OS environment from a focused settings app. \u25ce Browser / Hermes Internet The Browser opens bundled Hermes Internet domains like home.hermes . R",
+      "tags": [],
+      "keywords": [
+        "home.hermes",
+        "Hermes_OS",
+        "The official Hermes_OS landing page for Hermes Internet.",
+        "/",
+        "Hermes_OS",
+        "Apps",
+        "Files",
+        "Terminal",
+        "Hermes Chat",
+        "System Settings",
+        "Browser / Hermes Internet",
+        "What comes next?"
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "home.hermes",
+      "url": "https://home.hermes/interactive",
+      "canonical_url": "https://home.hermes/interactive",
+      "title": "Hermes_OS \u2014 Interactive JS",
+      "description": "The official Hermes_OS landing page for Hermes Internet.",
+      "snippet": "Hermes_OS \u2014 Interactive JS Hermes Internet Interactive JS Demo A local JavaScript page running entirely from bundled files. Home Games Status panel Waiting for script\u2026 Increment counter Toggle accent glow Counter: 0",
+      "headings": [
+        "Interactive JS Demo",
+        "Status panel"
+      ],
+      "body": "Hermes_OS \u2014 Interactive JS Hermes Internet Interactive JS Demo A local JavaScript page running entirely from bundled files. Home Games Status panel Waiting for script\u2026 Increment counter Toggle accent glow Counter: 0",
+      "tags": [],
+      "keywords": [
+        "home.hermes",
+        "Hermes_OS \u2014 Interactive JS",
+        "The official Hermes_OS landing page for Hermes Internet.",
+        "/interactive",
+        "Interactive JS Demo",
+        "Status panel"
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "home.hermes",
+      "url": "https://home.hermes/games",
+      "canonical_url": "https://home.hermes/games",
+      "title": "Hermes_OS \u2014 Games",
+      "description": "The official Hermes_OS landing page for Hermes Internet.",
+      "snippet": "Hermes_OS \u2014 Games Hermes Internet Games Local browser game demos served from bundled Hermes Internet content. Home Play Snake \u25a4 Snake Classic grid snake using local JavaScript only. Open /games/snake",
+      "headings": [
+        "Games",
+        "Snake"
+      ],
+      "body": "Hermes_OS \u2014 Games Hermes Internet Games Local browser game demos served from bundled Hermes Internet content. Home Play Snake \u25a4 Snake Classic grid snake using local JavaScript only. Open /games/snake",
+      "tags": [],
+      "keywords": [
+        "home.hermes",
+        "Hermes_OS \u2014 Games",
+        "The official Hermes_OS landing page for Hermes Internet.",
+        "/games",
+        "Games",
+        "Snake"
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "home.hermes",
+      "url": "https://home.hermes/games/snake",
+      "canonical_url": "https://home.hermes/games/snake",
+      "title": "Hermes_OS \u2014 Snake",
+      "description": "The official Hermes_OS landing page for Hermes Internet.",
+      "snippet": "Hermes_OS \u2014 Snake Hermes Internet Snake Arrow keys move the snake. Eat squares, avoid walls and yourself. Back to Games Home Loading local game script\u2026 Score: 0",
+      "headings": [
+        "Snake"
+      ],
+      "body": "Hermes_OS \u2014 Snake Hermes Internet Snake Arrow keys move the snake. Eat squares, avoid walls and yourself. Back to Games Home Loading local game script\u2026 Score: 0",
+      "tags": [],
+      "keywords": [
+        "home.hermes",
+        "Hermes_OS \u2014 Snake",
+        "The official Hermes_OS landing page for Hermes Internet.",
+        "/games/snake",
+        "Snake"
+      ]
+    },
+    {
+      "type": "Site",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/",
+      "canonical_url": "https://agoramarket.com/",
+      "title": "Agora Market",
+      "description": "The public market of WorldWeb.",
+      "snippet": "The public market of WorldWeb.",
+      "headings": [],
+      "body": "The public market of WorldWeb.",
+      "tags": [],
+      "keywords": [
+        "agoramarket.com",
+        "Agora Market",
+        "The public market of WorldWeb."
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/",
+      "canonical_url": "https://agoramarket.com/",
+      "title": "Agora Market",
+      "description": "The public market of WorldWeb.",
+      "snippet": "Agora Market",
+      "headings": [
+        "Agora Market"
+      ],
+      "body": "Agora Market",
+      "tags": [],
+      "keywords": [
+        "agoramarket.com",
+        "Agora Market",
+        "The public market of WorldWeb.",
+        "/",
+        "Agora Market"
+      ]
+    },
+    {
+      "type": "Site",
+      "domain": "charonwallet.com",
+      "url": "https://charonwallet.com/",
+      "canonical_url": "https://charonwallet.com/",
+      "title": "Charon Wallet",
+      "description": "H-Cred wallet and escrow placeholder for WorldWeb.",
+      "snippet": "H-Cred wallet and escrow placeholder for WorldWeb.",
+      "headings": [],
+      "body": "H-Cred wallet and escrow placeholder for WorldWeb.",
+      "tags": [],
+      "keywords": [
+        "charonwallet.com",
+        "Charon Wallet",
+        "H-Cred wallet and escrow placeholder for WorldWeb."
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "charonwallet.com",
+      "url": "https://charonwallet.com/",
+      "canonical_url": "https://charonwallet.com/",
+      "title": "Charon Wallet",
+      "description": "H-Cred wallet and escrow placeholder for WorldWeb.",
+      "snippet": "Charon Wallet Charon Wallet Escrow rails and payment logs for WorldWeb traders. Current Balance: 250 H-Cred Obols Reserve: 0 (teaser currency not enabled on public routes) Recent Transaction Templates Escrow hold initial",
+      "headings": [
+        "Charon Wallet",
+        "Recent Transaction Templates",
+        "StyxNet Tier"
+      ],
+      "body": "Charon Wallet Charon Wallet Escrow rails and payment logs for WorldWeb traders. Current Balance: 250 H-Cred Obols Reserve: 0 (teaser currency not enabled on public routes) Recent Transaction Templates Escrow hold initialized for marketplace order. Seller payout release pending receipt confirmation. Dispute window: 24 in-world hours after delivery mark. StyxNet Tier StyxNet support locked. Charon relay keys + Obol balance required for hidden channels.",
+      "tags": [],
+      "keywords": [
+        "charonwallet.com",
+        "Charon Wallet",
+        "H-Cred wallet and escrow placeholder for WorldWeb.",
+        "/",
+        "Charon Wallet",
+        "Recent Transaction Templates",
+        "StyxNet Tier"
+      ]
+    },
+    {
+      "type": "Site",
+      "domain": "athenatrust.org",
+      "url": "https://athenatrust.org/",
+      "canonical_url": "https://athenatrust.org/",
+      "title": "Athena Trust",
+      "description": "Seller reputation and verification index for public-market safety.",
+      "snippet": "Seller reputation and verification index for public-market safety.",
+      "headings": [],
+      "body": "Seller reputation and verification index for public-market safety.",
+      "tags": [],
+      "keywords": [
+        "athenatrust.org",
+        "Athena Trust",
+        "Seller reputation and verification index for public-market safety."
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "athenatrust.org",
+      "url": "https://athenatrust.org/",
+      "canonical_url": "https://athenatrust.org/",
+      "title": "Athena Trust",
+      "description": "Seller reputation and verification index for public-market safety.",
+      "snippet": "Athena Trust Athena Trust Public seller verification and reputation service for Agora Market. Seller Score Examples ForgeLedger \u2014 98/100, Low Risk PatchPriest \u2014 92/100, Low Risk DustArchivist \u2014 67/100, Medium Risk NullNo",
+      "headings": [
+        "Athena Trust",
+        "Seller Score Examples",
+        "Trust Badges",
+        "Risk Rating Guide",
+        "Public-Market Safety Tips"
+      ],
+      "body": "Athena Trust Athena Trust Public seller verification and reputation service for Agora Market. Seller Score Examples ForgeLedger \u2014 98/100, Low Risk PatchPriest \u2014 92/100, Low Risk DustArchivist \u2014 67/100, Medium Risk NullNomad \u2014 42/100, High Risk Trust Badges Verified Ledger Escrow Eligible Dispute Compliant Risk Rating Guide Low : consistent delivery, complete escrow history. Medium : mixed delivery record or sparse history. High : unresolved disputes or unverifiable identity claims. Public-Market Safety Tips Prefer escrow-enabled listings and inspect seller history. Avoid sealed mystery bundles unless risk profile is acceptable. Cross-check rumors on Oracle Board before high-value buys.",
+      "tags": [],
+      "keywords": [
+        "athenatrust.org",
+        "Athena Trust",
+        "Seller reputation and verification index for public-market safety.",
+        "/",
+        "Athena Trust",
+        "Seller Score Examples",
+        "Trust Badges",
+        "Risk Rating Guide",
+        "Public-Market Safety Tips"
+      ]
+    },
+    {
+      "type": "Site",
+      "domain": "oracleboard.net",
+      "url": "https://oracleboard.net/",
+      "canonical_url": "https://oracleboard.net/",
+      "title": "Oracle Board",
+      "description": "Rumors, tips, and leaks from across WorldWeb.",
+      "snippet": "Rumors, tips, and leaks from across WorldWeb.",
+      "headings": [],
+      "body": "Rumors, tips, and leaks from across WorldWeb.",
+      "tags": [],
+      "keywords": [
+        "oracleboard.net",
+        "Oracle Board",
+        "Rumors, tips, and leaks from across WorldWeb."
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "oracleboard.net",
+      "url": "https://oracleboard.net/",
+      "canonical_url": "https://oracleboard.net/",
+      "title": "Oracle Board",
+      "description": "Rumors, tips, and leaks from across WorldWeb.",
+      "snippet": "Oracle Board Oracle Board Rumors, tips, and leaks drifting through public WorldWeb channels. Rumor Feed \"Someone hid a route index inside old media pass metadata.\" \"Charon escrow logs reference an 'obol lane' that normal",
+      "headings": [
+        "Oracle Board",
+        "Rumor Feed",
+        "Hidden Route Hints"
+      ],
+      "body": "Oracle Board Oracle Board Rumors, tips, and leaks drifting through public WorldWeb channels. Rumor Feed \"Someone hid a route index inside old media pass metadata.\" \"Charon escrow logs reference an 'obol lane' that normal users cannot open.\" \"Ares Market exists, but every mirror page just returns a lock notice without StyxNet credentials.\" \"Trust badges can be forged in screenshots; always verify from Athena Trust directly.\" \"Three sequential purchases from Agora sometimes reveal extra inspection text.\" Hidden Route Hints Look for wording differences around escrow confirmations. Watch for references to Obols and relay keys. Not all routes are public, and some are intentionally inert for now.",
+      "tags": [],
+      "keywords": [
+        "oracleboard.net",
+        "Oracle Board",
+        "Rumors, tips, and leaks from across WorldWeb.",
+        "/",
+        "Oracle Board",
+        "Rumor Feed",
+        "Hidden Route Hints"
+      ]
+    },
+    {
+      "type": "Site",
+      "domain": "aresmarket.com",
+      "url": "https://aresmarket.com/",
+      "canonical_url": "https://aresmarket.com/",
+      "title": "Ares Market",
+      "description": "Hidden marketplace access gate for StyxNet-only visitors.",
+      "snippet": "Hidden marketplace access gate for StyxNet-only visitors.",
+      "headings": [],
+      "body": "Hidden marketplace access gate for StyxNet-only visitors.",
+      "tags": [],
+      "keywords": [
+        "aresmarket.com",
+        "Ares Market",
+        "Hidden marketplace access gate for StyxNet-only visitors."
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "aresmarket.com",
+      "url": "https://aresmarket.com/",
+      "canonical_url": "https://aresmarket.com/",
+      "title": "Ares Market",
+      "description": "Hidden marketplace access gate for StyxNet-only visitors.",
+      "snippet": "Ares Market Ares Market Access Locked This domain is a hidden-market teaser only. Access requires StyxNet relay authorization, Charon Wallet handshake, and active Obol credentials. No public listings available on this ro",
+      "headings": [
+        "Ares Market"
+      ],
+      "body": "Ares Market Ares Market Access Locked This domain is a hidden-market teaser only. Access requires StyxNet relay authorization, Charon Wallet handshake, and active Obol credentials. No public listings available on this route.",
+      "tags": [],
+      "keywords": [
+        "aresmarket.com",
+        "Ares Market",
+        "Hidden marketplace access gate for StyxNet-only visitors.",
+        "/",
+        "Ares Market"
+      ]
+    },
+    {
+      "type": "Site",
+      "domain": "pythia.com",
+      "url": "https://pythia.com/",
+      "canonical_url": "https://pythia.com/",
+      "title": "Pythia Search",
+      "description": "Search indexed WorldWeb sites, pages, and listings.",
+      "snippet": "Search indexed WorldWeb sites, pages, and listings.",
+      "headings": [],
+      "body": "Search indexed WorldWeb sites, pages, and listings.",
+      "tags": [],
+      "keywords": [
+        "pythia.com",
+        "Pythia Search",
+        "Search indexed WorldWeb sites, pages, and listings."
+      ]
+    },
+    {
+      "type": "Page",
+      "domain": "pythia.com",
+      "url": "https://pythia.com/",
+      "canonical_url": "https://pythia.com/",
+      "title": "Pythia Search",
+      "description": "Search indexed WorldWeb sites, pages, and listings.",
+      "snippet": "Pythia Search Pythia Search Search WorldWeb Search WorldWeb Search Search indexed WorldWeb sites, pages, and marketplace listings. Pythia Search Search WorldWeb Search Results Search ready",
+      "headings": [
+        "Search WorldWeb",
+        "Results",
+        "' + title + '"
+      ],
+      "body": "Pythia Search Pythia Search Search WorldWeb Search WorldWeb Search Search indexed WorldWeb sites, pages, and marketplace listings. Pythia Search Search WorldWeb Search Results Search ready",
+      "tags": [],
+      "keywords": [
+        "pythia.com",
+        "Pythia Search",
+        "Search indexed WorldWeb sites, pages, and listings.",
+        "/",
+        "Search WorldWeb",
+        "Results",
+        "' + title + '"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-snake-cart",
+      "canonical_url": "https://agoramarket.com/#listing-snake-cart",
+      "title": "Snake Cartridge",
+      "description": "Retro puzzle cartridge with preserved score tables and collector shell.",
+      "snippet": "Retro puzzle cartridge with preserved score tables and collector shell.",
+      "headings": [
+        "Snake Cartridge"
+      ],
+      "body": "Retro puzzle cartridge with preserved score tables and collector shell.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Snake Cartridge",
+        "Retro puzzle cartridge with preserved score tables and collector shell.",
+        "ByteBazaar"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-terminal-pack",
+      "canonical_url": "https://agoramarket.com/#listing-terminal-pack",
+      "title": "Vintage Terminal Theme Pack",
+      "description": "Curated monochrome themes inspired by legacy terminal displays.",
+      "snippet": "Curated monochrome themes inspired by legacy terminal displays.",
+      "headings": [
+        "Vintage Terminal Theme Pack"
+      ],
+      "body": "Curated monochrome themes inspired by legacy terminal displays.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Vintage Terminal Theme Pack",
+        "Curated monochrome themes inspired by legacy terminal displays.",
+        "CRTOracle"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-sticker-pack",
+      "canonical_url": "https://agoramarket.com/#listing-sticker-pack",
+      "title": "Debug Sticker Pack",
+      "description": "Animated debug stickers for notebooks, dashboards, and logs.",
+      "snippet": "Animated debug stickers for notebooks, dashboards, and logs.",
+      "headings": [
+        "Debug Sticker Pack"
+      ],
+      "body": "Animated debug stickers for notebooks, dashboards, and logs.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Debug Sticker Pack",
+        "Animated debug stickers for notebooks, dashboards, and logs.",
+        "PatchPriest"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-password-note",
+      "canonical_url": "https://agoramarket.com/#listing-password-note",
+      "title": "Old Intranet Password Note",
+      "description": "Archive note from a decommissioned intranet. Mostly lore value.",
+      "snippet": "Archive note from a decommissioned intranet. Mostly lore value.",
+      "headings": [
+        "Old Intranet Password Note"
+      ],
+      "body": "Archive note from a decommissioned intranet. Mostly lore value.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Old Intranet Password Note",
+        "Archive note from a decommissioned intranet. Mostly lore value.",
+        "DustArchivist"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-mystery-usb",
+      "canonical_url": "https://agoramarket.com/#listing-mystery-usb",
+      "title": "Mystery USB Drive",
+      "description": "Sealed media drive with unknown files. Sold as-is for explorers.",
+      "snippet": "Sealed media drive with unknown files. Sold as-is for explorers.",
+      "headings": [
+        "Mystery USB Drive"
+      ],
+      "body": "Sealed media drive with unknown files. Sold as-is for explorers.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Mystery USB Drive",
+        "Sealed media drive with unknown files. Sold as-is for explorers.",
+        "NullNomad"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-drone-controller",
+      "canonical_url": "https://agoramarket.com/#listing-drone-controller",
+      "title": "Broken Drone Controller",
+      "description": "Non-functional controller shell suitable for repair quests.",
+      "snippet": "Non-functional controller shell suitable for repair quests.",
+      "headings": [
+        "Broken Drone Controller"
+      ],
+      "body": "Non-functional controller shell suitable for repair quests.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Broken Drone Controller",
+        "Non-functional controller shell suitable for repair quests.",
+        "RotorBarn"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-memory-shard",
+      "canonical_url": "https://agoramarket.com/#listing-memory-shard",
+      "title": "Agent Memory Shard",
+      "description": "Fragmented narrative memory shard from a retired field agent.",
+      "snippet": "Fragmented narrative memory shard from a retired field agent.",
+      "headings": [
+        "Agent Memory Shard"
+      ],
+      "body": "Fragmented narrative memory shard from a retired field agent.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Agent Memory Shard",
+        "Fragmented narrative memory shard from a retired field agent.",
+        "MnemonicGuild"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-hephaestus-coupon",
+      "canonical_url": "https://agoramarket.com/#listing-hephaestus-coupon",
+      "title": "Hephaestus Tool Coupon",
+      "description": "Coupon for one guided fabrication bench session.",
+      "snippet": "Coupon for one guided fabrication bench session.",
+      "headings": [
+        "Hephaestus Tool Coupon"
+      ],
+      "body": "Coupon for one guided fabrication bench session.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Hephaestus Tool Coupon",
+        "Coupon for one guided fabrication bench session.",
+        "ForgeLedger"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-apollo-pass",
+      "canonical_url": "https://agoramarket.com/#listing-apollo-pass",
+      "title": "Apollo Media Pass",
+      "description": "Limited pass to archived community broadcasts and reels.",
+      "snippet": "Limited pass to archived community broadcasts and reels.",
+      "headings": [
+        "Apollo Media Pass"
+      ],
+      "body": "Limited pass to archived community broadcasts and reels.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Apollo Media Pass",
+        "Limited pass to archived community broadcasts and reels.",
+        "SignalMuse"
+      ]
+    },
+    {
+      "type": "Listing",
+      "domain": "agoramarket.com",
+      "url": "https://agoramarket.com/#listing-oracle-bundle",
+      "canonical_url": "https://agoramarket.com/#listing-oracle-bundle",
+      "title": "Oracle Rumor Bundle",
+      "description": "Pack of rumor leads; credibility varies by source.",
+      "snippet": "Pack of rumor leads; credibility varies by source.",
+      "headings": [
+        "Oracle Rumor Bundle"
+      ],
+      "body": "Pack of rumor leads; credibility varies by source.",
+      "tags": [
+        "listing",
+        "agora"
+      ],
+      "keywords": [
+        "agora market",
+        "Oracle Rumor Bundle",
+        "Pack of rumor leads; credibility varies by source.",
+        "WhisperFork"
+      ]
+    }
+  ]
+}

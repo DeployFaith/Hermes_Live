@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hermes_OS — Snake</title>
+  <style>{{site_css}}</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">Hermes Internet</div>
+      <h1>Snake</h1>
+      <p class="subtitle">Arrow keys move the snake. Eat squares, avoid walls and yourself.</p>
+      <div class="actions">
+        <a href="/games">Back to Games</a>
+        <a href="/">Home</a>
+      </div>
+    </section>
+
+    <section class="card snake-card">
+      <p id="snake-status">Loading local game script…</p>
+      <p>Score: <strong id="snake-score">0</strong></p>
+      <canvas id="snake-canvas" width="480" height="320" aria-label="Snake game board"></canvas>
+    </section>
+  </main>
+  <script src="../scripts/snake.js"></script>
+</body>
+</html>

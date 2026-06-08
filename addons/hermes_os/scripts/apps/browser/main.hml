@@ -1,0 +1,32 @@
+<App id="browser-app" label="Browser">
+  <Window id="browser-window" class="browser-window" label="Browser window">
+    <Column id="browser-root" class="browser-root" label="Browser content">
+      <Row id="browser-toolbar" class="browser-toolbar" label="Browser toolbar">
+        <Button id="browser-back" label="Back" disabled="{back_disabled}" on:click="go_back">←</Button>
+        <Button id="browser-forward" label="Forward" disabled="{forward_disabled}" on:click="go_forward">→</Button>
+        <Button id="browser-reload" label="Reload" on:click="reload_page">⟳</Button>
+        <Button id="browser-home" label="Home" on:click="open_home">Home</Button>
+        <TextInput id="browser-address" class="browser-address" label="Address" model="address" value="{address}" placeholder="home.hermes" on:input="handle_address_input" on:submit="load_address" />
+        <Button id="browser-go" label="Go" variant="primary" on:click="load_address">Go</Button>
+        <Button id="browser-new-tab" label="New tab" on:click="new_tab">+</Button>
+        <Button id="browser-settings" label="Settings" on:click="show_settings">Settings</Button>
+      </Row>
+
+      <BrowserSurface
+        id="browser-surface"
+        class="browser-surface"
+        label="Browser webview"
+        current-url="{current_url}"
+        loading="{loading}"
+        on:load="load_address"
+        on:reload="reload_page"
+        on:back="go_back"
+        on:forward="go_forward"
+      />
+
+      <Row id="browser-statusbar" class="browser-statusbar" label="Browser status">
+        <Text id="browser-status" class="browser-status" label="Status">{status}</Text>
+      </Row>
+    </Column>
+  </Window>
+</App>

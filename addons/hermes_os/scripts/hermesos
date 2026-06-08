@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+COMPOSE_FILE="$REPO_DIR/docker-compose.hermes.yml"
+ENV_FILE="$REPO_DIR/runtime/live_bridge/compose.env"
+PROJECT="hermesos"
+SERVICE="hermes-live-bridge"
+CONTAINER="hermes-live-bridge"
+PROFILE="hermesos"
+
+if command -v docker-compose >/dev/null 2>&1; then
+  COMPOSE_CMD=(docker-compose)
+elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
+  COMPOSE_CMD=(docker compose)
+else
+  echo "ERROR: docker-compose (or docker compose) is required." >&2
+  exit 1
+fi
+
+if [[ ! -f "$COMPOSE_FILE" ]]; then
+  echo "ERROR: compose file not found: $COMPOSE_FILE" >&2
+  exit 1
+fi
+
+COMPOSE_ARGS=(-p "$PROJECT")
+if [[ -f "$ENV_FILE" ]]; then
+  COMPOSE_ARGS+=(--env-file "$ENV_FILE")
+fi
+COMPOSE_ARGS+=(-f "$COMPOSE_FILE")
+
+container_id="$(docker ps -aq --filter "name=^/${CONTAINER}$" | head -n 1)"
+if [[ -n "$container_id" ]]; then
+  if [[ -z "$(docker ps -q --filter "id=$container_id" | head -n 1)" ]]; then
+    docker start "$container_id" >/dev/null
+  fi
+else
+  "${COMPOSE_CMD[@]}" "${COMPOSE_ARGS[@]}" up -d --no-recreate "$SERVICE" >/dev/null
+  container_id="$(docker ps -aq --filter "name=^/${CONTAINER}$" | head -n 1)"
+fi
+
+# docker-compose v1 can occasionally leave a compose-managed service under a
+# prefixed/generated container name. Fall back to the service container id rather
+# than blindly exec'ing the configured name.
+if [[ -z "$container_id" ]]; then
+  container_id="$("${COMPOSE_CMD[@]}" "${COMPOSE_ARGS[@]}" ps -q "$SERVICE" | head -n 1)"
+fi
+
+if [[ -z "$container_id" ]]; then
+  echo "ERROR: could not find or start $SERVICE container." >&2
+  "${COMPOSE_CMD[@]}" "${COMPOSE_ARGS[@]}" ps >&2 || true
+  exit 1
+fi
+
+if [[ $# -eq 0 ]]; then
+  if [[ -t 0 && -t 1 ]]; then
+    exec docker exec -it "$container_id" hermes -p "$PROFILE"
+  else
+    exec docker exec "$container_id" hermes -p "$PROFILE"
+  fi
+else
+  exec docker exec "$container_id" hermes -p "$PROFILE" "$@"
+fi

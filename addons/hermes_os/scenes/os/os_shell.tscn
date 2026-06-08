@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bbxaydh76yili"]
+
+[ext_resource type="Script" uid="uid://bwkyytbd84wtn" path="res://addons/hermes_os/scripts/os/os_shell.gd" id="1_os_shell"]
+
+[node name="OSShell" type="Control" unique_id=1210649128]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_os_shell")

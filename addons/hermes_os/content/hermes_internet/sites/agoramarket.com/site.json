@@ -1,0 +1,10 @@
+{
+  "domain": "agoramarket.com",
+  "title": "Agora Market",
+  "description": "The public market of WorldWeb.",
+  "entry": "/",
+  "routes": {
+    "/": "pages/index.html"
+  },
+  "agent_visible": true
+}

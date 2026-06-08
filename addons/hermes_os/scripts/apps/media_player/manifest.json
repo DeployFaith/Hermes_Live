@@ -1,0 +1,20 @@
+{
+  "id": "media_player",
+  "name": "Media Player",
+  "version": "0.1.0",
+  "hermes_ui": "0.1",
+  "entry": "main.hml",
+  "styles": ["main.hss"],
+  "controller": "main.gd",
+  "surface": "window",
+  "window": {
+    "title": "Media Player",
+    "size_class": "document",
+    "default_width": 600,
+    "default_height": 380,
+    "min_width": 500,
+    "min_height": 360,
+    "resizable": true,
+    "chromed": true
+  }
+}

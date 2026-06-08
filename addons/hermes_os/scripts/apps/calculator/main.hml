@@ -1,0 +1,45 @@
+<App id="calculator-app" label="Calculator">
+  <Window id="calculator-window" class="calculator-window" label="Calculator window">
+    <AppShell id="calculator-root" class="calculator-root" label="Calculator content">
+      <AppBody id="calculator-body" class="calculator-body" label="Calculator body">
+        <Column id="calculator-main" class="calculator-main" label="Calculator layout">
+          <Column id="calculator-display" class="calculator-display" label="Calculator display">
+            <Text id="calc-expression" class="calc-expression" label="Expression">{expression}</Text>
+            <Text id="calc-result" class="calc-result" label="Result">{display}</Text>
+          </Column>
+          <Column id="calculator-grid" class="calculator-grid" label="Button grid">
+            <Row id="calc-row-1" class="calc-row">
+              <Button id="calc-btn-c" class="calc-btn calc-btn-func" label="Clear" on:click="btn_clear">C</Button>
+              <Button id="calc-btn-neg" class="calc-btn calc-btn-func" label="Negate" on:click="btn_negate">+/−</Button>
+              <Button id="calc-btn-pct" class="calc-btn calc-btn-func" label="Percent" on:click="btn_percent">%</Button>
+              <Button id="calc-btn-div" class="calc-btn calc-btn-op" label="Divide" on:click="btn_operator" value="/">÷</Button>
+            </Row>
+            <Row id="calc-row-2" class="calc-row">
+              <Button id="calc-btn-7" class="calc-btn calc-btn-num" label="7" on:click="btn_digit" value="7">7</Button>
+              <Button id="calc-btn-8" class="calc-btn calc-btn-num" label="8" on:click="btn_digit" value="8">8</Button>
+              <Button id="calc-btn-9" class="calc-btn calc-btn-num" label="9" on:click="btn_digit" value="9">9</Button>
+              <Button id="calc-btn-mul" class="calc-btn calc-btn-op" label="Multiply" on:click="btn_operator" value="*">×</Button>
+            </Row>
+            <Row id="calc-row-3" class="calc-row">
+              <Button id="calc-btn-4" class="calc-btn calc-btn-num" label="4" on:click="btn_digit" value="4">4</Button>
+              <Button id="calc-btn-5" class="calc-btn calc-btn-num" label="5" on:click="btn_digit" value="5">5</Button>
+              <Button id="calc-btn-6" class="calc-btn calc-btn-num" label="6" on:click="btn_digit" value="6">6</Button>
+              <Button id="calc-btn-sub" class="calc-btn calc-btn-op" label="Subtract" on:click="btn_operator" value="-">−</Button>
+            </Row>
+            <Row id="calc-row-4" class="calc-row">
+              <Button id="calc-btn-1" class="calc-btn calc-btn-num" label="1" on:click="btn_digit" value="1">1</Button>
+              <Button id="calc-btn-2" class="calc-btn calc-btn-num" label="2" on:click="btn_digit" value="2">2</Button>
+              <Button id="calc-btn-3" class="calc-btn calc-btn-num" label="3" on:click="btn_digit" value="3">3</Button>
+              <Button id="calc-btn-add" class="calc-btn calc-btn-op" label="Add" on:click="btn_operator" value="+">+</Button>
+            </Row>
+            <Row id="calc-row-5" class="calc-row">
+              <Button id="calc-btn-0" class="calc-btn calc-btn-num calc-btn-wide" label="0" on:click="btn_digit" value="0">0</Button>
+              <Button id="calc-btn-dot" class="calc-btn calc-btn-num" label="Decimal point" on:click="btn_dot">.</Button>
+              <Button id="calc-btn-eq" class="calc-btn calc-btn-equals" label="Equals" on:click="btn_equals">=</Button>
+            </Row>
+          </Column>
+        </Column>
+      </AppBody>
+    </AppShell>
+  </Window>
+</App>

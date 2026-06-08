@@ -1,0 +1,183 @@
+.shell-launcher-window {
+  padding: 0;
+  background: var(--surface-0);
+  border-width: 0;
+  border-radius: var(--radius-lg);
+}
+
+Column, Row, ScrollView, List {
+  background: transparent;
+  border-width: 0;
+}
+
+.shell-launcher-root {
+  flex: 1;
+  gap: 10px;
+  padding: 16px;
+  background: transparent;
+  border-width: 0;
+}
+
+.shell-launcher-header {
+  gap: 2px;
+  padding: var(--space-2);
+  background: transparent;
+  border-width: 0;
+}
+
+.shell-launcher-user {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.shell-launcher-search {
+  height: 38px;
+  min-height: 38px;
+  background: var(--surface-0);
+  color: var(--text);
+  border-color: var(--border-strong);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.shell-launcher-search:focus {
+  border-color: var(--accent);
+}
+
+.shell-launcher-content {
+  gap: 10px;
+  flex: 1;
+  min-height: 190px;
+  align-items: stretch;
+  background: transparent;
+  border-width: 0;
+  padding: 12px;
+}
+
+.shell-launcher-categories-column {
+  width: 156px;
+  flex: none;
+  background: var(--surface-0);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-2);
+  margin: 4px;
+}
+
+.shell-launcher-categories-scroll {
+  flex: 1;
+  background: transparent;
+  border-width: 0;
+  padding: var(--space-3);
+}
+
+.shell-launcher-categories {
+  flex: 1;
+  gap: 5px;
+  background: transparent;
+  border-width: 0;
+  padding: var(--space-2);
+}
+
+.shell-launcher-category {
+  min-height: 32px;
+  background: transparent;
+  color: var(--text-muted);
+  border-color: transparent;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 8px;
+}
+
+.shell-launcher-category:hover {
+  background: var(--accent);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.shell-launcher-category:pressed {
+  background: var(--accent);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+
+
+.shell-launcher-apps-column {
+  flex: 1;
+  gap: 7px;
+  background: transparent;
+  border-width: 0;
+}
+
+.shell-launcher-section-title {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.shell-launcher-apps-scroll {
+  flex: 1;
+  background: var(--surface-0);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  padding-bottom: calc(var(--space-3) + 10px);
+  margin: 4px;
+}
+
+.shell-launcher-apps {
+  flex: 1;
+  gap: 6px;
+  background: transparent;
+  border-width: 0;
+  padding: var(--space-2);
+  padding-bottom: calc(var(--space-2) + 12px);
+}
+
+.shell-launcher-app {
+  min-height: 48px;
+  background: transparent;
+  color: var(--text);
+  border-color: transparent;
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 8px;
+}
+
+.shell-launcher-app:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.shell-launcher-app:pressed {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+
+
+.shell-launcher-empty {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.shell-launcher-footer {
+  gap: 6px;
+  background: transparent;
+  border-width: 0;
+  padding: var(--space-2);
+}
+
+.shell-launcher-footer Button {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 8px;
+}

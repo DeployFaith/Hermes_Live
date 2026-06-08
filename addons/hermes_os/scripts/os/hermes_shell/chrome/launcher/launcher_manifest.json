@@ -1,0 +1,19 @@
+{
+  "id": "shell_launcher",
+  "name": "Shell Launcher",
+  "version": "0.1.0",
+  "hermes_ui": "0.1",
+  "entry": "launcher.hml",
+  "styles": ["launcher.hss"],
+  "controller": "launcher_controller.gd",
+  "surface": "shell-fragment",
+  "window": {
+    "title": "Start Menu",
+    "default_width": 520,
+    "default_height": 560,
+    "min_width": 340,
+    "min_height": 280,
+    "resizable": false,
+    "chromed": false
+  }
+}

@@ -1,0 +1,271 @@
+.mp-window {
+  min-width: 600px;
+  min-height: 380px;
+  flex: 1;
+  padding: 0px;
+  background: #000000;
+}
+
+.mp-root {
+  flex: 1;
+  gap: 0px;
+  align-items: stretch;
+  background: #000000;
+}
+
+.mp-body {
+  flex: 1;
+  padding: 0px;
+  align-items: stretch;
+  background: #000000;
+}
+
+.mp-workspace {
+  flex: 1;
+  gap: 0px;
+  align-items: stretch;
+  background: #000000;
+}
+
+/* Main player pane */
+.mp-main {
+  flex: 1;
+  min-width: 360px;
+  gap: 10px;
+  padding: 12px;
+  align-items: stretch;
+  background: #000000;
+}
+
+.mp-art {
+  flex: 1;
+  height: 205px;
+  min-height: 180px;
+  max-height: 260px;
+  background: #03060b;
+  border-color: #151c2a;
+  border-width: 1px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  clip_contents: true;
+}
+
+.mp-art-icon {
+  font-size: 48px;
+  color: #263149;
+  opacity: 0.85;
+}
+
+.mp-player-deck {
+  gap: 8px;
+  align-items: stretch;
+  padding: 0px;
+  background: #000000;
+}
+
+.mp-info-row {
+  gap: 10px;
+  align-items: center;
+  min-height: 36px;
+  background: #000000;
+}
+
+.mp-info-text {
+  flex: 1;
+  gap: 2px;
+  align-items: stretch;
+  min-width: 180px;
+}
+
+.mp-track {
+  font-size: 15px;
+  color: #eef4ff;
+}
+
+.mp-artist {
+  font-size: 11px;
+  color: #738096;
+}
+
+.mp-time-right {
+  font-size: 11px;
+  color: #738096;
+  min-width: 44px;
+}
+
+/* Full-width seek slider — controller updates value directly. */
+.mp-seek {
+  flex: 1;
+  min-width: 260px;
+  min-height: 14px;
+}
+
+/* Three-zone transport: elapsed time left, transport centered, volume right. */
+.mp-controls {
+  min-height: 42px;
+  gap: 8px;
+  align-items: center;
+  background: #000000;
+}
+
+.mp-control-left {
+  flex: 1;
+  min-width: 58px;
+  align-items: center;
+}
+
+.mp-control-center {
+  flex: 1;
+  min-width: 170px;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mp-control-right {
+  flex: 1;
+  min-width: 112px;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.mp-time-left {
+  font-size: 11px;
+  color: #738096;
+  min-width: 42px;
+}
+
+.mp-btn {
+  min-width: 31px;
+  min-height: 31px;
+  border-width: 0px;
+  border-radius: 8px;
+  font-size: 13px;
+  padding: 0px;
+}
+
+.mp-btn-skip {
+  background: #151b28;
+  color: #9aa7bb;
+}
+
+.mp-btn-skip:hover {
+  background: #20283a;
+  color: #ffffff;
+}
+
+.mp-btn-ctrl {
+  background: #151b28;
+  color: #9aa7bb;
+}
+
+.mp-btn-ctrl:hover {
+  background: #20283a;
+  color: #ffffff;
+}
+
+.mp-btn-play {
+  min-width: 40px;
+  min-height: 40px;
+  font-size: 16px;
+  background: #4a8eff;
+  color: #ffffff;
+  border-radius: 20px;
+}
+
+.mp-btn-play:hover {
+  background: #67a2ff;
+}
+
+.mp-vol-icon {
+  font-size: 12px;
+  color: #738096;
+  min-width: 16px;
+}
+
+.mp-vol-slider {
+  width: 90px;
+  min-width: 82px;
+  min-height: 16px;
+}
+
+/* Narrow playlist sidebar */
+.mp-playlist {
+  width: 176px;
+  min-width: 168px;
+  max-width: 190px;
+  gap: 5px;
+  background: #000000;
+  border-color: #151c2a;
+  border-width: 1px;
+  padding: 10px 8px;
+  align-items: stretch;
+}
+
+.mp-pl-title {
+  color: #60708a;
+  font-size: 10px;
+  padding: 0px 2px 4px 2px;
+}
+
+.mp-pl-list {
+  flex: 1;
+  gap: 2px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  padding: 0px;
+  align-items: stretch;
+}
+
+.mp-pl-item {
+  min-height: 28px;
+  background: transparent;
+  color: #8b96aa;
+  border-color: transparent;
+  border-width: 0px;
+  border-radius: 6px;
+  padding: 4px 6px;
+  gap: 5px;
+  align-items: center;
+}
+
+.mp-pl-item:hover {
+  background: #141c2a;
+  color: #c6d0e4;
+}
+
+.mp-pl-item:selected {
+  background: rgba(74, 142, 255, 0.16);
+  color: #e8f1ff;
+}
+
+.mp-pl-item-title {
+  flex: 1;
+  font-size: 11px;
+  color: inherit;
+}
+
+.mp-pl-item-dur {
+  font-size: 10px;
+  color: #5f6b7d;
+  min-width: 28px;
+}
+
+.mp-statusbar {
+  min-height: 22px;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 12px;
+  background: #000000;
+  border-color: #151c2a;
+  border-width: 1px;
+}
+
+.mp-status-text {
+  flex: 1;
+  color: #536079;
+  font-size: 10px;
+}

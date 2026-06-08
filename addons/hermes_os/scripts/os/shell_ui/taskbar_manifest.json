@@ -1,0 +1,19 @@
+{
+  "id": "shell_taskbar",
+  "name": "Shell Taskbar",
+  "version": "0.1.0",
+  "hermes_ui": "0.1",
+  "entry": "taskbar.hml",
+  "styles": ["taskbar.hss"],
+  "controller": "taskbar_controller.gd",
+  "surface": "shell-fragment",
+  "window": {
+    "title": "Taskbar",
+    "default_width": 640,
+    "default_height": 56,
+    "min_width": 320,
+    "min_height": 46,
+    "resizable": false,
+    "chromed": false
+  }
+}

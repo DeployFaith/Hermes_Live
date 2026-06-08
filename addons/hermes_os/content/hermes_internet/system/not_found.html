@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+  <style>
+    :root { color-scheme: dark; --bg:#070b12; --panel:#101823; --border:#26384c; --text:#edf6ff; --muted:#a8b7c8; --accent:#ff7a1a; --link:#67d4ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family:Inter,"Segoe UI",system-ui,sans-serif; color:var(--text); background:radial-gradient(circle at 25% 0%,rgba(255,122,26,.12),transparent 28%),linear-gradient(145deg,#070b12,#0c111b 65%,#111827); }
+    main { width:min(820px,calc(100vw - 36px)); margin:0 auto; padding:42px 0; }
+    .card { border:1px solid var(--border); border-radius:22px; background:rgba(16,24,35,.94); padding:26px; box-shadow:0 20px 60px rgba(0,0,0,.35); }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:800; }
+    h1 { margin:10px 0 12px; font-size:36px; letter-spacing:-.03em; }
+    p { color:var(--muted); line-height:1.6; }
+    code { color:#ffd6b8; background:rgba(255,122,26,.1); border:1px solid rgba(255,122,26,.2); border-radius:6px; padding:2px 6px; }
+    a { display:inline-block; margin-top:14px; color:var(--text); text-decoration:none; border:1px solid rgba(103,212,255,.35); border-radius:999px; padding:10px 14px; background:rgba(103,212,255,.08); }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card">
+      <div class="eyebrow">Hermes Internet</div>
+      <h1>{{heading}}</h1>
+      <p>{{message}}</p>
+      <p>Requested URL: <code>{{requested_url}}</code></p>
+      <a href="{{action_url}}">{{action_label}}</a>
+    </section>
+  </main>
+</body>
+</html>

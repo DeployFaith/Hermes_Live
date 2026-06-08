@@ -1,0 +1,21 @@
+<App id="hermes-chat-app" label="Hermes Chat">
+  <Window id="chat-window" class="hermes-chat-window" label="Hermes Chat window">
+    <AppShell id="chat-root" class="chat-root" label="Hermes Chat content">
+      <AppBody id="chat-body" class="chat-body" label="Chat content body">
+        <ScrollView id="message-scroll" class="message-scroll" label="Messages">
+          <Column id="message-list" class="message-list" label="Message list">
+            <Text id="message-history" class="message-history" label="Message history" hidden="{!has_messages}">{messages_text}</Text>
+          </Column>
+        </ScrollView>
+      </AppBody>
+
+      <AppFooter id="composer-row" class="composer-row" label="Message composer">
+        <FlowRow id="composer-input-row" class="composer-input-row" label="Message input controls">
+          <TextInput id="message-input" label="Message" model="draft" placeholder="Send a message..." on:input="handle_input" on:submit="send_message" />
+          <Button id="clear-history" class="clear-history" label="Clear chat" variant="secondary" on:click="clear_history">Clear</Button>
+          <Button id="send-button" label="Send message" variant="primary" disabled="{!can_send}" on:click="send_message">Send</Button>
+        </FlowRow>
+      </AppFooter>
+    </AppShell>
+  </Window>
+</App>

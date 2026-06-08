@@ -1,0 +1,64 @@
+<App id="files-app" label="Files">
+  <Window id="files-window" class="files-window" label="Files window">
+    <Column id="files-root" class="files-root" label="Files content">
+      <Toolbar id="files-toolbar" class="files-toolbar" label="Navigation toolbar">
+        <Button id="files-back" label="Back" variant="secondary" disabled="{!can_back}" on:click="navigate_back">◀</Button>
+        <Button id="files-forward" label="Forward" variant="secondary" disabled="{!can_forward}" on:click="navigate_forward">▶</Button>
+        <Button id="files-up" label="Up" variant="secondary" disabled="{!can_up}" on:click="navigate_up">↑</Button>
+        <Button id="files-home" label="Home" variant="secondary" on:click="go_home">Home</Button>
+        <Button id="files-refresh" label="Refresh" variant="secondary" on:click="refresh_current">Refresh</Button>
+        <Button id="files-open-terminal" label="Open in Terminal" variant="secondary" on:click="open_in_terminal">Open in Terminal</Button>
+      </Toolbar>
+
+      <Row id="files-path-row" class="files-path-row" label="Current path">
+        <Text id="files-current-path" class="files-current-path" label="Current path text">{current_path}</Text>
+        <PathBreadcrumb id="files-breadcrumb" class="files-breadcrumb" label="Current path breadcrumb" path="{breadcrumb}" />
+      </Row>
+
+      <TextInput id="files-path-input" class="files-path-input" label="Path" model="path_input" placeholder="Enter path" on:submit="go_path" on:input="handle_path_input" />
+
+      <Row id="files-main" class="files-main" label="Files workspace">
+        <Sidebar id="files-sidebar" class="files-sidebar" width="250" label="Shortcuts sidebar">
+          <Text id="files-shortcuts-title" class="files-shortcuts-title">Shortcuts</Text>
+          <List id="files-shortcuts-list" class="files-shortcuts-list" label="Files shortcuts">
+            <ListItem id="shortcut-{shortcut.path}" class="files-shortcut-item" label="{shortcut.label}" value="{shortcut.path}" selected="{shortcut.path == shortcut_selected_path}" for="shortcut in shortcuts" key="{shortcut.path}" on:select="select_shortcut">{shortcut.label}</ListItem>
+          </List>
+          <FlowRow id="files-shortcuts-actions" class="files-shortcuts-actions" label="Shortcut actions">
+            <Button id="files-shortcut-add" label="Add shortcut" variant="secondary" on:click="open_add_shortcut">Add</Button>
+            <Button id="files-shortcut-edit" label="Edit shortcut" variant="secondary" disabled="{!has_selected_shortcut}" on:click="open_edit_shortcut">Edit</Button>
+            <Button id="files-shortcut-delete" label="Delete shortcut" variant="danger" disabled="{!has_selected_shortcut}" on:click="delete_shortcut">Delete</Button>
+            <Button id="files-shortcut-up" label="Move shortcut up" variant="ghost" disabled="{!can_move_shortcut_up}" on:click="move_shortcut_up">↑</Button>
+            <Button id="files-shortcut-down" label="Move shortcut down" variant="ghost" disabled="{!can_move_shortcut_down}" on:click="move_shortcut_down">↓</Button>
+          </FlowRow>
+
+          <Panel id="files-shortcut-editor" class="files-shortcut-editor" label="Shortcut editor" hidden="{!show_shortcut_editor}">
+            <Column id="files-shortcut-editor-body" class="files-shortcut-editor-body">
+              <Title id="files-shortcut-editor-title">{shortcut_editor_title}</Title>
+              <TextInput id="files-shortcut-label-input" class="files-shortcut-input" label="Shortcut label" model="shortcut_edit_label" placeholder="Shortcut name" on:input="handle_shortcut_input" />
+              <TextInput id="files-shortcut-path-input" class="files-shortcut-input" label="Shortcut path" model="shortcut_edit_path" placeholder="Shortcut path" on:input="handle_shortcut_input" on:submit="save_shortcut_editor" />
+              <FlowRow id="files-shortcut-editor-actions" class="files-shortcut-editor-actions" label="Shortcut editor actions">
+                <Button id="files-shortcut-editor-save" label="Save shortcut" variant="primary" disabled="{!can_save_shortcut}" on:click="save_shortcut_editor">Save</Button>
+                <Button id="files-shortcut-editor-cancel" label="Cancel shortcut editor" variant="secondary" on:click="cancel_shortcut_editor">Cancel</Button>
+              </FlowRow>
+            </Column>
+          </Panel>
+        </Sidebar>
+
+        <Column id="files-content" class="files-content" label="Files listing area">
+          <Row id="files-table-header" class="files-table-header" label="Files table header">
+            <Text id="files-header-name" class="files-header-name">Name</Text>
+          </Row>
+
+          <FileList id="files-list" class="files-list" label="Files list">
+            <FileRow id="file-{entry.name}" class="files-row" label="{entry.name}" value="{entry.path}" selected="{entry.path == selected_path}" for="entry in entries" key="{entry.path}" on:select="select_entry" on:open="open_entry" name="{entry.name_label}" />
+          </FileList>
+
+          <Text id="files-empty-state" class="files-empty-state" hidden="{has_entries}">This folder is empty.</Text>
+        </Column>
+      </Row>
+
+
+      <StatusBar id="files-status" label="Files status">{status}</StatusBar>
+    </Column>
+  </Window>
+</App>

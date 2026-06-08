@@ -1,0 +1,333 @@
+Window {
+  background: var(--surface-1);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+AppShell {
+  flex: 1;
+  gap: var(--space-2);
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+AppHeader {
+  gap: var(--space-2);
+  align-items: center;
+  background: var(--surface-1);
+  border-color: var(--border-muted);
+  border-width: 0px;
+  border-bottom-width: 1px;
+  border-radius: 0px;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+AppBody {
+  flex: 1;
+  gap: var(--space-2);
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+AppFooter {
+  min-height: 28px;
+  gap: var(--space-2);
+  align-items: center;
+  background: var(--surface-0);
+  border-color: var(--border-muted);
+  border-width: 0px;
+  border-top-width: 1px;
+  border-radius: 0px;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+  padding-top: var(--space-1);
+  padding-bottom: var(--space-1);
+}
+
+Column {
+  gap: var(--space-3);
+}
+
+Row {
+  gap: var(--space-2);
+  align-items: center;
+}
+
+ScrollView {
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+List {
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  border-radius: 0px;
+  padding: 0px;
+  gap: var(--space-1);
+}
+
+Grid {
+  gap: var(--space-3);
+}
+
+Panel,
+Card,
+SettingsSection {
+  background: var(--surface-2);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+Toolbar {
+  background: var(--surface-1);
+  border-color: var(--border-muted);
+  border-width: 0px;
+  border-bottom-width: 1px;
+  border-radius: 0px;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+StatusBar {
+  min-height: 28px;
+  background: var(--surface-0);
+  color: var(--text-muted);
+  border-color: var(--border-muted);
+  border-width: 0px;
+  border-top-width: 1px;
+  border-radius: 0px;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+  padding-top: var(--space-1);
+  padding-bottom: var(--space-1);
+}
+
+Sidebar {
+  background: var(--surface-0);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+
+SettingsPage {
+  gap: var(--space-3);
+}
+
+SettingsRow {
+  gap: var(--space-3);
+}
+
+FlowRow {
+  gap: var(--space-2);
+}
+
+Text {
+  color: var(--text);
+  font-size: var(--font-md);
+}
+
+Title {
+  color: var(--text);
+  font-size: var(--font-xl);
+  font-weight: 700;
+}
+
+Button {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+}
+
+Button:hover {
+  background: var(--surface-3);
+  border-color: var(--border-strong);
+}
+
+Button:disabled {
+  background: var(--surface-0);
+  color: var(--text-faint);
+  border-color: var(--border-muted);
+  opacity: 0.65;
+}
+
+Button[variant="primary"] {
+  background: var(--accent);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+Button:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(var(--accent), 0.3);
+}
+
+Button[variant="primary"]:focus {
+  border-color: var(--accent-hover);
+}
+
+ListItem {
+  background: transparent;
+  border-color: transparent;
+  border-width: 0px;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+}
+
+ListItem:hover {
+  background: var(--surface-3);
+}
+
+ListItem:selected {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: transparent;
+}
+
+TextInput {
+  background: var(--surface-0);
+  color: var(--text);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  min-height: 36px;
+}
+
+TextInput:focus {
+  border-color: var(--accent);
+}
+
+TextArea,
+Select,
+Dropdown {
+  background: var(--surface-0);
+  color: var(--text);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  min-height: 36px;
+}
+
+TextArea:focus,
+Select:focus,
+Dropdown:focus {
+  border-color: var(--accent);
+}
+
+Select:disabled,
+Dropdown:disabled,
+Slider:disabled,
+Toggle:disabled {
+  opacity: 0.65;
+}
+
+Slider {
+  min-height: 28px;
+}
+
+Toggle {
+  color: var(--text);
+  min-height: 30px;
+}
+
+FileList {
+  background: var(--surface-0);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+}
+
+FileRow {
+  background: transparent;
+  color: var(--text);
+  border-color: transparent;
+  border-width: 0px;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  min-height: 32px;
+}
+
+FileRow:hover {
+  background: var(--surface-3);
+}
+
+FileRow:selected {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: transparent;
+}
+
+PathBreadcrumb {
+  color: var(--text);
+  font-size: var(--font-md);
+}
+
+TerminalSurface {
+  background: var(--surface-0);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+}
+
+BrowserSurface {
+  background: var(--surface-0);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-md);
+  padding: 0px;
+}
+
+Badge {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border-muted);
+  border-width: 1px;
+  border-radius: var(--radius-sm);
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-size: var(--font-sm);
+}
+
+Badge[variant="success"] {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border-muted);
+}
+
+Badge[variant="warning"] {
+  background: rgba(255, 210, 126, 0.10);
+  color: var(--warning);
+  border-color: rgba(255, 210, 126, 0.40);
+}
+
+Badge[variant="danger"] {
+  background: rgba(255, 126, 147, 0.10);
+  color: var(--danger);
+  border-color: rgba(255, 126, 147, 0.40);
+}

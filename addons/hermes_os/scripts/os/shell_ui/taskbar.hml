@@ -1,0 +1,11 @@
+<App id="shell-taskbar" label="Taskbar">
+  <Window id="taskbar-window" class="shell-taskbar-window" label="Taskbar">
+    <Row id="taskbar-root" class="shell-taskbar-root" label="Taskbar dock">
+      <Button id="taskbar-start" class="shell-taskbar-icon-button" label="Start" variant="ghost" on:click="toggle_launcher">Start</Button>
+      <Text id="taskbar-divider" class="shell-taskbar-divider">|</Text>
+      <Row id="taskbar-windows" class="shell-taskbar-windows" label="Open windows">
+        <Button id="taskbar-window-{task.id}" class="shell-taskbar-window-item" label="{task.title}" value="{task.id}" selected="{task.active}" for="task in tasks" key="{task.id}" on:select="activate_task">{task.label}</Button>
+      </Row>
+    </Row>
+  </Window>
+</App>
