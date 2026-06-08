@@ -8,7 +8,7 @@ signal entered_os
 signal entered_world
 
 const WORLD_SCENE := "res://scenes/world_3d.tscn"
-const OS_SCENE := "res://scenes/os/os_shell.tscn"
+const OS_SCENE := "res://addons/hermes_os/scenes/os/os_shell.tscn"
 
 var current_scene: String = "world"  # "world" or "os"
 var current_room: String = "res://scenes/world_3d.tscn"
