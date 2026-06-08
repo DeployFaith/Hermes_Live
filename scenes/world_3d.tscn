@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dg6tqcsjhqjnw"]
+
+[ext_resource type="Script" uid="uid://cf4pqljjnw1ta" path="res://scripts/world_3d/player_controller.gd" id="1"]
+[ext_resource type="Script" uid="uid://b0piuin3wrlt7" path="res://scripts/world_3d/room_controller.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bc7b44yueqv5d" path="res://scenes/room.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/world_3d_hud.tscn" id="4"]
+[ext_resource type="Script" uid="uid://c2urpy61cca7a" path="res://scripts/world_3d/interaction_system.gd" id="5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.32
+height = 1.8
+
+[node name="World3D" type="Node3D" unique_id=1621441517]
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1827892920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.8)
+script = ExtResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=287973192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=423725527]
+transform = Transform3D(1, 0, 0, 0, 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 1.6, 0)
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D" unique_id=2078658899]
+target_position = Vector3(0, 0, -3)
+collide_with_areas = true
+
+[node name="Room" type="Node3D" parent="." unique_id=766895553]
+script = ExtResource("2")
+
+[node name="RoomScene" parent="Room" unique_id=156442796 instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+
+[node name="HUD" parent="." unique_id=1756929395 instance=ExtResource("4")]
+
+[node name="InteractionSystem" type="Node" parent="." unique_id=644522168]
+script = ExtResource("5")
+raycast_path = NodePath("../Player/Camera3D/RayCast3D")
+prompt_label_path = NodePath("../HUD/PromptLabel")
