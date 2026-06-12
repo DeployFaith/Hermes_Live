@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cuiaw4sq4mw2e"
-path.s3tc="res://.godot/imported/tex_eyes_1.png-dfe8ed26d1185a283aeb8ddb22fef996.s3tc.ctex"
+path.s3tc="res://.godot/imported/tex_eyes_1.png-1014b153b440773f6c66ddacd4bb812f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/assets/character/tex_eyes_1.png"
-dest_files=["res://.godot/imported/tex_eyes_1.png-dfe8ed26d1185a283aeb8ddb22fef996.s3tc.ctex"]
+dest_files=["res://.godot/imported/tex_eyes_1.png-1014b153b440773f6c66ddacd4bb812f.s3tc.ctex"]
 
 [params]
 

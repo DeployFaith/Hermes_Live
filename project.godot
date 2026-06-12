@@ -17,11 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-; --- 3D World autoloads ---
 SceneBridge="*res://scripts/core/scene_bridge.gd"
 HomeDeviceController="*res://scripts/core/home_device_controller.gd"
-
-; --- HermesOS autoloads ---
 HermesOSKernel="*res://addons/hermes_os/scripts/hermes/hermes_os_kernel.gd"
 McpInteractionServer="*res://addons/hermes_os/scripts/hermes/mcp_interaction_server.gd"
 

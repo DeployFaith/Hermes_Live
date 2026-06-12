@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://spe057upk6q6"
-path.s3tc="res://.godot/imported/character_bubbles-tex-alpha.png-8c0ce714b33973cdea1a1bfda064c35b.s3tc.ctex"
+path.s3tc="res://.godot/imported/character_bubbles-tex-alpha.png-060d5a76f50c7c099b9f84e6bc71b27e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/assets/character/character_bubbles-tex-alpha.png"
-dest_files=["res://.godot/imported/character_bubbles-tex-alpha.png-8c0ce714b33973cdea1a1bfda064c35b.s3tc.ctex"]
+dest_files=["res://.godot/imported/character_bubbles-tex-alpha.png-060d5a76f50c7c099b9f84e6bc71b27e.s3tc.ctex"]
 
 [params]
 

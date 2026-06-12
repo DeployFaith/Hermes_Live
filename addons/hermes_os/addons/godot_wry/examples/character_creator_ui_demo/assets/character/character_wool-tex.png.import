@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8hkh2blwjy4q"
-path.s3tc="res://.godot/imported/character_wool-tex.png-09a17b14f5be6082cb7fa1a6056e2ef0.s3tc.ctex"
+path.s3tc="res://.godot/imported/character_wool-tex.png-c17872353e1cbbf7ad6f72a8169cc42b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/assets/character/character_wool-tex.png"
-dest_files=["res://.godot/imported/character_wool-tex.png-09a17b14f5be6082cb7fa1a6056e2ef0.s3tc.ctex"]
+dest_files=["res://.godot/imported/character_wool-tex.png-c17872353e1cbbf7ad6f72a8169cc42b.s3tc.ctex"]
 
 [params]
 

@@ -143,15 +143,15 @@ func _route_operation(operation: String, args: Dictionary) -> Dictionary:
 		"system.get_state":
 			return _route_system_get_state(operation, args)
 		"home.light_on":
-			return _route_home_device("ceiling_light", "on", operation)
+			return _route_home_device("on", operation, args)
 		"home.light_off":
-			return _route_home_device("ceiling_light", "off", operation)
+			return _route_home_device("off", operation, args)
 		"home.light_toggle":
-			return _route_home_device("ceiling_light", "toggle", operation)
+			return _route_home_device("toggle", operation, args)
 		"home.light_color":
 			return _route_home_color(operation, args)
 		"home.light_status":
-			return _route_home_status(operation)
+			return _route_home_status(operation, args)
 		"home.device_list":
 			return _route_home_device_list(operation)
 		_:
@@ -417,10 +417,13 @@ func _route_legacy_shell(operation: String, args: Dictionary) -> Dictionary:
 			return legacy_result as Dictionary
 	return _make_error(operation, "UNKNOWN_OPERATION", "No registered operation: " + operation)
 
-func _route_home_device(device_id: String, command: String, operation: String) -> Dictionary:
+func _route_home_device(command: String, operation: String, args: Dictionary = {}) -> Dictionary:
 	var controller = _get_home_device_controller()
 	if controller == null:
 		return _make_error(operation, "HOME_DEVICE_UNAVAILABLE", "HomeDeviceController is not available")
+	var device_id: String = _resolve_home_device_id(controller, args, "ceiling_light")
+	if device_id == "":
+		return _make_error(operation, "HOME_DEVICE_NOT_FOUND", "No matching home device found")
 	var result: Dictionary = controller.call("execute_command", device_id, command)
 	if bool(result.get("ok", false)):
 		return _make_result(operation, {"message": str(result.get("message", "Done.")), "device": device_id, "command": command, "state": result.get("state", {})})
@@ -433,18 +436,24 @@ func _route_home_color(operation: String, args: Dictionary) -> Dictionary:
 	var color_name: String = str(args.get("color", "")).strip_edges().to_lower()
 	if color_name == "":
 		return _make_error(operation, "MISSING_COLOR", "Specify a color name (e.g. purple, blue, red)")
-	var result: Dictionary = controller.call("execute_command", "ceiling_light", "color", {"color": color_name})
+	var device_id: String = _resolve_home_device_id(controller, args, "ceiling_light")
+	if device_id == "":
+		return _make_error(operation, "HOME_DEVICE_NOT_FOUND", "No matching home device found")
+	var result: Dictionary = controller.call("execute_command", device_id, "color", {"color": color_name})
 	if bool(result.get("ok", false)):
-		return _make_result(operation, {"message": str(result.get("message", "Done.")), "device": "ceiling_light", "color": color_name, "state": result.get("state", {})})
+		return _make_result(operation, {"message": str(result.get("message", "Done.")), "device": device_id, "color": color_name, "state": result.get("state", {})})
 	return _make_error(operation, "COLOR_FAILED", str(result.get("message", "Color change failed")))
 
-func _route_home_status(operation: String) -> Dictionary:
+func _route_home_status(operation: String, args: Dictionary = {}) -> Dictionary:
 	var controller = _get_home_device_controller()
 	if controller == null:
 		return _make_error(operation, "HOME_DEVICE_UNAVAILABLE", "HomeDeviceController is not available")
-	var state: Dictionary = controller.call("get_device_state", "ceiling_light")
+	var device_id: String = _resolve_home_device_id(controller, args, "ceiling_light")
+	if device_id == "":
+		return _make_error(operation, "HOME_DEVICE_NOT_FOUND", "No matching home device found")
+	var state: Dictionary = controller.call("get_device_state", device_id)
 	var is_on: bool = bool(state.get("is_on", false))
-	return _make_result(operation, {"device": "ceiling_light", "is_on": is_on, "status": "on" if is_on else "off"})
+	return _make_result(operation, {"device": device_id, "is_on": is_on, "status": "on" if is_on else "off"})
 
 func _route_home_device_list(operation: String) -> Dictionary:
 	var controller = _get_home_device_controller()
@@ -452,6 +461,36 @@ func _route_home_device_list(operation: String) -> Dictionary:
 		return _make_error(operation, "HOME_DEVICE_UNAVAILABLE", "HomeDeviceController is not available")
 	var devices: Dictionary = controller.call("get_all_devices")
 	return _make_result(operation, {"devices": devices})
+
+func _resolve_home_device_id(controller, args: Dictionary, default_device_id: String = "ceiling_light") -> String:
+	# Backward-compatible default: legacy home.light_* calls without a target still
+	# control the ceiling light. New callers can pass device_id/device/target/name,
+	# and the HomeDeviceController does identity/alias matching.
+	var direct_keys: Array[String] = ["device_id", "device", "target", "name"]
+	for key in direct_keys:
+		var raw: String = str(args.get(key, "")).strip_edges()
+		if raw == "":
+			continue
+		var normalized_id: String = raw.to_lower().replace(" ", "_")
+		var state: Dictionary = controller.call("get_device_state", normalized_id)
+		if not state.is_empty():
+			return normalized_id
+		if controller.has_method("find_device_by_name"):
+			var matched: String = str(controller.call("find_device_by_name", raw)).strip_edges()
+			if matched != "":
+				return matched
+
+	var text_parts: Array[String] = []
+	for key in ["text", "query", "utterance", "message", "description"]:
+		var value: String = str(args.get(key, "")).strip_edges()
+		if value != "":
+			text_parts.append(value)
+	if not text_parts.is_empty() and controller.has_method("find_device_by_name"):
+		var text_match: String = str(controller.call("find_device_by_name", " ".join(text_parts))).strip_edges()
+		if text_match != "":
+			return text_match
+
+	return default_device_id
 
 func _get_home_device_controller():
 	if _shell != null and is_instance_valid(_shell):

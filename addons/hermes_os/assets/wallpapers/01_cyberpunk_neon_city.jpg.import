@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drnhnbjrffx3w"
-path="res://.godot/imported/01_cyberpunk_neon_city.jpg-bec123368c46e8cf00697e9dc6c3af37.ctex"
+path="res://.godot/imported/01_cyberpunk_neon_city.jpg-4b9e473defefe8ed0fa47a00d83d9574.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/wallpapers/01_cyberpunk_neon_city.jpg"
-dest_files=["res://.godot/imported/01_cyberpunk_neon_city.jpg-bec123368c46e8cf00697e9dc6c3af37.ctex"]
+dest_files=["res://.godot/imported/01_cyberpunk_neon_city.jpg-4b9e473defefe8ed0fa47a00d83d9574.ctex"]
 
 [params]
 

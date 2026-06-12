@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://35pl1ag6ommt"
-path="res://.godot/imported/07_HermesAgent-02.jpeg-616f5e138bff4ed966eac94115be44a9.ctex"
+path="res://.godot/imported/07_HermesAgent-02.jpeg-03873ff963dffe90fe55b18f80e65372.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/wallpapers/07_HermesAgent-02.jpeg"
-dest_files=["res://.godot/imported/07_HermesAgent-02.jpeg-616f5e138bff4ed966eac94115be44a9.ctex"]
+dest_files=["res://.godot/imported/07_HermesAgent-02.jpeg-03873ff963dffe90fe55b18f80e65372.ctex"]
 
 [params]
 

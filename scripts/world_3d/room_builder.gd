@@ -214,10 +214,8 @@ func _apply_ceiling_light_state(state: Dictionary) -> void:
 	if _ceiling_light != null:
 		_ceiling_light.light_energy = _ceiling_light_energy_on if is_on else 0.0
 		_ceiling_light.light_color = light_color
-	# Control desk light (main room illumination)
-	if _desk_light != null:
-		_desk_light.light_energy = _desk_light_energy_on if is_on else 0.0
-		_desk_light.light_color = light_color
+	# Do not drive desk/area lights from ceiling_light state. Desk lamps are
+	# separate HomeDeviceController devices and must respond only to their own id.
 	# Dim the fixture emissive to match
 	if _ceiling_light_fixture != null:
 		var fixture_mat: StandardMaterial3D = _metal_material.duplicate()

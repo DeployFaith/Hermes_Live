@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://e5880w027oim"]
+
+[sub_resource type="StandardMaterial3D" id="ScreenMat"]
+albedo_color = Color(0.02, 0.02, 0.04, 1)
+metallic = 0.3
+roughness = 0.15
+
+[sub_resource type="StandardMaterial3D" id="FrameMat"]
+albedo_color = Color(0.03, 0.03, 0.03, 1)
+metallic = 0.5
+roughness = 0.3
+
+[node name="FlatscreenTV" type="Node3D" unique_id=679719382]
+
+[node name="Screen" type="CSGBox3D" parent="." unique_id=962425045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.077228844)
+use_collision = true
+size = Vector3(1.2, 0.7, 0.03)
+material = SubResource("ScreenMat")
+
+[node name="Bezel" type="CSGBox3D" parent="." unique_id=828237191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.07222884)
+size = Vector3(1.26, 0.76, 0.02)
+material = SubResource("FrameMat")

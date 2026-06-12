@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd2ivor3u8hli"
-path="res://.godot/imported/circle-help.svg-d573c831983bbb4378f1d2db2989f35d.ctex"
+path="res://.godot/imported/circle-help.svg-b583f4f86d041375d6a5156bd4792ab6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/icons/circle-help.svg"
-dest_files=["res://.godot/imported/circle-help.svg-d573c831983bbb4378f1d2db2989f35d.ctex"]
+dest_files=["res://.godot/imported/circle-help.svg-b583f4f86d041375d6a5156bd4792ab6.ctex"]
 
 [params]
 

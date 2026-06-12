@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="StandardMaterial3D" id="BodyMat"]
+albedo_color = Color(0.06, 0.06, 0.08, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="ButtonMat"]
+albedo_color = Color(0.15, 0.6, 0.2, 1)
+roughness = 0.4
+
+[node name="GameController" type="Node3D"]
+
+[node name="Body" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+size = Vector3(0.15, 0.03, 0.1)
+material = SubResource("BodyMat")
+
+[node name="GripL" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, 0, 0.06)
+size = Vector3(0.05, 0.025, 0.06)
+material = SubResource("BodyMat")
+
+[node name="GripR" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06, 0, 0.06)
+size = Vector3(0.05, 0.025, 0.06)
+material = SubResource("BodyMat")
+
+[node name="ButtonA" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.025, -0.02)
+radius = 0.008
+material = SubResource("ButtonMat")

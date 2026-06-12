@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dl1b5avlpftap"
-path="res://.godot/imported/sticky-note.svg-d97cc9f9e3d3d0b6fb57e62815cd228f.ctex"
+path="res://.godot/imported/sticky-note.svg-8780b32a2494313bece1fd7bd48de36e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/icons/sticky-note.svg"
-dest_files=["res://.godot/imported/sticky-note.svg-d97cc9f9e3d3d0b6fb57e62815cd228f.ctex"]
+dest_files=["res://.godot/imported/sticky-note.svg-8780b32a2494313bece1fd7bd48de36e.ctex"]
 
 [params]
 

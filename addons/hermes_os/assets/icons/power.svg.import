@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd5fafpnq5u1f"
-path="res://.godot/imported/power.svg-061ad55b02b45b1e69a3a0da96af0e56.ctex"
+path="res://.godot/imported/power.svg-e75f4452cb152b17e52fd500b723eed4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/icons/power.svg"
-dest_files=["res://.godot/imported/power.svg-061ad55b02b45b1e69a3a0da96af0e56.ctex"]
+dest_files=["res://.godot/imported/power.svg-e75f4452cb152b17e52fd500b723eed4.ctex"]
 
 [params]
 

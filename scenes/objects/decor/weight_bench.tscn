@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://eym8wap1a0fw"]
+
+[sub_resource type="StandardMaterial3D" id="PadMat"]
+albedo_color = Color(0.12, 0.12, 0.14, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="MetalMat"]
+albedo_color = Color(0.35, 0.35, 0.38, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="WeightMat"]
+albedo_color = Color(0.08, 0.08, 0.08, 1)
+roughness = 0.5
+
+[node name="WeightBench" type="Node3D" unique_id=265128426]
+
+[node name="SeatPad" type="CSGBox3D" parent="." unique_id=1041765464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2712931, 0)
+size = Vector3(0.4, 0.06, 0.8)
+material = SubResource("PadMat")
+
+[node name="BackPad" type="CSGBox3D" parent="." unique_id=1065834025]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.3433648, 0.7)
+size = Vector3(0.4, 0.06, 0.6)
+material = SubResource("PadMat")
+
+[node name="Frame" type="CSGBox3D" parent="." unique_id=864318919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+size = Vector3(0.45, 0.04, 1.6)
+material = SubResource("MetalMat")
+
+[node name="LegFL" type="CSGBox3D" parent="." unique_id=897455627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.11, -0.7)
+size = Vector3(0.04, 0.22, 0.04)
+material = SubResource("MetalMat")
+
+[node name="LegFR" type="CSGBox3D" parent="." unique_id=1147963520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.11, -0.7)
+size = Vector3(0.04, 0.22, 0.04)
+material = SubResource("MetalMat")
+
+[node name="LegBL" type="CSGBox3D" parent="." unique_id=654548776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.11, 0.7)
+size = Vector3(0.04, 0.22, 0.04)
+material = SubResource("MetalMat")
+
+[node name="LegBR" type="CSGBox3D" parent="." unique_id=1639534158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.11, 0.7)
+size = Vector3(0.04, 0.22, 0.04)
+material = SubResource("MetalMat")
+
+[node name="DumbbellL" type="Node3D" parent="." unique_id=373523359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.1, -0.3)
+
+[node name="BarL" type="CSGBox3D" parent="DumbbellL" unique_id=44092673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01768139, 0.96299636)
+size = Vector3(0.35, 0.04, 0.04)
+material = SubResource("MetalMat")
+
+[node name="WeightLL" type="CSGCylinder3D" parent="DumbbellL" unique_id=1216511248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15000004, -0.01768139, 0.96299636)
+radius = 0.08
+height = 0.05
+material = SubResource("WeightMat")
+
+[node name="WeightLR" type="CSGCylinder3D" parent="DumbbellL" unique_id=451269665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.01768139, 0.96299636)
+radius = 0.08
+height = 0.05
+material = SubResource("WeightMat")
+
+[node name="DumbbellR" type="Node3D" parent="." unique_id=537267417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.1, -0.3)
+
+[node name="BarR" type="CSGBox3D" parent="DumbbellR" unique_id=790296871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04334086, 0.96299636)
+size = Vector3(0.35, 0.04, 0.04)
+material = SubResource("MetalMat")
+
+[node name="WeightRL" type="CSGCylinder3D" parent="DumbbellR" unique_id=1599945397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.04334086, 0.96299636)
+radius = 0.08
+height = 0.05
+material = SubResource("WeightMat")
+
+[node name="WeightRR" type="CSGCylinder3D" parent="DumbbellR" unique_id=372063004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15000004, -0.04334086, 0.96299636)
+radius = 0.08
+height = 0.05
+material = SubResource("WeightMat")

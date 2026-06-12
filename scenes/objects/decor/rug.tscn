@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bypqpo6xwxyin"]
+
+[sub_resource type="StandardMaterial3D" id="RugMat"]
+albedo_color = Color(0.18, 0.035, 0.045, 1)
+roughness = 0.9
+
+[node name="Rug" type="Node3D"]
+
+[node name="RugMesh" type="CSGBox3D" parent="."]
+size = Vector3(3.2, 0.025, 2.4)
+material = SubResource("RugMat")

@@ -45,11 +45,11 @@ func capability_registry_init() -> void:
 	_register_operation("writefile", "filesystem.write", "high", true, "Compatibility alias for files.write_file", true)
 	_register_operation("listdir", "filesystem.read", "low", false, "Compatibility alias for files.list_dir", false)
 	_register_operation("mkdir", "filesystem.write", "medium", true, "Compatibility alias for files.mkdir", true)
-	_register_operation("home.light_on", "home.control", "low", true, "Turn the in-game ceiling light on", false)
-	_register_operation("home.light_off", "home.control", "low", true, "Turn the in-game ceiling light off", false)
-	_register_operation("home.light_toggle", "home.control", "low", true, "Toggle the in-game ceiling light", false)
-	_register_operation("home.light_color", "home.control", "low", true, "Set the in-game ceiling light color (e.g. purple, blue, red, green)", false)
-	_register_operation("home.light_status", "home.control", "low", false, "Check if the in-game ceiling light is on or off", false)
+	_register_operation("home.light_on", "home.control", "low", true, "Turn an in-game light on. Optional args: device_id/device/target/name (e.g. ceiling_light, desk_lamp). Defaults to ceiling_light.", false)
+	_register_operation("home.light_off", "home.control", "low", true, "Turn an in-game light off. Optional args: device_id/device/target/name (e.g. ceiling_light, desk_lamp). Defaults to ceiling_light.", false)
+	_register_operation("home.light_toggle", "home.control", "low", true, "Toggle an in-game light. Optional args: device_id/device/target/name (e.g. ceiling_light, desk_lamp). Defaults to ceiling_light.", false)
+	_register_operation("home.light_color", "home.control", "low", true, "Set an in-game light color. Args: color plus optional device_id/device/target/name (e.g. ceiling_light, desk_lamp). Defaults to ceiling_light.", false)
+	_register_operation("home.light_status", "home.control", "low", false, "Check an in-game light status. Optional args: device_id/device/target/name (e.g. ceiling_light, desk_lamp). Defaults to ceiling_light.", false)
 	_register_operation("home.device_list", "home.read", "low", false, "List all available in-game home devices", false)
 
 func get_supported_operations() -> Array[String]:

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi2jhgx4btn0g"
-path="res://.godot/imported/05_dark_tech_grid.jpg-f1c615bdaefe2ec3b42b01a5447d88e1.ctex"
+path="res://.godot/imported/05_dark_tech_grid.jpg-5ace83a7ec8943516085d17c90e95568.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/wallpapers/05_dark_tech_grid.jpg"
-dest_files=["res://.godot/imported/05_dark_tech_grid.jpg-f1c615bdaefe2ec3b42b01a5447d88e1.ctex"]
+dest_files=["res://.godot/imported/05_dark_tech_grid.jpg-5ace83a7ec8943516085d17c90e95568.ctex"]
 
 [params]
 

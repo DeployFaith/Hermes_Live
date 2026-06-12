@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c8gp6r0f0m8oy"]
+
+[sub_resource type="StandardMaterial3D" id="ChairMat"]
+albedo_color = Color(0.08, 0.08, 0.1, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="AccentMat"]
+albedo_color = Color(0.85, 0.15, 0.1, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="MetalMat"]
+albedo_color = Color(0.2, 0.2, 0.22, 1)
+roughness = 0.35
+
+[node name="Chair" type="Node3D" unique_id=1661123217]
+
+[node name="Seat" type="CSGBox3D" parent="." unique_id=1073263320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+use_collision = true
+size = Vector3(0.5, 0.06, 0.5)
+material = SubResource("ChairMat")
+
+[node name="BackRest" type="CSGBox3D" parent="." unique_id=1531851268]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.90429014, -0.2688746)
+use_collision = true
+size = Vector3(0.5, 0.7, 0.06)
+material = SubResource("ChairMat")
+
+[node name="AccentStripe1" type="CSGBox3D" parent="." unique_id=1793805613]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0.297, 0.878, -0.179)
+size = Vector3(0.04, 0.5, 0.005)
+material = SubResource("AccentMat")
+
+[node name="AccentStripe2" type="CSGBox3D" parent="." unique_id=1392689144]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -0.29859278, 0.87780607, -0.19749153)
+size = Vector3(0.04, 0.5, 0.005)
+material = SubResource("AccentMat")
+
+[node name="Headrest" type="CSGBox3D" parent="." unique_id=31484269]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.25, -0.31612575)
+size = Vector3(0.3, 0.12, 0.04)
+material = SubResource("ChairMat")
+
+[node name="Pole" type="CSGCylinder3D" parent="." unique_id=1216054930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+radius = 0.03
+height = 0.4
+material = SubResource("MetalMat")
+
+[node name="Base" type="CSGCylinder3D" parent="." unique_id=401285907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+radius = 0.25
+height = 0.04
+material = SubResource("MetalMat")
+
+[node name="ArmrestL" type="CSGBox3D" parent="." unique_id=1113525953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.65, 0.05)
+size = Vector3(0.04, 0.04, 0.3)
+material = SubResource("MetalMat")
+
+[node name="ArmrestR" type="CSGBox3D" parent="." unique_id=1296274011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.65, 0.05)
+size = Vector3(0.04, 0.04, 0.3)
+material = SubResource("MetalMat")

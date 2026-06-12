@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwb70gacicrha"]
+
+[sub_resource type="StandardMaterial3D" id="PhoneMat"]
+albedo_color = Color(0.05, 0.05, 0.06, 1)
+roughness = 0.35
+
+[node name="Phone" type="Node3D"]
+
+[node name="PhoneBody" type="CSGBox3D" parent="."]
+size = Vector3(0.07, 0.01, 0.14)
+material = SubResource("PhoneMat")

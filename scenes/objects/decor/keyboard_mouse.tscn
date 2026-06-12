@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c1noghnwawsxl"]
+
+[sub_resource type="StandardMaterial3D" id="KbMat"]
+albedo_color = Color(0.08, 0.08, 0.1, 1)
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="KeyMat"]
+albedo_color = Color(0.12, 0.12, 0.14, 1)
+roughness = 0.5
+
+[node name="KeyboardMouse" type="Node3D" unique_id=779233169]
+
+[node name="Keyboard" type="CSGBox3D" parent="." unique_id=1383678119]
+size = Vector3(0.42, 0.015, 0.14)
+material = SubResource("KbMat")
+
+[node name="MousePad" type="CSGBox3D" parent="." unique_id=1419148095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37556767, 0, 0.1)
+size = Vector3(0.22, 0.003, 0.18)
+material = SubResource("KeyMat")
+
+[node name="Mouse" type="CSGBox3D" parent="." unique_id=701888980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37357157, 0.012, 0.1)
+size = Vector3(0.06, 0.02, 0.1)
+material = SubResource("KbMat")

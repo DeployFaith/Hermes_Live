@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://detgkiwqnqyyf"
-path="res://.godot/imported/avatar_03.svg-a19ed85ef8d0113629c768c904ffa2b0.ctex"
+path="res://.godot/imported/avatar_03.svg-9309069f9404729f9ea355c7e6aefb78.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/avatars/avatar_03.svg"
-dest_files=["res://.godot/imported/avatar_03.svg-a19ed85ef8d0113629c768c904ffa2b0.ctex"]
+dest_files=["res://.godot/imported/avatar_03.svg-9309069f9404729f9ea355c7e6aefb78.ctex"]
 
 [params]
 

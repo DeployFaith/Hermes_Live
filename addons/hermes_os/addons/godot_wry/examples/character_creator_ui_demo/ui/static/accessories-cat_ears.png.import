@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byp7kufp22rx2"
-path="res://.godot/imported/accessories-cat_ears.png-340f678bb134156f2eefac662089505d.ctex"
+path="res://.godot/imported/accessories-cat_ears.png-aa80d53a65d37ba5a149458f65886f10.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/ui/static/accessories-cat_ears.png"
-dest_files=["res://.godot/imported/accessories-cat_ears.png-340f678bb134156f2eefac662089505d.ctex"]
+dest_files=["res://.godot/imported/accessories-cat_ears.png-aa80d53a65d37ba5a149458f65886f10.ctex"]
 
 [params]
 

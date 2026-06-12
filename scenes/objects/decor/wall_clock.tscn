@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="StandardMaterial3D" id="ClockFaceMat"]
+albedo_color = Color(0.95, 0.95, 0.9, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="ClockFrameMat"]
+albedo_color = Color(0.15, 0.1, 0.06, 1)
+roughness = 0.5
+
+[node name="WallClock" type="Node3D"]
+
+[node name="Frame" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+radius = 0.18
+height = 0.03
+material = SubResource("ClockFrameMat")
+
+[node name="Face" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -0.01)
+radius = 0.15
+height = 0.01
+material = SubResource("ClockFaceMat")

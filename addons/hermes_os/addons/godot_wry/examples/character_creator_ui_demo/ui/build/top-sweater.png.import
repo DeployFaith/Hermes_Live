@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3a04ieisigww"
-path="res://.godot/imported/top-sweater.png-807ffd35ca7c763e3074345e32f75aef.ctex"
+path="res://.godot/imported/top-sweater.png-c38628667c60246ebaae9cd9723f1d34.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/ui/build/top-sweater.png"
-dest_files=["res://.godot/imported/top-sweater.png-807ffd35ca7c763e3074345e32f75aef.ctex"]
+dest_files=["res://.godot/imported/top-sweater.png-c38628667c60246ebaae9cd9723f1d34.ctex"]
 
 [params]
 

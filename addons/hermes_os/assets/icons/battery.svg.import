@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq5vr6016fprf"
-path="res://.godot/imported/battery.svg-76799155fb8ab808b9d555279cc4854a.ctex"
+path="res://.godot/imported/battery.svg-0c0dd46d268d87a9bb383e2b5d22d716.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/icons/battery.svg"
-dest_files=["res://.godot/imported/battery.svg-76799155fb8ab808b9d555279cc4854a.ctex"]
+dest_files=["res://.godot/imported/battery.svg-0c0dd46d268d87a9bb383e2b5d22d716.ctex"]
 
 [params]
 

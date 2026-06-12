@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://u2m0bhpk0ksh"
-path="res://.godot/imported/bottom-skirt.png-ba1531001ddd3933e845578125e5178c.ctex"
+path="res://.godot/imported/bottom-skirt.png-f563e28a61119e2b477f045d9c829837.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/ui/static/bottom-skirt.png"
-dest_files=["res://.godot/imported/bottom-skirt.png-ba1531001ddd3933e845578125e5178c.ctex"]
+dest_files=["res://.godot/imported/bottom-skirt.png-f563e28a61119e2b477f045d9c829837.ctex"]
 
 [params]
 

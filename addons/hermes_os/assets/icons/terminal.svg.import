@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tev5qmuqgntk"
-path="res://.godot/imported/terminal.svg-d77c778297bd0e36f8e9c38ff3cf1b99.ctex"
+path="res://.godot/imported/terminal.svg-d2526f1b23a5a35b655b33b19ebab764.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/icons/terminal.svg"
-dest_files=["res://.godot/imported/terminal.svg-d77c778297bd0e36f8e9c38ff3cf1b99.ctex"]
+dest_files=["res://.godot/imported/terminal.svg-d2526f1b23a5a35b655b33b19ebab764.ctex"]
 
 [params]
 

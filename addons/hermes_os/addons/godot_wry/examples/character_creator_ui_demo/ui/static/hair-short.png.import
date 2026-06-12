@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjxj7qdcuujsb"
-path="res://.godot/imported/hair-short.png-8f1d79fe69c3f063e8fe09635da37f7c.ctex"
+path="res://.godot/imported/hair-short.png-fb01200ac675629de623f8cc46f106cd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/ui/static/hair-short.png"
-dest_files=["res://.godot/imported/hair-short.png-8f1d79fe69c3f063e8fe09635da37f7c.ctex"]
+dest_files=["res://.godot/imported/hair-short.png-fb01200ac675629de623f8cc46f106cd.ctex"]
 
 [params]
 

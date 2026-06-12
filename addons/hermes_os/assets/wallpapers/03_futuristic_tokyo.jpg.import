@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmpddag5omurb"
-path="res://.godot/imported/03_futuristic_tokyo.jpg-07a0f428026fbc1f9dedcedd2ebf590d.ctex"
+path="res://.godot/imported/03_futuristic_tokyo.jpg-6693135738844d97a0e0650b5a22c593.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/wallpapers/03_futuristic_tokyo.jpg"
-dest_files=["res://.godot/imported/03_futuristic_tokyo.jpg-07a0f428026fbc1f9dedcedd2ebf590d.ctex"]
+dest_files=["res://.godot/imported/03_futuristic_tokyo.jpg-6693135738844d97a0e0650b5a22c593.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ouxm872o0bdl"
-path.s3tc="res://.godot/imported/character_face-tex.png-01c53d6145ab725ddd5d34eaaf290b5f.s3tc.ctex"
+path.s3tc="res://.godot/imported/character_face-tex.png-c33e047b1aa2077d721ad43eed74a3c6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/assets/character/character_face-tex.png"
-dest_files=["res://.godot/imported/character_face-tex.png-01c53d6145ab725ddd5d34eaaf290b5f.s3tc.ctex"]
+dest_files=["res://.godot/imported/character_face-tex.png-c33e047b1aa2077d721ad43eed74a3c6.s3tc.ctex"]
 
 [params]
 

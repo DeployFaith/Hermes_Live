@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3bx6riq8gfcr"
-path="res://.godot/imported/globe.svg-2e7445f2087566b9449041452067fffb.ctex"
+path="res://.godot/imported/globe.svg-34ae303c2f05d61ba05908425a667b1b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/assets/icons/globe.svg"
-dest_files=["res://.godot/imported/globe.svg-2e7445f2087566b9449041452067fffb.ctex"]
+dest_files=["res://.godot/imported/globe.svg-34ae303c2f05d61ba05908425a667b1b.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0jo10uj2spor"
-path="res://.godot/imported/shoes-rain_boots.png-126cc9d24245e8cd7dc0263be425fd58.ctex"
+path="res://.godot/imported/shoes-rain_boots.png-5ef3329d5be2b197f176a7c3270855d9.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/ui/static/shoes-rain_boots.png"
-dest_files=["res://.godot/imported/shoes-rain_boots.png-126cc9d24245e8cd7dc0263be425fd58.ctex"]
+dest_files=["res://.godot/imported/shoes-rain_boots.png-5ef3329d5be2b197f176a7c3270855d9.ctex"]
 
 [params]
 

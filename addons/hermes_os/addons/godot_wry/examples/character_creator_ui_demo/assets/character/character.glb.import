@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d1mpyofg2e5j6"
-path="res://.godot/imported/character.glb-be11b3e34d69ccea7a5576e55e558e33.scn"
+path="res://.godot/imported/character.glb-90dcf0ca4bbf9a9a16e894ba5d734527.scn"
 
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/assets/character/character.glb"
-dest_files=["res://.godot/imported/character.glb-be11b3e34d69ccea7a5576e55e558e33.scn"]
+dest_files=["res://.godot/imported/character.glb-90dcf0ca4bbf9a9a16e894ba5d734527.scn"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx2om7oh282o4"
-path="res://.godot/imported/hand_point.png-22b44be27fc467bc90c3959fbf115ec0.ctex"
+path="res://.godot/imported/hand_point.png-a5600c21ac1196e91361360ae4537140.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/hermes_os/addons/godot_wry/examples/character_creator_ui_demo/ui/static/hand_point.png"
-dest_files=["res://.godot/imported/hand_point.png-22b44be27fc467bc90c3959fbf115ec0.ctex"]
+dest_files=["res://.godot/imported/hand_point.png-a5600c21ac1196e91361360ae4537140.ctex"]
 
 [params]
 
