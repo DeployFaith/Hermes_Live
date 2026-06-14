@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/decor/wall_clock.tscn" id="18_clock"]
 [ext_resource type="PackedScene" path="res://scenes/objects/decor/potted_plant.tscn" id="19_plant"]
 [ext_resource type="PackedScene" path="res://scenes/objects/decor/game_controller.tscn" id="20_ctrl"]
-[ext_resource type="PackedScene" path="res://scenes/objects/decor/basketball.tscn" id="21_ball"]
 [ext_resource type="PackedScene" path="res://scenes/objects/decor/poster.tscn" id="22_poster"]
 [ext_resource type="PackedScene" uid="uid://c1noghnwawsxl" path="res://scenes/objects/decor/keyboard_mouse.tscn" id="23_kbmouse"]
 [ext_resource type="PackedScene" path="res://scenes/objects/decor/nightstand.tscn" id="24_night"]
@@ -107,9 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9343147, 0.5160128, -3.7449
 
 [node name="GameController" parent="." unique_id=182679943 instance=ExtResource("20_ctrl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37545916, 0.78, -3.638321)
-
-[node name="Basketball" parent="." unique_id=1422064971 instance=ExtResource("21_ball")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8775357, 0.09144029, 3.2615469)
 
 [node name="Poster" parent="." unique_id=643591528 instance=ExtResource("22_poster")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2.7772493, 1.8, -3.886489)

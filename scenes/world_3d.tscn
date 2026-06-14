@@ -53,5 +53,5 @@ script = ExtResource("7")
 script = ExtResource("8")
 camera_path = NodePath("../Player/Camera3D")
 block_world_path = NodePath("../BlockWorld")
-selected_label_path = NodePath("../HUD/BuildLabel")
+selected_label_path = NodePath("../HUD")
 max_distance = 8.0

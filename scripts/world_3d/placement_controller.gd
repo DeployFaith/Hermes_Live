@@ -12,6 +12,7 @@ class_name PlacementController
 
 var build_mode_enabled: bool = false
 var selected_index: int = 0
+var active_category: String = "block"
 var block_order: Array[String] = []
 var rotation_steps: int = 0
 var target_grid: Vector3i = Vector3i.ZERO
@@ -21,6 +22,7 @@ var has_target_surface: bool = false
 var camera: Camera3D
 var block_world: BlockWorld
 var selected_label: Label
+var build_hud: Node
 var _library: BlockLibrary
 var _latest_hit: Dictionary = {}
 
@@ -28,9 +30,16 @@ const ACT_TOGGLE := "build_toggle"
 const ACT_SELECT_PREFIX := "build_select_"
 const ACT_SCROLL_UP := "build_scroll_up"
 const ACT_SCROLL_DOWN := "build_scroll_down"
+const ACT_CYCLE_CATEGORY := "build_cycle_category"
 const ACT_ROTATE := "build_rotate"
 const ACT_PLACE := "build_place"
 const ACT_REMOVE := "build_remove"
+const CATEGORY_ORDER := ["block", "item", "structure"]
+const CATEGORY_TITLES := {
+	"block": "Blocks",
+	"item": "Items",
+	"structure": "Structures",
+}
 const GHOST_VALID_COLOR := Color(0.2, 1.0, 0.3, 0.3)
 const GHOST_INVALID_COLOR := Color(1.0, 0.2, 0.2, 0.3)
 
@@ -53,11 +62,16 @@ var _structure_ghost_material: StandardMaterial3D
 func _ready() -> void:
 	camera = get_node_or_null(camera_path) as Camera3D
 	block_world = get_node_or_null(block_world_path) as BlockWorld
-	selected_label = get_node_or_null(selected_label_path) as Label
+	var hud_node := get_node_or_null(selected_label_path)
+	selected_label = hud_node as Label
+	build_hud = hud_node
+	if build_hud != null and not build_hud.has_method("populate_hotbar") and build_hud.get_parent() != null and build_hud.get_parent().has_method("populate_hotbar"):
+		build_hud = build_hud.get_parent()
 	_library = get_node_or_null("../BlockLibrary") as BlockLibrary
 
 	_register_actions()
 	_populate_block_order()
+	_configure_hud_hotbar()
 	_create_ghost()
 	_update_hud()
 
@@ -89,6 +103,7 @@ func _register_actions() -> void:
 		_ensure_key_action("%s%d" % [ACT_SELECT_PREFIX, i + 1], number_keys[i])
 	_ensure_mouse_action(ACT_SCROLL_UP, MOUSE_BUTTON_WHEEL_UP)
 	_ensure_mouse_action(ACT_SCROLL_DOWN, MOUSE_BUTTON_WHEEL_DOWN)
+	_ensure_key_action(ACT_CYCLE_CATEGORY, KEY_TAB)
 	_ensure_key_action(ACT_ROTATE, KEY_R)
 	_ensure_mouse_action(ACT_PLACE, MOUSE_BUTTON_LEFT)
 	_ensure_mouse_action(ACT_REMOVE, MOUSE_BUTTON_RIGHT)
@@ -130,14 +145,30 @@ func _populate_block_order() -> void:
 	block_order.clear()
 	if _library != null:
 		block_order = _library.get_block_ids()
+	if not _category_has_items(active_category):
+		active_category = _first_populated_category()
 	if selected_index >= block_order.size():
 		selected_index = maxi(block_order.size() - 1, 0)
+	if selected_index < 0 or _get_category_for_id(get_selected_id()) != active_category:
+		_select_first_in_category(active_category, false)
+
+
+func _configure_hud_hotbar() -> void:
+	if build_hud != null and build_hud.has_method("populate_hotbar"):
+		build_hud.call("populate_hotbar", _library, block_order)
+		if build_hud.has_signal("category_tab_pressed"):
+			build_hud.connect("category_tab_pressed", _on_hud_category_tab_pressed)
+		if build_hud.has_method("set_active_category"):
+			build_hud.call("set_active_category", active_category)
 
 
 func _handle_selection_input() -> void:
+	if Input.is_action_just_pressed(ACT_CYCLE_CATEGORY):
+		_cycle_category(1)
+
 	for i in range(1, 10):
 		if Input.is_action_just_pressed("%s%d" % [ACT_SELECT_PREFIX, i]):
-			_select_index(i - 1)
+			_select_category_local_index(i - 1)
 
 	if Input.is_action_just_pressed(ACT_SCROLL_UP):
 		_cycle_selection(-1)
@@ -149,16 +180,98 @@ func _select_index(index: int) -> void:
 	if index < 0 or index >= block_order.size():
 		return
 	selected_index = index
+	active_category = _get_category_for_id(get_selected_id())
 	_clear_drag_state()
 	_update_hud()
 
 
 func _cycle_selection(direction: int) -> void:
-	if block_order.is_empty():
+	var indices := _indices_for_category(active_category)
+	if indices.is_empty():
 		return
-	selected_index = wrapi(selected_index + direction, 0, block_order.size())
+	var local_index := indices.find(selected_index)
+	if local_index == -1:
+		local_index = 0
+	else:
+		local_index = wrapi(local_index + direction, 0, indices.size())
+	selected_index = indices[local_index]
 	_clear_drag_state()
 	_update_hud()
+
+
+func _select_category_local_index(local_index: int) -> void:
+	var indices := _indices_for_category(active_category)
+	if local_index < 0 or local_index >= indices.size():
+		return
+	selected_index = indices[local_index]
+	_clear_drag_state()
+	_update_hud()
+
+
+func _cycle_category(direction: int) -> void:
+	var populated := _populated_categories()
+	if populated.is_empty():
+		return
+	var category_index := populated.find(active_category)
+	if category_index == -1:
+		category_index = 0
+	else:
+		category_index = wrapi(category_index + direction, 0, populated.size())
+	_set_active_category(populated[category_index])
+
+
+func _set_active_category(category: String) -> void:
+	if category == "" or not _category_has_items(category):
+		return
+	active_category = category
+	_select_first_in_category(active_category, false)
+	_clear_drag_state()
+	_update_hud()
+
+
+func _select_first_in_category(category: String, update_hud: bool = true) -> void:
+	var indices := _indices_for_category(category)
+	if indices.is_empty():
+		return
+	selected_index = indices[0]
+	if update_hud:
+		_update_hud()
+
+
+func _on_hud_category_tab_pressed(category: String) -> void:
+	_set_active_category(category)
+
+
+func _indices_for_category(category: String) -> Array[int]:
+	var indices: Array[int] = []
+	for i in range(block_order.size()):
+		if _get_category_for_id(block_order[i]) == category:
+			indices.append(i)
+	return indices
+
+
+func _category_has_items(category: String) -> bool:
+	return not _indices_for_category(category).is_empty()
+
+
+func _populated_categories() -> Array[String]:
+	var categories: Array[String] = []
+	for category in CATEGORY_ORDER:
+		if _category_has_items(category):
+			categories.append(category)
+	return categories
+
+
+func _first_populated_category() -> String:
+	var populated := _populated_categories()
+	return populated[0] if not populated.is_empty() else "block"
+
+
+func _get_category_for_id(id: String) -> String:
+	if id == "" or _library == null or not _library.has_block(id):
+		return "block"
+	var category := _library.get_category(id)
+	return category if CATEGORY_ORDER.has(category) else "block"
 
 
 func _handle_build_input() -> void:
@@ -305,7 +418,7 @@ func _get_selected_category() -> String:
 
 
 func _update_hud() -> void:
-	if selected_label == null:
+	if selected_label == null and build_hud == null:
 		return
 	var selected_id := _get_selected_id()
 	var selected_name := "None"
@@ -314,14 +427,28 @@ func _update_hud() -> void:
 	var category := _get_selected_category()
 	if category == "":
 		category = "none"
+	var active_category_title := str(CATEGORY_TITLES.get(active_category, active_category.capitalize()))
 	var drag_text := ""
 	if _dragging:
 		drag_text = " | Dragging %d blocks...%s" % [_drag_cells.size(), "" if _drag_valid else " (blocked)"]
 	var rotation_text := ""
 	if category == "item" or category == "structure":
 		rotation_text = " | Rot %d°" % [rotation_steps * 90]
-	selected_label.text = "Build: %s | %s (%s)%s%s" % ["ON" if build_mode_enabled else "OFF", selected_name, category, rotation_text, drag_text]
-	selected_label.visible = true
+	var status_text := "Build: %s | Tab: %s | %s (%s)%s%s" % ["ON" if build_mode_enabled else "OFF", active_category_title, selected_name, category, rotation_text, drag_text]
+	if build_hud != null:
+		if build_hud.has_method("set_active_category"):
+			build_hud.call("set_active_category", active_category)
+		if build_hud.has_method("set_selected_id"):
+			build_hud.call("set_selected_id", selected_id)
+		elif build_hud.has_method("set_selected_index"):
+			build_hud.call("set_selected_index", selected_index)
+		if build_hud.has_method("set_status_text"):
+			build_hud.call("set_status_text", status_text)
+		if build_hud.has_method("set_build_mode"):
+			build_hud.call("set_build_mode", build_mode_enabled)
+	if selected_label != null:
+		selected_label.text = status_text
+		selected_label.visible = true
 
 
 func _create_ghost() -> void:
