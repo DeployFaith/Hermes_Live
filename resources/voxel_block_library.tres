@@ -1,0 +1,23 @@
+[gd_resource type="VoxelBlockyLibrary" format=3 uid="uid://dog172d4dcrdv"]
+
+[sub_resource type="VoxelBlockyModelEmpty" id="VoxelBlockyModelEmpty_icmlj"]
+resource_name = "air"
+
+[sub_resource type="VoxelBlockyModelCube" id="VoxelBlockyModelCube_c2bhp"]
+resource_name = "stone"
+color = Color(0.6, 0.6, 0.62, 1)
+
+[sub_resource type="VoxelBlockyModelCube" id="VoxelBlockyModelCube_olfks"]
+resource_name = "wood"
+color = Color(0.7, 0.42, 0.2, 1)
+
+[sub_resource type="VoxelBlockyModelCube" id="VoxelBlockyModelCube_d16xp"]
+resource_name = "glass"
+color = Color(0.6, 0.85, 1, 0.5)
+
+[sub_resource type="VoxelBlockyModelCube" id="VoxelBlockyModelCube_b113k"]
+resource_name = "smart_lamp"
+color = Color(1, 0.92, 0.6, 1)
+
+[resource]
+models = Array[VoxelBlockyModel]([SubResource("VoxelBlockyModelEmpty_icmlj"), SubResource("VoxelBlockyModelCube_c2bhp"), SubResource("VoxelBlockyModelCube_olfks"), SubResource("VoxelBlockyModelCube_d16xp"), SubResource("VoxelBlockyModelCube_b113k")])

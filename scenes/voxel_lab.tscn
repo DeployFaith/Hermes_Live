@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dp8lnfv4mpwaa"]
+
+[ext_resource type="Script" uid="uid://cf4pqljjnw1ta" path="res://scripts/world_3d/player_controller.gd" id="1"]
+[ext_resource type="VoxelBlockyLibrary" path="res://resources/voxel_block_library.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/voxel/build_controller.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/voxel/block_library.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/voxel/smart_lamp_manager.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/voxel/voxel_interaction_system.gd" id="6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.32
+height = 1.8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1"]
+noise_type = 0
+frequency = 0.02
+
+[sub_resource type="VoxelGeneratorNoise2D" id="VoxelGeneratorNoise2D_1"]
+channel = 0
+height_start = -5.0
+height_range = 10.0
+noise = SubResource("FastNoiseLite_1")
+
+[sub_resource type="VoxelMesherBlocky" id="VoxelMesherBlocky_1"]
+library = ExtResource("2")
+tint_mode = 1
+
+[node name="VoxelLab" type="Node3D" unique_id=998326881]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=382821354]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 10, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1679790251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+script = ExtResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=2037322891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1619583683]
+transform = Transform3D(1, 0, 0, 0, 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 1.6, 0)
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D" unique_id=148040843]
+target_position = Vector3(0, 0, -6)
+collide_with_areas = true
+
+[node name="VoxelViewer" type="VoxelViewer" parent="Player/Camera3D" unique_id=921610680]
+view_distance = 64
+
+[node name="VoxelTerrain" type="VoxelTerrain" parent="." unique_id=867024453]
+generator = SubResource("VoxelGeneratorNoise2D_1")
+mesher = SubResource("VoxelMesherBlocky_1")
+
+[node name="BlockLibrary" type="Node" parent="." unique_id=756511645]
+script = ExtResource("4")
+
+[node name="SmartLampManager" type="Node" parent="." unique_id=999121684]
+script = ExtResource("5")
+
+[node name="BuildController" type="Node" parent="." unique_id=394788714]
+script = ExtResource("3")
+player_path = NodePath("../Player")
+camera_path = NodePath("../Player/Camera3D")
+terrain_path = NodePath("../VoxelTerrain")
+library_path = NodePath("../BlockLibrary")
+smart_lamp_manager_path = NodePath("../SmartLampManager")
+selected_label_path = NodePath("../HUD/SelectedBlockLabel")
+prompt_label_path = NodePath("../HUD/PromptLabel")
+
+[node name="InteractionSystem" type="Node" parent="." unique_id=338951546]
+script = ExtResource("6")
+raycast_path = NodePath("../Player/Camera3D/RayCast3D")
+prompt_label_path = NodePath("../HUD/PromptLabel")
+build_controller_path = NodePath("../BuildController")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1722204253]
+
+[node name="PromptLabel" type="Label" parent="HUD" unique_id=54415991]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -120.0
+offset_right = 360.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectedBlockLabel" type="Label" parent="HUD" unique_id=2031300118]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -520.0
+offset_top = 24.0
+offset_right = 520.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "Build Mode: OFF | Selected: Stone"
+horizontal_alignment = 1

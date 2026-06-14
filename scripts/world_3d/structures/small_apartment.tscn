@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="StandardMaterial3D" id="WallMat"]
+albedo_color = Color(0.72, 0.68, 0.6, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="FloorMat"]
+albedo_color = Color(0.32, 0.28, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="TrimMat"]
+albedo_color = Color(0.18, 0.16, 0.14, 1)
+roughness = 0.8
+
+[sub_resource type="BoxShape3D" id="InteractShape"]
+size = Vector3(1.8, 1.4, 1.8)
+
+[node name="SmallApartment" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.725, 0)
+use_collision = true
+size = Vector3(2, 0.05, 2)
+material = SubResource("FloorMat")
+
+[node name="Ceiling" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.725, 0)
+use_collision = true
+size = Vector3(2, 0.05, 2)
+material = SubResource("WallMat")
+
+[node name="BackWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.975)
+use_collision = true
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("WallMat")
+
+[node name="LeftWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.975, 0, 0)
+use_collision = true
+size = Vector3(0.05, 1.5, 2)
+material = SubResource("WallMat")
+
+[node name="RightWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.975, 0, 0)
+use_collision = true
+size = Vector3(0.05, 1.5, 2)
+material = SubResource("WallMat")
+
+[node name="FrontWallLeft" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, -0.975)
+use_collision = true
+size = Vector3(0.7, 1.5, 0.05)
+material = SubResource("WallMat")
+
+[node name="FrontWallRight" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 0, -0.975)
+use_collision = true
+size = Vector3(0.7, 1.5, 0.05)
+material = SubResource("WallMat")
+
+[node name="DoorHeader" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -0.975)
+use_collision = true
+size = Vector3(0.6, 0.4, 0.05)
+material = SubResource("WallMat")
+
+[node name="DoorFrame" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.28, -1.005)
+use_collision = false
+size = Vector3(0.58, 0.9, 0.02)
+material = SubResource("TrimMat")
+
+[node name="InteriorLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+light_energy = 0.4
+omni_range = 2.0
+
+[node name="InteractionArea" type="Area3D" parent="." groups=["interactable"]]
+
+[node name="InteractionShape" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("InteractShape")

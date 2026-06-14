@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world_3d/items/build_item.gd" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="FrameMat"]
+albedo_color = Color(0.32, 0.18, 0.09, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="MattressMat"]
+albedo_color = Color(0.25, 0.35, 0.75, 1)
+roughness = 0.9
+
+[sub_resource type="BoxShape3D" id="PhysicsShape"]
+size = Vector3(0.5, 0.25, 0.5)
+
+[sub_resource type="BoxShape3D" id="InteractShape"]
+size = Vector3(0.6, 0.35, 0.6)
+
+[node name="BedItem" type="Node3D"]
+script = ExtResource("1")
+item_id = "bed"
+behavior_id = "bed"
+display_name = "bed"
+prompt_text = "Press E to rest"
+
+[node name="Frame" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.085, 0)
+use_collision = false
+size = Vector3(0.5, 0.08, 0.5)
+material = SubResource("FrameMat")
+
+[node name="Mattress" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0, 0)
+use_collision = false
+size = Vector3(0.46, 0.12, 0.46)
+material = SubResource("MattressMat")
+
+[node name="Pillow" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.085, -0.16)
+use_collision = false
+size = Vector3(0.34, 0.06, 0.12)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("PhysicsShape")
+
+[node name="InteractionArea" type="Area3D" parent="." groups=["interactable"]]
+
+[node name="InteractionShape" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("InteractShape")

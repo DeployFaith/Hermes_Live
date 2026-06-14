@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3vdtyg5rwbnt"]
+[gd_scene format=3 uid="uid://cw44ipqre7paj"]
 
 [sub_resource type="StandardMaterial3D" id="DeskMat"]
 albedo_color = Color(0.34, 0.2, 0.1, 1)
@@ -24,98 +24,98 @@ roughness = 0.75
 albedo_color = Color(0.22, 0.22, 0.23, 1)
 roughness = 0.75
 
-[node name="Bookcase" type="Node3D"]
+[node name="Bookcase" type="Node3D" unique_id=545611239]
 
-[node name="BookcaseFrame" type="CSGBox3D" parent="."]
+[node name="BookcaseFrame" type="CSGBox3D" parent="." unique_id=1489676709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 use_collision = true
 size = Vector3(1.35, 2.4, 0.35)
 material = SubResource("DeskMat")
 
-[node name="Divider1" type="CSGBox3D" parent="."]
+[node name="Divider1" type="CSGBox3D" parent="." unique_id=1370846401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0.23)
 use_collision = true
 size = Vector3(1.25, 0.03, 0.3)
 material = SubResource("DeskMat")
 
-[node name="Divider2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0.23)
+[node name="Divider2" type="CSGBox3D" parent="." unique_id=10382177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.23)
 use_collision = true
 size = Vector3(1.25, 0.03, 0.3)
 material = SubResource("DeskMat")
 
-[node name="Divider3" type="CSGBox3D" parent="."]
+[node name="Divider3" type="CSGBox3D" parent="." unique_id=1294675954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0.23)
 use_collision = true
 size = Vector3(1.25, 0.03, 0.3)
 material = SubResource("DeskMat")
 
-[node name="Book01DarkRed" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.53, 0.585, 0.4)
+[node name="Book01DarkRed" type="CSGBox3D" parent="." unique_id=814214147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.53, 0.6044158, 0.28168994)
 size = Vector3(0.1, 0.27, 0.2)
 material = SubResource("BookDarkRed")
 
-[node name="Book02Navy" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.61, 0.4)
+[node name="Book02Navy" type="CSGBox3D" parent="." unique_id=1030216870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.6294158, 0.28168994)
 size = Vector3(0.12, 0.32, 0.2)
 material = SubResource("BookNavy")
 
-[node name="Book03Green" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26, 0.57, 0.4)
+[node name="Book03Green" type="CSGBox3D" parent="." unique_id=1003012206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26, 0.5894158, 0.28168994)
 size = Vector3(0.09, 0.24, 0.2)
 material = SubResource("BookGreen")
 
-[node name="Book04Brown" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 1.145, 0.4)
+[node name="Book04Brown" type="CSGBox3D" parent="." unique_id=1900646646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2215104, 1.1673566, 0.2833962)
 size = Vector3(0.14, 0.29, 0.2)
 material = SubResource("BookBrown")
 
-[node name="Book05Grey" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.17, 0.4)
+[node name="Book05Grey" type="CSGBox3D" parent="." unique_id=678588718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3915104, 1.1923566, 0.2833962)
 size = Vector3(0.1, 0.34, 0.2)
 material = SubResource("BookGrey")
 
-[node name="Book06Navy" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44, 1.71, 0.4)
+[node name="Book06Navy" type="CSGBox3D" parent="." unique_id=1290964284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3327785, 1.7302577, 0.28738502)
 size = Vector3(0.15, 0.32, 0.2)
 material = SubResource("BookNavy")
 
-[node name="Book07DarkRed" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26, 1.68, 0.4)
+[node name="Book07DarkRed" type="CSGBox3D" parent="." unique_id=23168836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1527785, 1.7002577, 0.28738502)
 size = Vector3(0.11, 0.26, 0.2)
 material = SubResource("BookDarkRed")
 
-[node name="Book08Green" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 1.72, 0.4)
+[node name="Book08Green" type="CSGBox3D" parent="." unique_id=1209349435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012778513, 1.7402577, 0.28738502)
 size = Vector3(0.08, 0.34, 0.2)
 material = SubResource("BookGreen")
 
-[node name="Book09Brown" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.605, 0.4)
+[node name="Book09Brown" type="CSGBox3D" parent="." unique_id=1862794552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.6229558, 0.28210723)
 size = Vector3(0.13, 0.31, 0.2)
 material = SubResource("BookBrown")
 
-[node name="Book10Grey" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57, 0.575, 0.4)
+[node name="Book10Grey" type="CSGBox3D" parent="." unique_id=1982999443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57, 0.5915654, 0.27980775)
 size = Vector3(0.1, 0.25, 0.2)
 material = SubResource("BookGrey")
 
-[node name="Book11Green" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.53, 1.165, 0.4)
+[node name="Book11Green" type="CSGBox3D" parent="." unique_id=1746306266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38848957, 1.1873566, 0.2833962)
 size = Vector3(0.11, 0.33, 0.2)
 material = SubResource("BookGreen")
 
-[node name="Book12DarkRed" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38, 1.14, 0.4)
+[node name="Book12DarkRed" type="CSGBox3D" parent="." unique_id=1496419554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2384896, 1.1623566, 0.2833962)
 size = Vector3(0.13, 0.28, 0.2)
 material = SubResource("BookDarkRed")
 
-[node name="Book13Brown" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 1.735, 0.4)
+[node name="Book13Brown" type="CSGBox3D" parent="." unique_id=242968532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22722149, 1.7552577, 0.28738502)
 size = Vector3(0.12, 0.37, 0.2)
 material = SubResource("BookBrown")
 
-[node name="Book14Navy" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28, 1.705, 0.4)
+[node name="Book14Navy" type="CSGBox3D" parent="." unique_id=685499483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3872215, 1.7252578, 0.28738502)
 size = Vector3(0.14, 0.31, 0.2)
 material = SubResource("BookNavy")

@@ -10,10 +10,12 @@ class_name WorldInteractionSystem
 var _current_interactable: Node = null
 var _nearby_door: Node = null
 var _open_doors: Dictionary = {}
+var _build_controller: Node = null
 
 func _ready() -> void:
 	_set_prompt_visible(false)
 	call_deferred("_connect_door_signals")
+	_build_controller = get_node_or_null("../BuildController")
 
 func _connect_door_signals() -> void:
 	var world := get_parent()
@@ -40,6 +42,12 @@ func _on_door_body_exited(body: Node3D, door_area: Area3D) -> void:
 		_nearby_door = null
 
 func _process(_delta: float) -> void:
+	# When build mode is active, show build prompt instead of interaction
+	if _build_controller != null and _build_controller.build_mode_enabled:
+		_set_prompt_visible(false)
+		_current_interactable = null
+		return
+
 	# Doors use proximity only and always take priority over raycast interactables.
 	if _nearby_door != null and not _open_doors.has(_nearby_door):
 		_set_prompt_text("Press E to open")
@@ -57,22 +65,41 @@ func _process(_delta: float) -> void:
 		_set_prompt_visible(false)
 
 func _unhandled_input(event: InputEvent) -> void:
+	# When build mode is active, don't handle E for regular interactions
+	if _build_controller != null and _build_controller.build_mode_enabled:
+		return
+
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
 		# Check nearby door first (walk-up)
 		if _nearby_door != null and not _open_doors.has(_nearby_door):
 			_open_door(_nearby_door)
 			return
-		# Check raycast interactable. Doors are intentionally excluded here;
-		# they only open from the nearby-door branch above.
+		# Check raycast interactable
 		if _current_interactable != null:
 			_activate_interactable(_current_interactable)
 
 func _activate_interactable(interactable: Node) -> void:
+	# Check for smart lamp interaction
+	if interactable.has_meta("lamp_entity"):
+		var lamp = interactable.get_meta("lamp_entity")
+		if lamp != null and lamp.has_method("activate"):
+			var player := _get_player()
+			lamp.call("activate", player)
+			return
+
+	# Placed item scenes expose their root script through item_entity.
+	if interactable.has_meta("item_entity"):
+		var item = interactable.get_meta("item_entity")
+		if item != null and item.has_method("activate"):
+			var player := _get_player()
+			item.call("activate", player)
+			return
+
 	var scene_bridge := get_node_or_null("/root/SceneBridge")
 	if scene_bridge == null:
 		return
 
-	# Doors are proximity-only. Do not open doors from raycast activation.
+	# Doors are proximity-only
 	if interactable.has_meta("is_door") and interactable.get_meta("is_door", false):
 		return
 
@@ -87,7 +114,6 @@ func _open_door(door_area: Area3D) -> void:
 	_nearby_door = null
 	_set_prompt_visible(false)
 
-	# Find the door panel
 	var parent := door_area.get_parent()
 	if parent == null:
 		return
@@ -112,6 +138,8 @@ func _open_door(door_area: Area3D) -> void:
 func _get_prompt_text(interactable: Node) -> String:
 	if interactable.has_meta("is_door") and interactable.get_meta("is_door", false):
 		return "Press E to open"
+	if interactable.has_meta("prompt_text"):
+		return str(interactable.get_meta("prompt_text"))
 	if interactable.is_in_group("interactable"):
 		return "Press E to use PC"
 	return "Press E"
@@ -143,12 +171,19 @@ func _find_interactable_parent(node: Node) -> Node:
 	var current := node
 	while current != null:
 		if current.is_in_group("interactable"):
-			# Door prompts/opening are proximity-only; raycast is reserved for PCs.
 			if current.has_meta("is_door") and current.get_meta("is_door", false):
 				return null
 			return current
 		current = current.get_parent()
 	return null
+
+func _get_player() -> Node:
+	if interaction_ray == null:
+		return null
+	var camera := interaction_ray.get_parent()
+	if camera == null:
+		return null
+	return camera.get_parent()
 
 func _set_prompt_visible(is_visible: bool) -> void:
 	if prompt_label != null:

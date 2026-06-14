@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world_3d/items/build_item.gd" id="1"]
+
+[sub_resource type="StandardMaterial3D" id="DoorMat"]
+albedo_color = Color(0.45, 0.25, 0.1, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="HandleMat"]
+albedo_color = Color(0.9, 0.75, 0.25, 1)
+roughness = 0.35
+
+[sub_resource type="BoxShape3D" id="PhysicsShape"]
+size = Vector3(0.5, 0.5, 0.05)
+
+[sub_resource type="BoxShape3D" id="InteractShape"]
+size = Vector3(0.55, 0.6, 0.25)
+
+[node name="DoorItem" type="Node3D"]
+script = ExtResource("1")
+item_id = "door"
+behavior_id = "door"
+display_name = "door"
+prompt_text = "Press E to open"
+
+[node name="DoorPanel" type="CSGBox3D" parent="."]
+use_collision = false
+size = Vector3(0.5, 0.5, 0.05)
+material = SubResource("DoorMat")
+
+[node name="Handle" type="CSGBox3D" parent="DoorPanel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0, -0.035)
+use_collision = false
+size = Vector3(0.04, 0.04, 0.04)
+material = SubResource("HandleMat")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("PhysicsShape")
+
+[node name="InteractionArea" type="Area3D" parent="." groups=["interactable"]]
+
+[node name="InteractionShape" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("InteractShape")

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cc2p0u2p5l5fu" path="res://scenes/objects/computer/desk_pc.tscn" id="3_deskpc"]
 [ext_resource type="PackedScene" path="res://scenes/objects/furniture/bed.tscn" id="4_bed"]
-[ext_resource type="PackedScene" path="res://scenes/objects/furniture/bookcase.tscn" id="5_bookcase"]
+[ext_resource type="PackedScene" uid="uid://cw44ipqre7paj" path="res://scenes/objects/furniture/bookcase.tscn" id="5_bookcase"]
 [ext_resource type="PackedScene" uid="uid://c2edll6thta6e" path="res://scenes/objects/devices/ceiling_light_3d.tscn" id="7_clight"]
 [ext_resource type="PackedScene" path="res://scenes/objects/decor/rug.tscn" id="8_rug"]
 [ext_resource type="PackedScene" path="res://scenes/objects/decor/coffee_mug.tscn" id="9_mug"]
@@ -61,7 +61,7 @@ roughness = 0.45
 [node name="Room" type="Node3D" unique_id=17409955]
 
 [node name="DeskPC" parent="." unique_id=1300385383 instance=ExtResource("3_deskpc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.006414652, -4.876207)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.006414652, -4.83253)
 
 [node name="Bed" parent="." unique_id=490070728 instance=ExtResource("4_bed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8355951, 0, -2.8)
@@ -85,7 +85,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58009875, 0.78, -3.332312)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0494568, 1.879, -3.875)
 
 [node name="WeightBench" parent="." unique_id=1537345377 instance=ExtResource("13_bench")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44992256, 0.11087257, 2.7451844)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.8612494, 0.11087257, 2.7876878)
 
 [node name="FlatscreenTV" parent="." unique_id=13399008 instance=ExtResource("14_tv")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.7960134, 0.87918365, 3.7615879)
@@ -94,16 +94,16 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.79
 transform = Transform3D(-0.8140547, 0, 0.58078814, 0, 1, 0, -0.58078814, 0, -0.8140547, -0.5123417, 0.14636976, -2.5)
 
 [node name="MiniFridge" parent="." unique_id=1045225864 instance=ExtResource("16_fridge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3209496, 0.12924406, -3.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1659889, 0.12924406, -3.5)
 
 [node name="DeskLamp" parent="." unique_id=64928091 instance=ExtResource("17_lamp")]
 transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0.5375474, 0.775, -3.7632966)
 
 [node name="WallClock" parent="." unique_id=1097982865 instance=ExtResource("18_clock")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.2, -3.88)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037975311, 2.2, -3.88)
 
 [node name="PottedPlant" parent="." unique_id=610698250 instance=ExtResource("19_plant")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8990178, 0.5160128, -3.7449515)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9343147, 0.5160128, -3.7449515)
 
 [node name="GameController" parent="." unique_id=182679943 instance=ExtResource("20_ctrl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37545916, 0.78, -3.638321)
@@ -138,7 +138,7 @@ light_energy = 0.8
 [node name="RoomGeometry" type="Node3D" parent="." unique_id=635001564]
 
 [node name="Floor" type="CSGBox3D" parent="RoomGeometry" unique_id=1802397069]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001034379, -5.9604645e-08, 0.003469944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001034379, -0.1, 0.003469944)
 use_collision = true
 size = Vector3(8, 0.2, 8)
 material = SubResource("FloorMaterial")

@@ -19,7 +19,6 @@ var _hall_door_panel: CSGBox3D
 var _hall_door_open: bool = false
 
 func _ready() -> void:
-	print("[HallwayBuilder] _ready() called")
 	_floor_material = _make_material(Color(0.12, 0.10, 0.08, 1.0), 0.8)
 	_wall_material = _make_material(Color(0.08, 0.07, 0.07, 1.0), 0.75)
 	_ceiling_material = _make_material(Color(0.06, 0.06, 0.07, 1.0), 0.8)
@@ -32,7 +31,6 @@ func _ready() -> void:
 	_build_lighting()
 
 func _remove_room_front_wall() -> void:
-	print("[HallwayBuilder] _remove_room_front_wall() start")
 	# Remove the room's front wall and any original doorway pieces so the
 	# hallway entrance is a clean, open passage.
 	var room := get_parent().get_node_or_null("Room")
@@ -47,7 +45,6 @@ func _remove_room_front_wall() -> void:
 		child.queue_free()
 
 func _build_hallway() -> void:
-	print("[HallwayBuilder] _build_hallway() start")
 	var start_z := ROOM_FRONT_Z
 	var center_z := start_z + HALL_LENGTH * 0.5
 	var far_z := start_z + HALL_LENGTH

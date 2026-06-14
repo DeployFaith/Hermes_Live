@@ -186,11 +186,9 @@ func _register_devices() -> void:
 	var existing_state: Dictionary = controller.call("get_device_state", "ceiling_light")
 	if existing_state.is_empty():
 		controller.call("register_device", "ceiling_light", "light", {"is_on": true, "color": "white"}, self)
-		print("[RoomBuilder] Registered ceiling_light with default state (on, white)")
 	else:
 		controller.call("register_device", "ceiling_light", "light", existing_state, self)
 		_apply_ceiling_light_state(existing_state)
-		print("[RoomBuilder] Restored ceiling_light state: %s" % existing_state)
 
 func _connect_device_signals() -> void:
 	var controller := get_node_or_null("/root/HomeDeviceController")

@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bc7b44yueqv5d" path="res://scenes/room.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/world_3d_hud.tscn" id="4"]
 [ext_resource type="Script" uid="uid://c2urpy61cca7a" path="res://scripts/world_3d/interaction_system.gd" id="5"]
+[ext_resource type="Script" uid="uid://c8anr7g1xyvlm" path="res://scripts/world_3d/block_library.gd" id="6"]
+[ext_resource type="Script" uid="uid://cwnegxl6o1t1p" path="res://scripts/world_3d/block_world.gd" id="7"]
+[ext_resource type="Script" uid="uid://bb00pd1lqpfkg" path="res://scripts/world_3d/placement_controller.gd" id="8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.32
@@ -25,15 +28,13 @@ transform = Transform3D(1, 0, 0, 0, 0.990268, -0.139173, 0, 0.139173, 0.990268, 
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D" unique_id=2078658899]
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -8)
 collide_with_areas = true
 
 [node name="Room" type="Node3D" parent="." unique_id=766895553]
 script = ExtResource("2")
 
 [node name="RoomScene" parent="Room" unique_id=156442796 instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
 
 [node name="HUD" parent="." unique_id=1756929395 instance=ExtResource("4")]
 
@@ -41,3 +42,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("5")
 raycast_path = NodePath("../Player/Camera3D/RayCast3D")
 prompt_label_path = NodePath("../HUD/PromptLabel")
+
+[node name="BlockLibrary" type="Node" parent="." unique_id=35057011]
+script = ExtResource("6")
+
+[node name="BlockWorld" type="Node3D" parent="." unique_id=1952834127]
+script = ExtResource("7")
+
+[node name="PlacementController" type="Node" parent="." unique_id=784062701]
+script = ExtResource("8")
+camera_path = NodePath("../Player/Camera3D")
+block_world_path = NodePath("../BlockWorld")
+selected_label_path = NodePath("../HUD/BuildLabel")
+max_distance = 8.0
