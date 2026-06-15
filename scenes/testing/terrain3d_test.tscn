@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://dmkp8yi5tn70i"]
+
+[ext_resource type="Script" uid="uid://bwls7gotlw64p" path="res://scripts/testing/terrain3d_test_setup.gd" id="1_setup"]
+[ext_resource type="Script" uid="uid://dkuvroxjtpf68" path="res://scripts/testing/terrain3d_test_player.gd" id="2_player"]
+[ext_resource type="Shader" uid="uid://dw4xg2vq4i6bh" path="res://shaders/lesus_water.gdshader" id="3_water_shader"]
+[ext_resource type="Texture2D" uid="uid://5dhudphm5c8o" path="res://assets/textures/water/foam_albedo.png" id="4_foam"]
+[ext_resource type="Texture2D" uid="uid://bfa4xeh5thwio" path="res://assets/textures/water/normal_A.png" id="5_normal_a"]
+[ext_resource type="Texture2D" uid="uid://dpwv0qf6tb7we" path="res://assets/textures/water/normal_B.png" id="6_normal_b"]
+[ext_resource type="Texture2D" uid="uid://ch1eb1v8e4utn" path="res://assets/textures/water/uv_example.png" id="7_uv_sampler"]
+[ext_resource type="CompressedTexture2DArray" uid="uid://dcvujep4v7k1b" path="res://assets/textures/water/caustic.png" id="8_caustic"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.32
+height = 1.8
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_coastal_haze"]
+sky_top_color = Color(0.39, 0.63, 0.96, 1)
+sky_horizon_color = Color(0.76, 0.86, 0.94, 1)
+sky_curve = 0.18
+sky_energy_multiplier = 1.05
+ground_bottom_color = Color(0.4, 0.58, 0.72, 1)
+ground_horizon_color = Color(0.76, 0.86, 0.94, 1)
+ground_curve = 0.07
+
+[sub_resource type="Sky" id="Sky_coastal_haze"]
+sky_material = SubResource("ProceduralSkyMaterial_coastal_haze")
+
+[sub_resource type="Environment" id="Environment_test"]
+background_mode = 2
+sky = SubResource("Sky_coastal_haze")
+ambient_light_source = 2
+ambient_light_color = Color(0.82, 0.88, 0.94, 1)
+ambient_light_sky_contribution = 0.45
+ambient_light_energy = 0.35
+tonemap_mode = 2
+tonemap_exposure = 0.85
+ssao_enabled = true
+ssao_radius = 1.25
+ssao_intensity = 0.55
+fog_enabled = true
+fog_light_color = Color(0.76, 0.86, 0.94, 1)
+fog_light_energy = 0.4
+fog_sun_scatter = 0.32
+fog_density = 0.005
+fog_aerial_perspective = 0.88
+fog_sky_affect = 0.25
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_water"]
+size = Vector2(768, 768)
+subdivide_width = 192
+subdivide_depth = 192
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_water"]
+render_priority = 0
+shader = ExtResource("3_water_shader")
+shader_parameter/wave_1 = Vector4(0.3, 4, 0.025, 0.9)
+shader_parameter/wave_2 = Vector4(-0.26, -0.19, 0.004, 0.65)
+shader_parameter/wave_3 = Vector4(-7.67, 5.63, 0.012, 0.8)
+shader_parameter/wave_4 = Vector4(-0.42, -1.63, 0.01, 0.7)
+shader_parameter/wave_5 = Vector4(1.66, 0.07, 0.014, 1.2)
+shader_parameter/wave_6 = Vector4(1.2, 1.14, 0.004, 0.75)
+shader_parameter/wave_7 = Vector4(-1.6, 7.3, 0.01, 1.05)
+shader_parameter/wave_8 = Vector4(-0.42, -1.63, 0.012, 1.1)
+shader_parameter/time_factor = 7.5
+shader_parameter/noise_zoom = 1.25
+shader_parameter/noise_amp = 0.035
+shader_parameter/base_water_color = Color(0.08, 0.55, 0.7, 1)
+shader_parameter/fresnel_water_color = Color(0.62, 0.95, 1, 1)
+shader_parameter/deep_water_color = Color(0.01, 0.08, 0.22, 0.92)
+shader_parameter/shallow_water_color = Color(0.28, 0.88, 0.9, 0.62)
+shader_parameter/beers_law = 0.34
+shader_parameter/depth_offset = -0.75
+shader_parameter/near = 7.0
+shader_parameter/far = 10000.0
+shader_parameter/edge_texture_scale = 1.35
+shader_parameter/edge_texture_offset = 0.35
+shader_parameter/edge_texture_speed = 0.025
+shader_parameter/edge_foam_intensity = 2.4
+shader_parameter/edge_fade_start = -0.35
+shader_parameter/edge_fade_end = 2.25
+shader_parameter/edge_foam_texture = ExtResource("4_foam")
+shader_parameter/peak_height_threshold = 1.35
+shader_parameter/peak_color = Vector3(1, 1, 1)
+shader_parameter/peak_intensity = 0.25
+shader_parameter/foam_texture = ExtResource("4_foam")
+shader_parameter/foam_intensity = 0.18
+shader_parameter/foam_scale = 0.55
+shader_parameter/metallic = 0.15
+shader_parameter/roughness = 0.035
+shader_parameter/uv_scale_text_a = 0.08
+shader_parameter/uv_speed_text_a = Vector2(0.055, 0.035)
+shader_parameter/uv_scale_text_b = 0.35
+shader_parameter/uv_speed_text_b = Vector2(-0.025, 0.018)
+shader_parameter/normal_strength = 0.42
+shader_parameter/uv_sampler_scale = 0.18
+shader_parameter/blend_factor = 0.32
+shader_parameter/perturbation_strength = 0.85
+shader_parameter/perturbation_time = 0.22
+shader_parameter/normalmap_a = ExtResource("5_normal_a")
+shader_parameter/normalmap_b = ExtResource("6_normal_b")
+shader_parameter/uv_sampler = ExtResource("7_uv_sampler")
+shader_parameter/caustic_sampler = ExtResource("8_caustic")
+shader_parameter/num_caustic_layers = 16.0
+shader_parameter/caustic_distortion_strength = 0.0015
+
+[sub_resource type="BoxMesh" id="BoxMesh_build_pad"]
+size = Vector3(20, 0.2, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_build_pad"]
+albedo_color = Color(0.42, 0.43, 0.45, 1)
+roughness = 0.78
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_build_pad"]
+size = Vector3(20, 0.2, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_marker"]
+size = Vector3(1, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_marker"]
+albedo_color = Color(0.95, 0.76, 0.24, 1)
+emission_enabled = true
+emission = Color(0.95, 0.56, 0.12, 1)
+emission_energy_multiplier = 0.2
+
+[node name="Terrain3DTest" type="Node3D" unique_id=665885566]
+
+[node name="Terrain3DSetup" type="Node" parent="." unique_id=1460233348]
+script = ExtResource("1_setup")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=948459491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027355194, 0, -398.97748)
+script = ExtResource("2_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1188338020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=276327378]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.6, 0)
+current = true
+fov = 72.0
+far = 5000.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1067771038]
+transform = Transform3D(0.683013, -0.258819, 0.683013, 0.183013, 0.965926, 0.183013, -0.707107, 0, 0.707107, 0, 36, 0)
+light_color = Color(1, 0.94, 0.82, 1)
+light_energy = 0.9
+light_angular_distance = 0.35
+shadow_enabled = true
+shadow_bias = 0.045
+shadow_normal_bias = 1.0
+shadow_blur = 0.65
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 650.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1307616260]
+environment = SubResource("Environment_test")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=2042582554]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_water")
+surface_material_override/0 = SubResource("ShaderMaterial_water")
+
+[node name="BuildPad" type="Node3D" parent="." unique_id=753718078]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BuildPad" unique_id=726714067]
+mesh = SubResource("BoxMesh_build_pad")
+surface_material_override/0 = SubResource("StandardMaterial3D_build_pad")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BuildPad" unique_id=1434471991]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildPad/StaticBody3D" unique_id=1589498724]
+shape = SubResource("BoxShape3D_build_pad")
+
+[node name="CenterMarker" type="MeshInstance3D" parent="BuildPad" unique_id=1485900491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0)
+mesh = SubResource("BoxMesh_marker")
+surface_material_override/0 = SubResource("StandardMaterial3D_marker")

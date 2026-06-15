@@ -116,3 +116,6 @@ mono_crash.*.json
 /hermes_os_spec.md
 /docker-compose*.yml
 /build_mode_report*.md
+
+# Terrain3D addon demo (not project code)
+demo/
