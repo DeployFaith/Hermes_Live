@@ -6,8 +6,8 @@ Hermes Live is a 3D interactive world that integrates HermesOS as an in-game des
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                     Hermes_Live                          │
-│              github.com/DeployFaith/Hermes_Live          │
+│                     Hermesverse                          │
+│              github.com/DeployFaith/Hermesverse          │
 │                                                          │
 │  3D World (player, rooms, devices, interaction)          │
 │                                                          │
@@ -29,8 +29,8 @@ Hermes Live is a 3D interactive world that integrates HermesOS as an in-game des
 
 ## Repositories
 
-### Hermes_Live (Main Project)
-**URL:** `git@github.com:DeployFaith/Hermes_Live.git`  
+### Hermesverse (Main Project)
+**URL:** `git@github.com:DeployFaith/Hermesverse.git`  
 **Purpose:** 3D game world — the main Godot project that players run.
 
 Contains:
@@ -55,7 +55,7 @@ Contains:
 
 ### WorldWeb (Content)
 **URL:** `git@github.com:DeployFaith/world-web.git`  
-**Purpose:** In-game internet content — shared by Hermes_OS and Hermes_Live via submodule.
+**Purpose:** In-game internet content — shared by Hermes_OS and Hermesverse via submodule.
 
 Contains:
 - `sites/` — Static bundled websites (home.hermes, pythia.com, agora, etc.)
@@ -65,12 +65,12 @@ Contains:
 
 ## Autoloads
 
-Hermes_Live registers four autoloads in `project.godot`:
+Hermesverse registers four autoloads in `project.godot`:
 
 | Autoload | Source | Purpose |
 |----------|--------|---------|
-| `SceneBridge` | Hermes_Live | Manages 3D ↔ OS scene transitions |
-| `HomeDeviceController` | Hermes_Live | Single source of truth for device state (lights, etc.) |
+| `SceneBridge` | Hermesverse | Manages 3D ↔ OS scene transitions |
+| `HomeDeviceController` | Hermesverse | Single source of truth for device state (lights, etc.) |
 | `HermesOSKernel` | HermesOS addon | OS kernel and core services |
 | `McpInteractionServer` | HermesOS addon | MCP integration for AI agent control |
 
@@ -130,7 +130,7 @@ Data that survives scene changes and restarts:
 | Chat history | `user://hermes_chat_history.json` | JSON messages |
 | Browser settings | `user://browser_settings.cfg` | Godot ConfigFile |
 
-`user://` is per-project and per-machine — not shared between Hermes_OS standalone and Hermes_Live.
+`user://` is per-project and per-machine — not shared between Hermes_OS standalone and Hermesverse.
 
 ## Docker Integration
 
@@ -159,7 +159,7 @@ cd Hermes_OS-worldweb
 
 # Update submodules
 cd Hermes_OS && git submodule update --remote addons/hermes_os/content/hermes_internet
-cd Hermes_Live && git submodule update --remote addons/hermes_os/content/hermes_internet
+cd Hermesverse && git submodule update --remote addons/hermes_os/content/hermes_internet
 ```
 
 ### Updating HermesOS
@@ -168,9 +168,9 @@ cd Hermes_Live && git submodule update --remote addons/hermes_os/content/hermes_
 cd Hermes_OS
 # Make changes, commit, push
 
-# Copy updated addon to Hermes_Live
-cp -r Hermes_OS/addons/hermes_os Hermes_Live/addons/hermes_os
-cd Hermes_Live && git add -A && git commit -m "Update HermesOS addon"
+# Copy updated addon to Hermesverse
+cp -r Hermes_OS/addons/hermes_os Hermesverse/addons/hermes_os
+cd Hermesverse && git add -A && git commit -m "Update HermesOS addon"
 ```
 
 ### Adding a New Room

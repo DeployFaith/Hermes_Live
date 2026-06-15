@@ -38,19 +38,12 @@ ambient_light_energy = 0.5
 tonemap_mode = 2
 tonemap_white = 6.0
 
-[sub_resource type="StandardMaterial3D" id="OutdoorGround"]
-albedo_color = Color(0.25, 0.28, 0.2, 1)
-
 [sub_resource type="StandardMaterial3D" id="FloorMaterial"]
 albedo_color = Color(0.07, 0.045, 0.028, 1)
 roughness = 0.75
 
 [sub_resource type="StandardMaterial3D" id="WallMaterial"]
 albedo_color = Color(0.18, 0.165, 0.145, 1)
-roughness = 0.7
-
-[sub_resource type="StandardMaterial3D" id="DoorMaterial"]
-albedo_color = Color(0.2, 0.14, 0.08, 1)
 roughness = 0.7
 
 [sub_resource type="StandardMaterial3D" id="MetalMaterial"]
@@ -63,7 +56,7 @@ roughness = 0.45
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.006414652, -4.83253)
 
 [node name="Bed" parent="." unique_id=490070728 instance=ExtResource("4_bed")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8355951, 0, -2.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7653522, 0, -2.8)
 
 [node name="Bookcase" parent="." unique_id=73056058 instance=ExtResource("5_bookcase")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0, -3.78)
@@ -102,7 +95,10 @@ transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037975311, 2.2, -3.88)
 
 [node name="PottedPlant" parent="." unique_id=610698250 instance=ExtResource("19_plant")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9343147, 0.5160128, -3.7449515)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6468725, 0.5160128, -3.6958504)
+
+[node name="PottedPlant" parent="PottedPlant" unique_id=1185208221 instance=ExtResource("19_plant")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7889948, 0.008034408, -0.04284954)
 
 [node name="GameController" parent="." unique_id=182679943 instance=ExtResource("20_ctrl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37545916, 0.78, -3.638321)
@@ -114,17 +110,15 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2.77
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0039396286, 0.785, -3.4506536)
 
 [node name="Nightstand" parent="." unique_id=1932914358 instance=ExtResource("24_night")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.9273238, 0, -3.731372)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.863625, 0, -3.731372)
+
+[node name="Nightstand" parent="Nightstand" unique_id=1122971244 instance=ExtResource("24_night")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7716912, 0, -0.10981965)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=726250931]
 environment = SubResource("RoomEnvironment")
 
 [node name="Outdoor" type="Node3D" parent="." unique_id=2055181444]
-
-[node name="Ground" type="CSGBox3D" parent="Outdoor" unique_id=2063548821]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028132439, -0.5134907, 0.004404068)
-size = Vector3(50, 1, 50)
-material = SubResource("OutdoorGround")
 
 [node name="SkyLight" type="DirectionalLight3D" parent="Outdoor" unique_id=616790756]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 0)
@@ -168,34 +162,16 @@ use_collision = true
 size = Vector3(0.2, 3, 8)
 material = SubResource("WallMaterial")
 
-[node name="RoomDoorHole" type="CSGBox3D" parent="RoomGeometry/RightWall" unique_id=553125972]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+[node name="EntranceFillWallRight" type="CSGBox3D" parent="RoomGeometry/RightWall" unique_id=790796504]
+transform = Transform3D(1, 0, 0, 0, 1.0441606, 0, 0, 0, 1, -4.1129055, 0.013571262, 3.903697)
+use_collision = true
+size = Vector3(8.282959, 3, 0.4)
+material = SubResource("WallMaterial")
+
+[node name="RoomDoorHole" type="CSGBox3D" parent="RoomGeometry/RightWall/EntranceFillWallRight" unique_id=553125972]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.95770705, 0, 0, 0, 0.99999994, -0.06323814, -0.2482531, -0.18789911)
 operation = 2
-size = Vector3(0.5, 2.3, 0.9)
-
-[node name="DoorFrame_L" type="CSGBox3D" parent="RoomGeometry" unique_id=66135706]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1.1, 3.9)
-use_collision = true
-size = Vector3(0.08, 2.2, 0.1)
-material = SubResource("DoorMaterial")
-
-[node name="DoorFrame_R" type="CSGBox3D" parent="RoomGeometry" unique_id=336209788]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 1.1, 3.9)
-use_collision = true
-size = Vector3(0.08, 2.2, 0.1)
-material = SubResource("DoorMaterial")
-
-[node name="DoorFrame_T" type="CSGBox3D" parent="RoomGeometry" unique_id=1789713790]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.16, 3.9)
-use_collision = true
-size = Vector3(0.9, 0.08, 0.1)
-material = SubResource("DoorMaterial")
-
-[node name="DoorHandle" type="CSGBox3D" parent="RoomGeometry" unique_id=457296145]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 1, 3.84)
-use_collision = true
-size = Vector3(0.03, 0.06, 0.04)
-material = SubResource("MetalMaterial")
+size = Vector3(1.2801514, 2.5, 2)
 
 [node name="WindowFrame_T" type="CSGBox3D" parent="RoomGeometry" unique_id=369034425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.914089, 2.13, -1)
@@ -216,34 +192,6 @@ material = SubResource("MetalMaterial")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.914089, 1.5, -0.22)
 size = Vector3(0.08, 1.26, 0.06)
 material = SubResource("MetalMaterial")
-
-[node name="Hallway" type="Node3D" parent="RoomGeometry" unique_id=1458780095]
-
-[node name="HallEntranceDoorFrameL" type="CSGBox3D" parent="RoomGeometry/Hallway" unique_id=1893768096]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.2, 3.8)
-size = Vector3(0.08, 2.4, 0.1)
-material = SubResource("DoorMaterial")
-
-[node name="HallEntranceDoorFrameR" type="CSGBox3D" parent="RoomGeometry/Hallway" unique_id=1442180208]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.2, 3.8)
-size = Vector3(0.08, 2.4, 0.1)
-material = SubResource("DoorMaterial")
-
-[node name="HallEntranceDoorFrameT" type="CSGBox3D" parent="RoomGeometry/Hallway" unique_id=1654131335]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.44, 3.8)
-size = Vector3(0.98, 0.08, 0.1)
-material = SubResource("DoorMaterial")
-
-[node name="HallEntranceDoorHandle" type="CSGBox3D" parent="RoomGeometry/Hallway" unique_id=156225136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1, 3.86)
-size = Vector3(0.03, 0.06, 0.06)
-material = SubResource("MetalMaterial")
-
-[node name="EntranceFillWallRight" type="CSGBox3D" parent="RoomGeometry/Hallway" unique_id=790796504]
-transform = Transform3D(1, 0, 0, 0, 1.0441606, 0, 0, 0, 1, -0.112905264, 1.5135713, 3.903697)
-use_collision = true
-size = Vector3(8.282959, 3, 0.4)
-material = SubResource("WallMaterial")
 
 [node name="Lights" type="Node3D" parent="." unique_id=183651676]
 

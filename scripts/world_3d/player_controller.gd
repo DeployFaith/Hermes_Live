@@ -4,11 +4,13 @@ class_name PlayerController3D
 @export var walk_speed: float = 5.0
 @export var mouse_sensitivity: float = 0.002
 @export var gravity: float = 18.0
+@export var jump_speed: float = 4.8
 
 @onready var camera: Camera3D = $Camera3D
 @onready var interaction_ray: RayCast3D = $Camera3D/RayCast3D
 
 var _pitch: float = 0.0
+var _jump_requested: bool = false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -47,6 +49,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		_jump_requested = true
+
 func _physics_process(delta: float) -> void:
 	var input_dir := Vector2.ZERO
 	if Input.is_key_pressed(KEY_A):
@@ -67,5 +73,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = minf(velocity.y, 0.0)
+		if _jump_requested:
+			velocity.y = jump_speed
+	_jump_requested = false
 
 	move_and_slide()

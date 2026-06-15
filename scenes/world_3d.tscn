@@ -8,28 +8,17 @@
 [ext_resource type="Script" uid="uid://c8anr7g1xyvlm" path="res://scripts/world_3d/block_library.gd" id="6"]
 [ext_resource type="Script" uid="uid://cwnegxl6o1t1p" path="res://scripts/world_3d/block_world.gd" id="7"]
 [ext_resource type="Script" uid="uid://bb00pd1lqpfkg" path="res://scripts/world_3d/placement_controller.gd" id="8"]
+[ext_resource type="Script" path="res://scripts/world_3d/world_generator.gd" id="9"]
+[ext_resource type="Script" path="res://scripts/world_3d/procgen/terrain_generator.gd" id="10"]
+[ext_resource type="Script" path="res://scripts/world_3d/procgen/water_plane.gd" id="11"]
+[ext_resource type="Script" path="res://scripts/world_3d/procgen/prop_scatterer.gd" id="12"]
+[ext_resource type="Script" path="res://scripts/world_3d/procgen/build_pad.gd" id="13"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.32
 height = 1.8
 
 [node name="World3D" type="Node3D" unique_id=1621441517]
-
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1827892920]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.8)
-script = ExtResource("1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=287973192]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CapsuleShape3D_1")
-
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=423725527]
-transform = Transform3D(1, 0, 0, 0, 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 1.6, 0)
-current = true
-
-[node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D" unique_id=2078658899]
-target_position = Vector3(0, 0, -8)
-collide_with_areas = true
 
 [node name="Room" type="Node3D" parent="." unique_id=766895553]
 script = ExtResource("2")
@@ -48,6 +37,41 @@ script = ExtResource("6")
 
 [node name="BlockWorld" type="Node3D" parent="." unique_id=1952834127]
 script = ExtResource("7")
+
+[node name="WorldGenerator" type="Node" parent="." unique_id=1221908301]
+script = ExtResource("9")
+block_world_path = NodePath("../BlockWorld")
+generate_on_ready = false
+
+[node name="ProceduralTerrain" type="Node3D" parent="."]
+script = ExtResource("10")
+
+[node name="WaterPlane" type="Node3D" parent="."]
+script = ExtResource("11")
+
+[node name="PropScatterer" type="Node3D" parent="."]
+script = ExtResource("12")
+terrain_path = NodePath("../ProceduralTerrain")
+
+[node name="BuildPad" type="Node3D" parent="."]
+script = ExtResource("13")
+terrain_path = NodePath("../ProceduralTerrain")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1827892920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 1.8)
+script = ExtResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=287973192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=423725527]
+transform = Transform3D(1, 0, 0, 0, 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 1.6, 0)
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D" unique_id=2078658899]
+target_position = Vector3(0, 0, -8)
+collide_with_areas = true
 
 [node name="PlacementController" type="Node" parent="." unique_id=784062701]
 script = ExtResource("8")

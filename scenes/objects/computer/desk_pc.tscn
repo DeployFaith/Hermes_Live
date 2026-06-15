@@ -12,13 +12,13 @@ roughness = 0.45
 script = ExtResource("1")
 
 [node name="MonitorStand" type="CSGBox3D" parent="." unique_id=822899907]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 1.0300539)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0261315, 1.0300539)
 use_collision = true
 size = Vector3(0.14, 0.55, 0.14)
 material = SubResource("MetalMat")
 
 [node name="MonitorBase" type="CSGBox3D" parent="." unique_id=949343246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 1.1300539)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7761316, 1.1300539)
 use_collision = true
 size = Vector3(0.45, 0.04, 0.3)
 material = SubResource("MetalMat")

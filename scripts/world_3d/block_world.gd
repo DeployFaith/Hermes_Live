@@ -6,6 +6,7 @@ class_name BlockWorld
 ## instanced from BlockLibrary scene_path definitions.
 
 @export var block_size: float = 0.5  # Full edge length of each block cube
+@export var create_block_collision: bool = true
 
 var _placed: Dictionary = {}       # Vector3i -> block_id (String)
 var _nodes: Dictionary = {}        # Vector3i -> Node3D (CSGBox3D or MeshInstance3D)
@@ -13,9 +14,12 @@ var _entities: Dictionary = {}     # Vector3i -> Node3D (for interactive blocks)
 var _placed_items: Dictionary = {} # Vector3i -> {id, rotation_degrees, node}
 var _placed_structures: Dictionary = {} # origin Vector3i -> {id, rotation_degrees, node, cells}
 var _structure_cells: Dictionary = {}   # occupied Vector3i -> origin Vector3i
+var _terrain_collision_body: StaticBody3D
+var _terrain_collision_shapes: Dictionary = {} # Vector3i -> CollisionShape3D
 var _library: BlockLibrary
 
 const SMART_LAMP_SCRIPT := preload("res://scripts/world_3d/smart_lamp_block.gd")
+const TERRAIN_COLLISION_BODY_NAME := "TerrainCollision"
 
 func _ready() -> void:
 	# Block grid coordinates are world-aligned; BlockWorld is only an organizational
@@ -63,6 +67,46 @@ func place_block(grid_pos: Vector3i, block_id: String) -> void:
 	if _library.is_interactable(block_id):
 		_spawn_entity(grid_pos, block_id)
 
+	# Bulk-generated terrain disables per-visual collision and uses one shared
+	# StaticBody3D with one shape per terrain block. Removing a terrain block can
+	# then remove exactly its shape, avoiding stale heightmap/ghost collision.
+	if not create_block_collision:
+		_add_terrain_collision_shape(grid_pos)
+
+func set_block_collision_enabled(enabled: bool) -> void:
+	create_block_collision = enabled
+
+func _get_or_create_terrain_collision_body() -> StaticBody3D:
+	if _terrain_collision_body != null and is_instance_valid(_terrain_collision_body):
+		return _terrain_collision_body
+	_terrain_collision_body = get_node_or_null(TERRAIN_COLLISION_BODY_NAME) as StaticBody3D
+	if _terrain_collision_body == null:
+		_terrain_collision_body = StaticBody3D.new()
+		_terrain_collision_body.name = TERRAIN_COLLISION_BODY_NAME
+		add_child(_terrain_collision_body)
+	return _terrain_collision_body
+
+func _add_terrain_collision_shape(grid_pos: Vector3i) -> void:
+	if _terrain_collision_shapes.has(grid_pos):
+		return
+	var body := _get_or_create_terrain_collision_body()
+	var collision := CollisionShape3D.new()
+	collision.name = "TerrainCollision_%d_%d_%d" % [grid_pos.x, grid_pos.y, grid_pos.z]
+	var shape := BoxShape3D.new()
+	shape.size = Vector3(block_size, block_size, block_size)
+	collision.shape = shape
+	collision.position = grid_to_local(grid_pos)
+	body.add_child(collision)
+	_terrain_collision_shapes[grid_pos] = collision
+
+func _remove_terrain_collision_shape(grid_pos: Vector3i) -> void:
+	if not _terrain_collision_shapes.has(grid_pos):
+		return
+	var collision := _terrain_collision_shapes[grid_pos] as CollisionShape3D
+	if collision != null and is_instance_valid(collision):
+		collision.queue_free()
+	_terrain_collision_shapes.erase(grid_pos)
+
 func _create_csg_block(grid_pos: Vector3i, block_id: String) -> CSGBox3D:
 	var box := CSGBox3D.new()
 	box.name = "Block_%s_%d_%d_%d" % [block_id, grid_pos.x, grid_pos.y, grid_pos.z]
@@ -71,15 +115,17 @@ func _create_csg_block(grid_pos: Vector3i, block_id: String) -> CSGBox3D:
 	box.use_collision = false  # We add our own collision below
 	box.material = _library.make_material(block_id)
 
-	# Add explicit collision via StaticBody3D
-	var static_body := StaticBody3D.new()
-	static_body.name = "Collision"
-	var collision := CollisionShape3D.new()
-	var shape := BoxShape3D.new()
-	shape.size = Vector3(block_size, block_size, block_size)
-	collision.shape = shape
-	static_body.add_child(collision)
-	box.add_child(static_body)
+	# Add explicit collision for normal player-placed blocks. Bulk-generated terrain
+	# disables this and uses one shared terrain body instead.
+	if create_block_collision:
+		var static_body := StaticBody3D.new()
+		static_body.name = "Collision"
+		var collision := CollisionShape3D.new()
+		var shape := BoxShape3D.new()
+		shape.size = Vector3(block_size, block_size, block_size)
+		collision.shape = shape
+		static_body.add_child(collision)
+		box.add_child(static_body)
 
 	return box
 
@@ -106,15 +152,17 @@ func _create_mesh_block(grid_pos: Vector3i, block_id: String) -> MeshInstance3D:
 		mesh_node.set_surface_override_material(4, side_mat)   # front
 		mesh_node.set_surface_override_material(5, side_mat)   # back
 
-	# Add collision via StaticBody3D
-	var static_body := StaticBody3D.new()
-	static_body.name = "Collision"
-	var collision := CollisionShape3D.new()
-	var shape := BoxShape3D.new()
-	shape.size = Vector3(block_size, block_size, block_size)
-	collision.shape = shape
-	static_body.add_child(collision)
-	mesh_node.add_child(static_body)
+	# Add collision for normal player-placed blocks. Bulk-generated terrain disables
+	# this and uses one shared terrain body instead.
+	if create_block_collision:
+		var static_body := StaticBody3D.new()
+		static_body.name = "Collision"
+		var collision := CollisionShape3D.new()
+		var shape := BoxShape3D.new()
+		shape.size = Vector3(block_size, block_size, block_size)
+		collision.shape = shape
+		static_body.add_child(collision)
+		mesh_node.add_child(static_body)
 
 	return mesh_node
 
@@ -196,6 +244,8 @@ func _add_box_face(mesh: ArrayMesh, vertices: Array, normal: Vector3) -> void:
 func remove_block(grid_pos: Vector3i) -> void:
 	if not _placed.has(grid_pos):
 		return
+
+	_remove_terrain_collision_shape(grid_pos)
 
 	# Remove entity first
 	if _entities.has(grid_pos):

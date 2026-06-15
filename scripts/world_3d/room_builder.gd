@@ -38,7 +38,6 @@ func _build_room() -> void:
 	_add_csg_box("BackWall", Vector3(ROOM_SIZE, ROOM_HEIGHT, WALL_THICKNESS), Vector3(0.0, ROOM_HEIGHT * 0.5, -ROOM_SIZE * 0.5), _wall_material)
 	_add_csg_box("FrontWall", Vector3(ROOM_SIZE, ROOM_HEIGHT, WALL_THICKNESS), Vector3(0.0, ROOM_HEIGHT * 0.5, ROOM_SIZE * 0.5), _wall_material)
 	_add_csg_box("LeftWall", Vector3(WALL_THICKNESS, ROOM_HEIGHT, ROOM_SIZE), Vector3(-ROOM_SIZE * 0.5, ROOM_HEIGHT * 0.5, 0.0), _wall_material)
-	_add_csg_box("RightWall", Vector3(WALL_THICKNESS, ROOM_HEIGHT, ROOM_SIZE), Vector3(ROOM_SIZE * 0.5, ROOM_HEIGHT * 0.5, 0.0), _wall_material)
 
 func _build_desk() -> void:
 	var desk_origin := Vector3(0.0, 0.0, -1.55)

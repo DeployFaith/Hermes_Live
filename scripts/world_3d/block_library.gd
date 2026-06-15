@@ -24,6 +24,15 @@ func _register_default_blocks() -> void:
 		"texture_path": "res://assets/textures/blocks/stone",
 	})
 	register_block({
+		"id": "dirt",
+		"display_name": "Dirt",
+		"category": "block",
+		"color": Color(0.36, 0.22, 0.12),
+		"roughness": 0.95,
+		"solid": true,
+		"interactable": false,
+	})
+	register_block({
 		"id": "wood",
 		"display_name": "Wood",
 		"category": "block",

@@ -291,6 +291,25 @@ func _handle_build_input() -> void:
 func _raycast() -> Dictionary:
 	if camera == null:
 		return {}
+
+	var physics_hit := _physics_raycast()
+
+	# Generated terrain blocks share one StaticBody3D with per-block shapes. Cast
+	# through BlockWorld's occupancy grid too, then prefer the grid hit for that
+	# shared terrain body so placement/removal targets the exact terrain cell.
+	var grid_hit := _raycast_block_world_cells()
+	if grid_hit.is_empty():
+		return physics_hit
+	if physics_hit.is_empty() or _is_generated_terrain_collision(physics_hit.get("collider") as Node):
+		return grid_hit
+
+	var origin := camera.global_position
+	var physics_position: Vector3 = physics_hit.get("position", origin)
+	var grid_position: Vector3 = grid_hit.get("position", origin)
+	return physics_hit if origin.distance_squared_to(physics_position) < origin.distance_squared_to(grid_position) else grid_hit
+
+
+func _physics_raycast() -> Dictionary:
 	var world := camera.get_world_3d()
 	if world == null:
 		return {}
@@ -314,6 +333,88 @@ func _raycast() -> Dictionary:
 		"normal": result.get("normal"),
 		"collider": result.get("collider"),
 	}
+
+
+func _is_generated_terrain_collision(collider: Node) -> bool:
+	return collider != null and collider.name == "TerrainCollision"
+
+
+func _raycast_block_world_cells() -> Dictionary:
+	if camera == null or block_world == null:
+		return {}
+
+	var origin_world := camera.global_position
+	var forward_world := -camera.global_transform.basis.z.normalized()
+	var end_world := origin_world + forward_world * max_distance
+	var origin := block_world.to_local(origin_world)
+	var end := block_world.to_local(end_world)
+	var direction := end - origin
+	var distance := direction.length()
+	if distance <= 0.0001:
+		return {}
+	direction /= distance
+
+	var block_size := block_world.block_size
+	var current := block_world.world_to_grid(origin_world)
+	var step := Vector3i(
+		1 if direction.x > 0.0 else (-1 if direction.x < 0.0 else 0),
+		1 if direction.y > 0.0 else (-1 if direction.y < 0.0 else 0),
+		1 if direction.z > 0.0 else (-1 if direction.z < 0.0 else 0)
+	)
+	var t_max := Vector3(
+		_axis_first_crossing_distance(origin.x, direction.x, current.x, step.x, block_size),
+		_axis_first_crossing_distance(origin.y, direction.y, current.y, step.y, block_size),
+		_axis_first_crossing_distance(origin.z, direction.z, current.z, step.z, block_size)
+	)
+	var t_delta := Vector3(
+		_axis_cell_crossing_distance(direction.x, block_size),
+		_axis_cell_crossing_distance(direction.y, block_size),
+		_axis_cell_crossing_distance(direction.z, block_size)
+	)
+
+	var traveled := 0.0
+	var normal_local := Vector3.ZERO
+	while traveled <= distance:
+		if block_world.has_block(current) or block_world.has_item(current) or block_world.has_structure(current):
+			var hit_local := origin + direction * traveled
+			var normal_world := (block_world.global_transform.basis * normal_local).normalized()
+			return {
+				"position": block_world.to_global(hit_local),
+				"normal": normal_world,
+				"collider": block_world,
+				"grid": current,
+			}
+
+		if t_max.x <= t_max.y and t_max.x <= t_max.z:
+			traveled = t_max.x
+			t_max.x += t_delta.x
+			current.x += step.x
+			normal_local = Vector3(-step.x, 0.0, 0.0)
+		elif t_max.y <= t_max.z:
+			traveled = t_max.y
+			t_max.y += t_delta.y
+			current.y += step.y
+			normal_local = Vector3(0.0, -step.y, 0.0)
+		else:
+			traveled = t_max.z
+			t_max.z += t_delta.z
+			current.z += step.z
+			normal_local = Vector3(0.0, 0.0, -step.z)
+
+	return {}
+
+
+func _axis_first_crossing_distance(origin_axis: float, direction_axis: float, grid_axis: int, step_axis: int, cell_size: float) -> float:
+	if step_axis == 0 or is_zero_approx(direction_axis):
+		return INF
+	var boundary := float(grid_axis + (1 if step_axis > 0 else 0)) * cell_size
+	return maxf((boundary - origin_axis) / direction_axis, 0.0)
+
+
+func _axis_cell_crossing_distance(direction_axis: float, cell_size: float) -> float:
+	if is_zero_approx(direction_axis):
+		return INF
+	return absf(cell_size / direction_axis)
 
 
 func _update_target() -> void:
