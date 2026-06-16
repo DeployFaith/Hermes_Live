@@ -14,13 +14,13 @@ radius = 0.32
 height = 1.8
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_coastal_haze"]
-sky_top_color = Color(0.39, 0.63, 0.96, 1)
-sky_horizon_color = Color(0.76, 0.86, 0.94, 1)
-sky_curve = 0.18
-sky_energy_multiplier = 1.05
-ground_bottom_color = Color(0.4, 0.58, 0.72, 1)
-ground_horizon_color = Color(0.76, 0.86, 0.94, 1)
-ground_curve = 0.07
+sky_top_color = Color(0.27, 0.56, 0.96, 1)
+sky_horizon_color = Color(0.82, 0.9, 0.98, 1)
+sky_curve = 0.12
+sky_energy_multiplier = 1.18
+ground_bottom_color = Color(0.34, 0.5, 0.68, 1)
+ground_horizon_color = Color(0.86, 0.9, 0.88, 1)
+ground_curve = 0.1
 
 [sub_resource type="Sky" id="Sky_coastal_haze"]
 sky_material = SubResource("ProceduralSkyMaterial_coastal_haze")
@@ -29,21 +29,22 @@ sky_material = SubResource("ProceduralSkyMaterial_coastal_haze")
 background_mode = 2
 sky = SubResource("Sky_coastal_haze")
 ambient_light_source = 2
-ambient_light_color = Color(0.82, 0.88, 0.94, 1)
-ambient_light_sky_contribution = 0.45
-ambient_light_energy = 0.35
+ambient_light_color = Color(0.78, 0.84, 0.9, 1)
+ambient_light_sky_contribution = 0.32
+ambient_light_energy = 0.24
 tonemap_mode = 2
-tonemap_exposure = 0.85
+tonemap_exposure = 1.02
+tonemap_white = 1.45
 ssao_enabled = true
 ssao_radius = 1.25
-ssao_intensity = 0.55
+ssao_intensity = 0.82
 fog_enabled = true
-fog_light_color = Color(0.76, 0.86, 0.94, 1)
-fog_light_energy = 0.4
-fog_sun_scatter = 0.32
-fog_density = 0.005
-fog_aerial_perspective = 0.88
-fog_sky_affect = 0.25
+fog_light_color = Color(0.93, 0.86, 0.74, 1)
+fog_light_energy = 0.24
+fog_sun_scatter = 0.18
+fog_density = 0.0022
+fog_aerial_perspective = 0.48
+fog_sky_affect = 0.12
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_water"]
 size = Vector2(768, 768)
@@ -128,7 +129,7 @@ emission_energy_multiplier = 0.2
 script = ExtResource("1_setup")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=948459491]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027355194, 0, -398.97748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027355194, 0, -31.4693)
 script = ExtResource("2_player")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1188338020]
@@ -136,27 +137,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_player")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=276327378]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881898, 0, -0.25881898, 0.9659259, 0, 1.6, 0)
 current = true
 fov = 72.0
 far = 5000.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1067771038]
-transform = Transform3D(0.683013, -0.258819, 0.683013, 0.183013, 0.965926, 0.183013, -0.707107, 0, 0.707107, 0, 36, 0)
-light_color = Color(1, 0.94, 0.82, 1)
-light_energy = 0.9
-light_angular_distance = 0.35
+transform = Transform3D(-0.729537, 0, 0.683941, 0.51414, 0.65947, 0.548416, -0.451039, 0.751731, -0.481108, 0, 36, 0)
+light_color = Color(1, 0.91, 0.74, 1)
+light_energy = 1.35
+light_angular_distance = 0.22
 shadow_enabled = true
-shadow_bias = 0.045
-shadow_normal_bias = 1.0
-shadow_blur = 0.65
+shadow_bias = 0.035
+shadow_normal_bias = 0.75
+shadow_blur = 0.35
 directional_shadow_blend_splits = true
-directional_shadow_max_distance = 650.0
+directional_shadow_max_distance = 900.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1307616260]
 environment = SubResource("Environment_test")
 
 [node name="Water" type="MeshInstance3D" parent="." unique_id=2042582554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_water")
 surface_material_override/0 = SubResource("ShaderMaterial_water")

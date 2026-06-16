@@ -12,16 +12,13 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D
 
-const WATER_SURFACE_Y := 0.0
+const WATER_SURFACE_Y := -0.05
 const UNDERWATER_TINT := Color(0.02, 0.42, 0.48, 1.0)
 const UNDERWATER_FOG_COLOR := Color(0.04, 0.46, 0.52, 1.0)
 const TERRAIN_COLLISION_LAYER := 1
 
 var _pitch: float = 0.0
 var _jump_requested := false
-var _was_mouse_pressed := false
-
-var _mouse_relative := Vector2.ZERO
 var _world_environment: WorldEnvironment
 var _base_environment: Environment
 var _underwater_environment: Environment
@@ -43,12 +40,17 @@ func _enter_tree() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		_mouse_relative += event.relative
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		_pitch = clamp(_pitch - event.relative.y * mouse_sensitivity, deg_to_rad(-85.0), deg_to_rad(85.0))
+		camera.rotation.x = _pitch
+
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif event is InputEventMouseButton and event.pressed and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _process(_delta: float) -> void:
-	_poll_mouse_capture()
-	_apply_mouse_look()
 	_update_underwater_visuals()
 	if Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_SPACE):
 		_jump_requested = true
@@ -116,28 +118,6 @@ func _apply_underwater_walk_movement(input_dir: Vector2, delta: float) -> void:
 
 func _is_swimming() -> bool:
 	return _is_underwater or camera.global_position.y < WATER_SURFACE_Y - 0.02 or global_position.y < WATER_SURFACE_Y - 0.15
-
-
-func _poll_mouse_capture() -> void:
-	if Input.is_key_pressed(KEY_ESCAPE):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-	var mouse_pressed := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	if mouse_pressed and not _was_mouse_pressed and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	_was_mouse_pressed = mouse_pressed
-
-
-func _apply_mouse_look() -> void:
-	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-		_mouse_relative = Vector2.ZERO
-		return
-	if _mouse_relative.length_squared() <= 0.001:
-		return
-	rotate_y(-_mouse_relative.x * mouse_sensitivity)
-	_pitch = clamp(_pitch - _mouse_relative.y * mouse_sensitivity, deg_to_rad(-84.0), deg_to_rad(84.0))
-	camera.rotation.x = _pitch
-	_mouse_relative = Vector2.ZERO
 
 
 func _setup_underwater_visuals() -> void:

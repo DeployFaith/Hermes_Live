@@ -3,9 +3,9 @@ extends Node
 ## Performance-optimized Terrain3D test setup.
 ## Caches packed textures and generated maps to disk so subsequent loads are fast.
 
-const HEIGHTMAP_SIZE := 513
-const REGION_SIZE := 256
-const TERRAIN_OFFSET := Vector3(-256.0, 0.0, -256.0)
+const HEIGHTMAP_SIZE := 2049
+const REGION_SIZE := 1024
+const TERRAIN_OFFSET := Vector3(-1024.0, 0.0, -1024.0)
 const HEIGHT_SCALE := 20.0
 const BUILD_PAD_POSITION_XZ := Vector2(0.0, 0.0)
 
@@ -18,12 +18,26 @@ const DIRT_ID := 1
 const ROCK_ID := 2
 const SAND_ID := 3
 
+const TREE_ASSETS := [
+	{"id": 0, "name": "KayKit Tree 1", "path": "res://assets/models/nature/trees/Tree_1_A_Color1.gltf"},
+	{"id": 1, "name": "KayKit Tree 2", "path": "res://assets/models/nature/trees/Tree_2_A_Color1.gltf"},
+	{"id": 2, "name": "KayKit Tree 3", "path": "res://assets/models/nature/trees/Tree_3_A_Color1.gltf"},
+]
+const BUSH_ASSET := {"id": 3, "name": "KayKit Bush", "path": "res://assets/models/nature/bushes/Bush_1_A_Color1.gltf"}
+const FOLIAGE_SEED := 424242
+const TREE_SPACING := 30.0
+const BUSH_SPACING := 15.0
+const MAX_FOLIAGE_SLOPE_DEGREES := 25.0
+const SPAWN_CLEAR_RADIUS := 10.0
+const BUILD_PAD_CLEAR_RADIUS := 42.0
+const WATERLINE_HEIGHT := 1.0
+
 var terrain: Terrain3D
 var _generated_heights := PackedFloat32Array()
 
 
 func _ready() -> void:
-	terrain = await create_terrain()
+	terrain = create_terrain()
 	_position_player_on_terrain()
 	_position_build_pad_on_terrain()
 
@@ -43,10 +57,10 @@ func create_terrain() -> Terrain3D:
 	new_terrain.name = "Terrain3D"
 	new_terrain.region_size = REGION_SIZE
 	new_terrain.vertex_spacing = 1.0
-	new_terrain.collision_layer = 1
-	new_terrain.collision_mask = 1
-	new_terrain.collision_mode = Terrain3DCollision.FULL_GAME
 	add_child(new_terrain, true)
+	# Terrain3D ignores collision property assignments before it enters the scene tree.
+	# Apply collision settings after add_child(), and after data import below, so Full Game
+	# collision is built from populated regions instead of leaving the default Dynamic Game mode.
 	# Control map handles all texture zones — no auto shader
 	new_terrain.material.world_background = Terrain3DMaterial.NONE
 	new_terrain.material.auto_shader = false
@@ -59,6 +73,11 @@ func create_terrain() -> Terrain3D:
 
 	var terrain_images := _load_or_cache_maps()
 	new_terrain.data.import_images([terrain_images[0], terrain_images[1], null], TERRAIN_OFFSET, TERRAIN_MIN_HEIGHT, HEIGHT_SCALE)
+	new_terrain.collision_layer = 1
+	new_terrain.collision_mask = 1
+	new_terrain.collision_shape_size = 32
+	new_terrain.collision_mode = Terrain3DCollision.FULL_GAME
+	_setup_foliage(new_terrain)
 
 	var t_total := Time.get_ticks_msec()
 	print("[Terrain3DTest] Total terrain setup: %dms" % (t_total - t_start))
@@ -120,6 +139,183 @@ func _load_or_cache_texture(asset_name: String, prefix: String, uv_scale: float,
 	ta.ao_strength = 0.75
 	ta.roughness = 0.12
 	return ta
+
+
+# --- Terrain3D foliage instancing ---
+
+func _setup_foliage(target_terrain: Terrain3D) -> void:
+	if target_terrain == null or target_terrain.assets == null or target_terrain.get_instancer() == null:
+		return
+
+	var registered_tree_ids: Array[int] = []
+	for asset_info: Dictionary in TREE_ASSETS:
+		var mesh_asset := _create_foliage_mesh_asset(asset_info)
+		if mesh_asset == null:
+			continue
+		var mesh_id: int = asset_info["id"]
+		target_terrain.assets.set_mesh_asset(mesh_id, mesh_asset)
+		registered_tree_ids.push_back(mesh_id)
+
+	var bush_mesh_asset := _create_foliage_mesh_asset(BUSH_ASSET)
+	var bush_id: int = BUSH_ASSET["id"]
+	var has_bushes := bush_mesh_asset != null
+	if has_bushes:
+		target_terrain.assets.set_mesh_asset(bush_id, bush_mesh_asset)
+
+	if registered_tree_ids.is_empty() and not has_bushes:
+		push_warning("[Terrain3DTest] No KayKit foliage scenes loaded; skipping Terrain3D foliage scatter.")
+		return
+
+	var rng := RandomNumberGenerator.new()
+	rng.seed = FOLIAGE_SEED
+
+	var tree_transforms_by_id: Dictionary = {}
+	for mesh_id in registered_tree_ids:
+		var empty_transforms: Array[Transform3D] = []
+		tree_transforms_by_id[mesh_id] = empty_transforms
+	var bush_transforms: Array[Transform3D] = []
+
+	_generate_tree_transforms(target_terrain, registered_tree_ids, tree_transforms_by_id, rng)
+	if has_bushes:
+		_generate_bush_transforms(target_terrain, bush_transforms, rng)
+
+	var instancer := target_terrain.get_instancer()
+	for mesh_id in registered_tree_ids:
+		instancer.clear_by_mesh(mesh_id)
+		var transforms: Array[Transform3D] = tree_transforms_by_id[mesh_id]
+		if not transforms.is_empty():
+			instancer.add_transforms(mesh_id, transforms)
+			print("[Terrain3DTest] Scattered %d tree instances for mesh id %d" % [transforms.size(), mesh_id])
+
+	if has_bushes:
+		instancer.clear_by_mesh(bush_id)
+		if not bush_transforms.is_empty():
+			instancer.add_transforms(bush_id, bush_transforms)
+			print("[Terrain3DTest] Scattered %d bush instances for mesh id %d" % [bush_transforms.size(), bush_id])
+
+
+func _create_foliage_mesh_asset(asset_info: Dictionary) -> Terrain3DMeshAsset:
+	var path: String = asset_info["path"]
+	var scene := load(path) as PackedScene
+	if scene == null:
+		push_warning("[Terrain3DTest] Failed to load foliage scene: %s" % path)
+		return null
+
+	var mesh_asset := Terrain3DMeshAsset.new()
+	mesh_asset.name = asset_info["name"]
+	mesh_asset.id = asset_info["id"]
+	mesh_asset.enabled = true
+	mesh_asset.set_scene_file(scene)
+	mesh_asset.height_offset = 0.0
+	mesh_asset.density = 1.0
+	mesh_asset.cast_shadows = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+	return mesh_asset
+
+
+func _generate_tree_transforms(target_terrain: Terrain3D, mesh_ids: Array[int], transforms_by_id: Dictionary, rng: RandomNumberGenerator) -> void:
+	if mesh_ids.is_empty():
+		return
+
+	var start := TERRAIN_OFFSET.x + TREE_SPACING * 0.5
+	var end := TERRAIN_OFFSET.x + float(HEIGHTMAP_SIZE - 1) - TREE_SPACING * 0.5
+	var z := start
+	while z <= end:
+		var x := start
+		while x <= end:
+			var pos_x := x + rng.randf_range(-TREE_SPACING * 0.35, TREE_SPACING * 0.35)
+			var pos_z := z + rng.randf_range(-TREE_SPACING * 0.35, TREE_SPACING * 0.35)
+			var pos := Vector3(pos_x, 0.0, pos_z)
+			if _is_valid_tree_position(pos) and rng.randf() < 0.76:
+				pos.y = target_terrain.data.get_height(pos)
+				var mesh_id := mesh_ids[rng.randi_range(0, mesh_ids.size() - 1)]
+				var transforms: Array[Transform3D] = transforms_by_id[mesh_id]
+				transforms.push_back(_random_foliage_transform(pos, rng.randf_range(0.5, 1.6), rng))
+			x += TREE_SPACING
+		z += TREE_SPACING
+
+
+func _generate_bush_transforms(target_terrain: Terrain3D, transforms: Array[Transform3D], rng: RandomNumberGenerator) -> void:
+	var start := TERRAIN_OFFSET.x + BUSH_SPACING * 0.5
+	var end := TERRAIN_OFFSET.x + float(HEIGHTMAP_SIZE - 1) - BUSH_SPACING * 0.5
+	var z := start
+	while z <= end:
+		var x := start
+		while x <= end:
+			var pos_x := x + rng.randf_range(-BUSH_SPACING * 0.38, BUSH_SPACING * 0.38)
+			var pos_z := z + rng.randf_range(-BUSH_SPACING * 0.38, BUSH_SPACING * 0.38)
+			var pos := Vector3(pos_x, 0.0, pos_z)
+			if _is_valid_bush_position(pos) and rng.randf() < 0.34:
+				pos.y = target_terrain.data.get_height(pos)
+				transforms.push_back(_random_foliage_transform(pos, rng.randf_range(0.5, 1.4), rng))
+			x += BUSH_SPACING
+		z += BUSH_SPACING
+
+
+func _random_foliage_transform(pos: Vector3, scale: float, rng: RandomNumberGenerator) -> Transform3D:
+	var basis := Basis(Vector3.UP, rng.randf_range(0.0, TAU))
+	basis = basis.scaled(Vector3.ONE * scale)
+	return Transform3D(basis, pos)
+
+
+func _is_valid_tree_position(pos: Vector3) -> bool:
+	if not _is_valid_foliage_position(pos):
+		return false
+	var map_pos := _world_to_heightmap(pos)
+	var height := _get_generated_height(map_pos.x, map_pos.y)
+	var slope := _slope_at(map_pos.x, map_pos.y)
+	if height < 3.0:
+		return false
+	if _is_rock_zone(height, slope):
+		return false
+	return true
+
+
+func _is_valid_bush_position(pos: Vector3) -> bool:
+	if not _is_valid_foliage_position(pos):
+		return false
+	var map_pos := _world_to_heightmap(pos)
+	var height := _get_generated_height(map_pos.x, map_pos.y)
+	var slope := _slope_at(map_pos.x, map_pos.y)
+	if height < 2.4:
+		return false
+	if slope > tan(deg_to_rad(18.0)):
+		return false
+	if _is_rock_zone(height, slope):
+		return false
+	return true
+
+
+func _is_valid_foliage_position(pos: Vector3) -> bool:
+	var xz := Vector2(pos.x, pos.z)
+	if xz.length() < SPAWN_CLEAR_RADIUS:
+		return false
+	if xz.distance_to(BUILD_PAD_POSITION_XZ) < BUILD_PAD_CLEAR_RADIUS:
+		return false
+	if not _is_inside_heightmap(pos):
+		return false
+	var map_pos := _world_to_heightmap(pos)
+	var height := _get_generated_height(map_pos.x, map_pos.y)
+	if height <= WATERLINE_HEIGHT:
+		return false
+	if _slope_at(map_pos.x, map_pos.y) > tan(deg_to_rad(MAX_FOLIAGE_SLOPE_DEGREES)):
+		return false
+	return true
+
+
+func _is_rock_zone(height: float, slope: float) -> bool:
+	return slope > 0.30 or (height > 7.4 and slope > 0.14)
+
+
+func _is_inside_heightmap(pos: Vector3) -> bool:
+	var max_world := TERRAIN_OFFSET.x + float(HEIGHTMAP_SIZE - 1)
+	return pos.x >= TERRAIN_OFFSET.x and pos.x <= max_world and pos.z >= TERRAIN_OFFSET.z and pos.z <= max_world
+
+
+func _world_to_heightmap(pos: Vector3) -> Vector2i:
+	return Vector2i(
+		clampi(roundi(pos.x - TERRAIN_OFFSET.x), 0, HEIGHTMAP_SIZE - 1),
+		clampi(roundi(pos.z - TERRAIN_OFFSET.z), 0, HEIGHTMAP_SIZE - 1)
+	)
 
 
 # --- Heightmap/control map generation ---
